@@ -23,6 +23,9 @@ is maintained as a git repository, and portzap allows the repository to be clone
 * **portzap unpack** <br>
   This command should be run as root. It copies `/tmp/ports` to `/usr/ports`.
 
+* **portzap rmtree** <br>
+  This command can be run as root, or a regular user. It removes `/tmp/ports`.
+
 ## Sources
 
 * [Source code (GitHub)](https://github.com/0x1eef/portzap)
