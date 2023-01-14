@@ -11,15 +11,19 @@ is maintained as a git repository, and portzap allows the repository to be clone
 
 ## Usage
 
-* **portzap clone**
+* **portzap clone** <br>
   This command should be run with a regular user account. <br>
   The command clones HardenedBSD's ports collection to `/tmp/ports`.
 
 
-* **portzap pull**
+* **portzap pull** <br>
   This command should be run with a regular user account. <br>
   The command updates an existing repository previously cloned with `portzap clone`.
 
-* **portzap unpack**
+* **portzap unpack** <br>
   This command should be run as root. It copies `/tmp/ports` to `/usr/ports`.
 
+## Sources
+
+* [Source code (GitHub)](https://github.com/0x1eef/portzap)
+* [Source code (GitLab)](https://gitlab.com/0x1eef/portzap)
