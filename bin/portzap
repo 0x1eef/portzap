@@ -7,7 +7,6 @@
 source="https://git.hardenedbsd.org/hardenedbsd/ports.git"
 stage_dir="/tmp/ports/"
 
-
 ##
 # Utils
 
@@ -37,7 +36,7 @@ user_is_not_root() {
 # Commands
 
 help() {
-    echo portzap "[clone|pull|unpack]"
+    echo Usage: portzap "clone|pull|unpack"
 }
 
 clone() {
