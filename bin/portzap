@@ -6,6 +6,8 @@
 
 source="https://git.hardenedbsd.org/hardenedbsd/ports.git"
 stage_dir="/home/_portzap/ports"
+clone_mode=007
+pull_mode=007
 
 clone_mode=007
 pull_mode=007
@@ -25,15 +27,21 @@ exit_on_missing_deps() {
     done
 }
 
-user_is_root() {
-    user_id=$(id -u $(whoami))
-    return $user_id = "0"
+has_portzap_access() {
+    groups=$(id -Gn)
+    in_group=1
+    for g in $groups; do
+        if [ $g="_portzap" ];
+        then
+            in_group=0
+        fi
+    done
+    return $in_group
 }
 
 user_is_not_root() {
     user_id=$(id -u $(whoami))
-    result=$(test $user_id -ne "0")
-    return $result
+    return $(test $user_id -ne "0")
 }
 
 ##
@@ -57,25 +65,33 @@ init() {
 clone() {
     if has_portzap_access
     then
-        echo "$stage_dir has already been cloned."
-        echo "Run 'portzap pull', or 'portzap rmtree' instead."
-        exit 1
+        if [ -e "$stage_dir/.git" ];
+        then
+            echo "$stage_dir has already been cloned."
+            echo "Run 'portzap pull', or 'portzap rmtree' instead."
+            exit 1
+        fi
+        umask $clone_mode
+        git clone --depth 1 $source $stage_dir
+    else
+        echo "Permission denied"
     fi
-    git clone --depth 1 $source $stage_dir
 }
 
 pull() {
-    if user_is_root
+    if has_portzap_access
     then
-        echo "The pull command should not be run as root."
-        exit 1
-    fi
-    if [ -e "$stage_dir/.git" ];
-    then
-       cd $stage_dir
-       git pull --rebase origin hardenedbsd/main
+        if [ -e "$stage_dir/.git" ];
+        then
+            umask $pull_mode
+            cd $stage_dir
+            git pull --rebase origin hardenedbsd/main
+        else
+            echo "Run 'portzap clone' first."
+            exit 1
+        fi
     else
-        echo "Run 'portzap clone' first."
+        echo "Permission denied."
         exit 1
     fi
 }
