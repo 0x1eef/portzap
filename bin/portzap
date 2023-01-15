@@ -48,14 +48,14 @@ user_is_not_root() {
 # Commands
 
 help() {
-    echo "Usage: portzap init|clone|pull|unpack|rmtree"
+    echo "Usage: portzap init|clone|pull|unpack"
 }
 
 init() {
     if user_is_not_root;
     then
         echo "The init command should be run as root."
-        exit
+        exit 1
     fi;
     umask $init_mode
     pw userdel _portzap -r
@@ -68,7 +68,7 @@ clone() {
         if [ -e "$stage_dir/.git" ];
         then
             echo "$stage_dir has already been cloned."
-            echo "Run 'portzap pull', or 'portzap rmtree' instead."
+            echo "Run 'portzap pull' instead."
             exit 1
         fi
         umask $clone_mode
@@ -122,10 +122,6 @@ case $1 in
         ;;
     "unpack")
         unpack
-        break
-        ;;
-    "rmtree")
-        rmtree
         break
         ;;
     *)
