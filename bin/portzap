@@ -18,7 +18,7 @@ unpack_mode=022
 ##
 # Utils
 exit_on_missing_deps() {
-    deps="git"
+    deps=$1
     for dep in $deps; do
         which -s $dep
         if [ $? -ne 0 ]; then
@@ -113,12 +113,12 @@ case $1 in
         break
         ;;
     "clone")
-        exit_on_missing_deps
+        exit_on_missing_deps "git"
         clone
         break
         ;;
     "pull")
-        exit_on_missing_deps
+        exit_on_missing_deps "git"
         pull
         break
         ;;
