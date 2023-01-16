@@ -1,0 +1,15 @@
+#!/bin/sh
+src=$1
+dest=$2/${src}
+mode=$3
+group=_portzap
+install_args="-m $mode"
+
+mkdir -m $mode -p $dest
+find $src -maxdepth 1 -type f -execdir install $install_args {} $dest/{} \;
+if [ -d "$src/files" ];
+then
+    mkdir -m $mode -p $dest/files
+    find $src/files -maxdepth 1 -type f -execdir install $install_args {} $dest/files \;
+fi
+echo Install $(realpath $dest)

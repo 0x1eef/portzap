@@ -4,16 +4,19 @@
 
 ##
 # Configuration
-source="https://git.hardenedbsd.org/hardenedbsd/ports.git"
+source_url="https://git.hardenedbsd.org/hardenedbsd/ports.git"
 transient_dir="/home/_portzap/ports"
-final_dir="/usr/ports/"
+rest_dir="/usr/ports/"
+
+##
+# Default masks
+init_mask=707
+clone_mask=007
+pull_mask=007
 
 ##
 # Default modes
-init_mode=707
-clone_mode=007
-pull_mode=007
-unpack_mode=022
+unpack_mode="u=rwX,g=rX,o=rX"
 
 ##
 # Utils
@@ -58,7 +61,7 @@ init() {
         echo "The init command should be run as root."
         exit 1
     fi;
-    umask $init_mode
+    umask $init_mask
     pw userdel _portzap -r
     pw useradd _portzap -m -s /sbin/nologin
 }
@@ -72,8 +75,8 @@ clone() {
             echo "Run 'portzap pull' instead."
             exit 1
         fi
-        umask $clone_mode
-        git clone --depth 1 $source $transient_dir
+        umask $clone_mask
+        git clone --depth 1 $source_url $transient_dir
     else
         echo "Permission denied."
     fi
@@ -84,7 +87,7 @@ pull() {
     then
         if [ -e "$transient_dir/.git" ];
         then
-            umask $pull_mode
+            umask $pull_mask
             cd $transient_dir
             git pull --rebase origin hardenedbsd/main
         else
@@ -103,8 +106,10 @@ unpack() {
         echo "The unpack command should be run as root."
         exit 1
     fi
-    umask $unpack_mode
-    cp -Rfv "$transient_dir/." $final_dir
+    cd $transient_dir
+    find . -maxdepth 1 -type f -exec install -m=$unpack_mode {} $rest_dir \;
+    find . -maxdepth 1 -type d -exec mkdir -p -m $unpack_mode $rest_dir/{} \;
+    find . -depth 2 -type d -exec portzap-install-port {} $rest_dir $unpack_mode \;
 }
 
 case $1 in
