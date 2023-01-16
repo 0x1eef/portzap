@@ -1,5 +1,4 @@
 #!/bin/sh
-#
 # A shell script that takes care of keeping up to date with
 # the HardenedBSD ports collection.
 
