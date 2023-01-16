@@ -41,7 +41,7 @@ has_portzap_access() {
 }
 
 user_is_not_root() {
-    user_id=$(id -u $(whoami))
+    user_id=$(id -u)
     result=$(test $user_id -ne "0")
     return $result
 }
