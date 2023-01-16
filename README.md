@@ -14,11 +14,10 @@ is maintained as a git repository, and portzap allows the repository to be clone
 * **portzap init** <br>
   This command should be run as root. <br>
   The command creates the `_portzap` user / group, and the directory `/home/_portzap`.
-  `
+
 * **portzap clone** <br>
   This command should be run by a user account that is a member of the `_portzap` group. <br>
   The command clones HardenedBSD's ports collection to `/home/_portzap/ports`.
-
 
 * **portzap pull** <br>
   This command should be run by a user account that is a member of the `_portzap` group. <br>
