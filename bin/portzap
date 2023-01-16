@@ -4,18 +4,21 @@
 # A shell script that takes care of keeping up to date with
 # the HardenedBSD ports collection.
 
+##
+# Configuration
 source="https://git.hardenedbsd.org/hardenedbsd/ports.git"
-stage_dir="/home/_portzap/ports"
-clone_mode=007
-pull_mode=007
+transient_dir="/home/_portzap/ports"
+final_dir="/usr/ports/"
 
+##
+# Default modes
+init_mode=707
 clone_mode=007
 pull_mode=007
-init_mode=707
+unpack_mode=022
 
 ##
 # Utils
-
 exit_on_missing_deps() {
     deps="git"
     for dep in $deps; do
@@ -41,12 +44,12 @@ has_portzap_access() {
 
 user_is_not_root() {
     user_id=$(id -u $(whoami))
-    return $(test $user_id -ne "0")
+    result=$(test $user_id -ne "0")
+    return $result
 }
 
 ##
 # Commands
-
 help() {
     echo "Usage: portzap init|clone|pull|unpack"
 }
@@ -65,26 +68,26 @@ init() {
 clone() {
     if has_portzap_access
     then
-        if [ -e "$stage_dir/.git" ];
+        if [ -e "$transient_dir/.git" ];
         then
-            echo "$stage_dir has already been cloned."
+            echo "$transient_dir has already been cloned."
             echo "Run 'portzap pull' instead."
             exit 1
         fi
         umask $clone_mode
-        git clone --depth 1 $source $stage_dir
+        git clone --depth 1 $source $transient_dir
     else
-        echo "Permission denied"
+        echo "Permission denied."
     fi
 }
 
 pull() {
     if has_portzap_access
     then
-        if [ -e "$stage_dir/.git" ];
+        if [ -e "$transient_dir/.git" ];
         then
             umask $pull_mode
-            cd $stage_dir
+            cd $transient_dir
             git pull --rebase origin hardenedbsd/main
         else
             echo "Run 'portzap clone' first."
@@ -102,7 +105,8 @@ unpack() {
         echo "The unpack command should be run as root."
         exit 1
     fi
-    cp -Rfv /tmp/ports /usr/
+    umask $unpack_mode
+    cp -Rfv "$transient_dir/." $final_dir
 }
 
 case $1 in
