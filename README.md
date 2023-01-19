@@ -23,9 +23,9 @@ is maintained as a git repository, and portzap allows the repository to be clone
   This command should be run by a user account that is a member of the `_portzap` group. <br>
   The command updates an existing repository previously cloned with `portzap clone`.
 
-* **portzap unpack** <br>
+* **portzap install** <br>
   This command should be run as root. <br>
-  The command copies `/home/_portzap/ports` to `/usr/ports`.
+  The command installs `/home/_portzap/ports` into `/usr/ports`.
 
 ## Sources
 
