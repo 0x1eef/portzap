@@ -8,6 +8,7 @@ source_url="https://git.hardenedbsd.org/hardenedbsd/ports.git"
 transient_dir="/home/_portzap/ports"
 rest_dir="/usr/ports/"
 libexec_dir=$(realpath $(dirname $0)/../libexec/portzap/)
+group="_portzap"
 
 ##
 # Default masks
@@ -17,7 +18,7 @@ pull_mask=007
 
 ##
 # Default modes
-install_mode="u=rwX,g=rX,o=rX"
+install_mode="u=rwX,g=rX,o="
 
 ##
 # Utils
@@ -108,9 +109,9 @@ install() {
         exit 1
     fi
     cd $transient_dir
-    find . -maxdepth 1 -type f -exec install -m $install_mode {} $rest_dir \;
-    find . -maxdepth 1 -type d -exec mkdir -p -m $install_mode $rest_dir/{} \;
-    find . -depth 2 -type d -exec $libexec_dir/install-port {} $rest_dir $install_mode \;
+    find . -maxdepth 1 -type f -exec install -g $group -m $install_mode {} $rest_dir \;
+    find . -maxdepth 1 -type d -exec $libexec_dir/install-directory {} $rest_dir/{} \;
+    find . -depth 2 -type d -exec $libexec_dir/install-port {} $rest_dir $install_mode $libexec_dir \;
 }
 
 case $1 in

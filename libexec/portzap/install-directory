@@ -1,0 +1,6 @@
+#!/bin/sh
+src=$1
+dest=$2
+group=_portzap
+mode=u=rwx,g=rx,o=
+install -d -g $group -m $mode $src $dest
