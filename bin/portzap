@@ -8,17 +8,12 @@ source_url="https://git.hardenedbsd.org/hardenedbsd/ports.git"
 transient_dir="/home/_portzap/ports"
 rest_dir="/usr/ports/"
 libexec_dir=$(realpath $(dirname $0)/../libexec/portzap/)
-group="_portzap"
 
 ##
 # Default masks
 init_mask=707
 clone_mask=007
 pull_mask=007
-
-##
-# Default modes
-install_mode="u=rwX,g=rX,o="
 
 ##
 # Utils
