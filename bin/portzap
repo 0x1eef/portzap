@@ -109,9 +109,7 @@ install() {
         exit 1
     fi
     cd $transient_dir
-    find . -maxdepth 1 -type f -exec install -g $group -m $install_mode {} $rest_dir \;
-    find . -maxdepth 1 -type d -exec $libexec_dir/install-directory {} $rest_dir/{} \;
-    find . -depth 2 -type d -exec $libexec_dir/install-port {} $rest_dir $install_mode $libexec_dir \;
+    find . -maxdepth 1 -type d -exec $libexec_dir/install-directory {} $rest_dir $libexec_dir \;
 }
 
 case $1 in

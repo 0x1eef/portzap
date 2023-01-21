@@ -1,6 +1,11 @@
 #!/bin/sh
 src=$1
 dest=$2
+libexec_dir=$3
 group=_portzap
 mode=u=rwx,g=rx,o=
-install -d -g $group -m $mode $src $dest
+
+install -d -g $group -m $mode $src $dest/$src
+echo Install $(realpath $dest/$src)
+find $src -maxdepth 1 -type f -exec $libexec_dir/install-file {} $dest/$src $libexec_dir \;
+find $src -depth 1 -type d -exec $libexec_dir/install-directory {} $dest $libexec_dir \;
