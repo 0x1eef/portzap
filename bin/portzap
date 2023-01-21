@@ -5,8 +5,8 @@
 ##
 # Configuration
 source_url="https://git.hardenedbsd.org/hardenedbsd/ports.git"
-transient_dir="/home/_portzap/ports"
-rest_dir="/usr/ports/"
+portzap_dir="/home/_portzap/ports"
+ports_dir="/usr/ports/"
 libexec_dir=$(realpath $(dirname $0)/../libexec/portzap/)
 
 ##
@@ -66,14 +66,14 @@ init() {
 clone() {
     if has_portzap_access;
     then
-        if [ -e "$transient_dir/.git" ];
+        if [ -e "$portzap_dir/.git" ];
         then
-            echo "$transient_dir has already been cloned."
+            echo "$portzap_dir has already been cloned."
             echo "Run 'portzap pull' instead."
             exit 1
         fi
         umask $clone_mask
-        git clone --depth 1 $source_url $transient_dir
+        git clone --depth 1 $source_url $portzap_dir
     else
         echo "Permission denied."
     fi
@@ -82,10 +82,10 @@ clone() {
 pull() {
     if has_portzap_access;
     then
-        if [ -e "$transient_dir/.git" ];
+        if [ -e "$portzap_dir/.git" ];
         then
             umask $pull_mask
-            cd $transient_dir
+            cd $portzap_dir
             git pull --rebase origin hardenedbsd/main
         else
             echo "Run 'portzap clone' first."
@@ -103,8 +103,8 @@ install() {
         echo "The install command should be run as root."
         exit 1
     fi
-    cd $transient_dir
-    find . -maxdepth 1 -type d -exec $libexec_dir/install-directory {} $rest_dir $libexec_dir \;
+    cd $portzap_dir
+    find . -maxdepth 1 -type d -exec $libexec_dir/install-directory {} $ports_dir $libexec_dir \;
 }
 
 case $1 in
