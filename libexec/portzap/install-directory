@@ -8,5 +8,5 @@ for i in $(seq 3 $#); do
     install -d -g $group -m $mode $src $dest/$dir
     echo Install $(realpath $dest/$dir)
     find $dir -maxdepth 1 -type f -exec $libexec_dir/install-file $dest/$dir {} +
-    find $dir -depth 1 -type d -exec $libexec_dir/install-directory $dest $libexec_dir {} \;
+    find -s $dir -depth 1 -type d -exec $libexec_dir/install-directory $dest $libexec_dir {} \;
 done
