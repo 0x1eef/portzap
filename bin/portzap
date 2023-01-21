@@ -104,7 +104,7 @@ install() {
         exit 1
     fi
     cd $portzap_dir
-    find . -maxdepth 1 -type d -exec $libexec_dir/install-directory $ports_dir $libexec_dir {} +
+    find -s . -maxdepth 1 -type d -exec $libexec_dir/install-directory $ports_dir $libexec_dir {} +
 }
 
 case $1 in
