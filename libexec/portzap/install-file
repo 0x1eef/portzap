@@ -1,6 +1,9 @@
 #!/bin/sh
-src=$1
-dest=$2
+dest=$1
 group=_portzap
 mode=u=rw,g=rw,o=
-install -g $group -m $mode $src $dest
+for i in $(seq 2 $#); do
+    file=$(eval echo -n \${$i})
+    install -g $group -m $mode $file $dest &
+done
+wait
