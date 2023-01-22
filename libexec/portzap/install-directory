@@ -10,13 +10,13 @@ for i in $(seq 3 $#); do
 
     # Install files
     find $dir -maxdepth 1 -type f \
-    \( -not -name ".gitignore" \) \
-    \( -not -name ".arcconfig" \) \
-    -exec $libexec_dir/install-file $dest/$dir {} +
+        \( -not -name ".gitignore" \) \
+        \( -not -name ".arcconfig" \) \
+        -exec $libexec_dir/install-file $dest/$dir {} +
 
     # Install subdirs (recursive)
     find -s $dir -depth 1 -type d \
-    \( -not -name ".git" \) \
-    \( -not -name ".hooks" \) \
-    -exec $libexec_dir/install-directory $dest $libexec_dir {} \;
+        \( -not -name ".git" \) \
+        \( -not -name ".hooks" \) \
+        -exec $libexec_dir/install-directory $dest $libexec_dir {} \;
 done
