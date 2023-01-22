@@ -32,7 +32,7 @@ has_portzap_access() {
     groups=$(id -Gn)
     in_group=1
     for g in $groups; do
-        if [ $g="_portzap" ];
+        if [ $g = "_portzap" ];
         then
             in_group=0
         fi
