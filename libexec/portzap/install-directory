@@ -1,22 +1,25 @@
 #!/bin/sh
-dest=$1
+ports_dir=$1
 libexec_dir=$2
 group=_portzap
 mode=u=rwx,g=rx,o=
 for i in $(seq 3 $#); do
-    dir=$(eval echo -n \${$i})
-    install -d -g $group -m $mode $src $dest/$dir
-    echo Install $(realpath $dest/$dir)
+    relative_portzap_dir=$(eval echo -n \${$i})
+    # Install directory
+    install -d -g $group -m $mode \
+            $relative_portzap_dir \
+            $ports_dir/$relative_portzap_dir
+    echo $(realpath $ports_dir/$relative_portzap_dir)
 
     # Install files
-    find $dir -maxdepth 1 -type f \
+    find $relative_portzap_dir -maxdepth 1 -type f \
         \( -not -name ".gitignore" \) \
         \( -not -name ".arcconfig" \) \
-        -exec $libexec_dir/install-file $dest/$dir {} +
+        -exec $libexec_dir/install-file $ports_dir/$relative_portzap_dir {} +
 
     # Install subdirs (recursive)
-    find -s $dir -depth 1 -type d \
+    find -s $relative_portzap_dir -depth 1 -type d \
         \( -not -name ".git" \) \
         \( -not -name ".hooks" \) \
-        -exec $libexec_dir/install-directory $dest $libexec_dir {} \;
+        -exec $libexec_dir/install-directory $ports_dir $libexec_dir {} \;
 done
