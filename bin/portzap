@@ -103,8 +103,16 @@ install() {
         echo "The install command should be run as root."
         exit 1
     fi
+
     cd $portzap_dir
-    find -s .  -maxdepth 1 -type d \
+    find -s . -maxdepth 1 -type f \
+        \( -not -name ".gitignore" \) \
+        \( -not -name ".arcconfig" \) \
+        -exec $libexec_dir/install-file $ports_dir {} +
+    find -s . -maxdepth 1 -type d \
+         \( -not -name "." \) \
+         \( -not -name ".git" \) \
+         \( -not -name ".hooks" \) \
          -exec $libexec_dir/install-directory $ports_dir $libexec_dir {} +
 }
 

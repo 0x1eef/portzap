@@ -19,7 +19,5 @@ for i in $(seq 3 $#); do
 
     # Install subdirs (recursive)
     find -s $relative_portzap_dir -depth 1 -type d \
-        \( -not -name ".git" \) \
-        \( -not -name ".hooks" \) \
-        -exec $libexec_dir/install-directory $ports_dir $libexec_dir {} \;
+         -exec $libexec_dir/install-directory $ports_dir $libexec_dir {} \;
 done
