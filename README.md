@@ -17,7 +17,7 @@ is maintained as a git repository, and portzap allows the repository to be clone
 
 * **portzap clone** <br>
   This command should be run by a user account that is a member of the `_portzap` group. <br>
-  The command clones HardenedBSD's ports collection to `/home/_portzap/ports`.
+  The command clones HardenedBSD's ports collection into `/home/_portzap/ports`.
 
 * **portzap pull** <br>
   This command should be run by a user account that is a member of the `_portzap` group. <br>
