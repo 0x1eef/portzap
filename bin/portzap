@@ -4,9 +4,9 @@
 
 ##
 # Configuration
-source_url="https://git.hardenedbsd.org/hardenedbsd/ports.git"
-portzap_dir="/home/_portzap/ports"
+ports_url="https://git.hardenedbsd.org/hardenedbsd/ports.git"
 ports_dir="/usr/ports/"
+portzap_dir="/home/_portzap/ports"
 libexec_dir=$(realpath $(dirname $0)/../libexec/portzap/)
 
 ##
@@ -73,7 +73,7 @@ clone() {
             exit 1
         fi
         umask $clone_mask
-        git clone --depth 1 $source_url $portzap_dir
+        git clone --depth 1 $ports_url $portzap_dir
     else
         echo "Permission denied."
     fi
