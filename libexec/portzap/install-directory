@@ -2,7 +2,7 @@
 ports_dir=$1
 libexec_dir=$2
 group=_portzap
-mode=u=rwx,g=rx,o=
+mode=u=rwx,g=rwx,o=
 for i in $(seq 3 $#); do
     relative_portzap_dir=$(eval echo -n \${$i})
     # Install directory
