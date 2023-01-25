@@ -73,7 +73,7 @@ clone() {
             exit 1
         fi
         umask $clone_mask
-        git clone --depth 1 $ports_url $portzap_dir
+        git clone $ports_url $portzap_dir
     else
         echo "Permission denied."
     fi
