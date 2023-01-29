@@ -29,5 +29,6 @@ is maintained as a git repository, and portzap allows the repository to be clone
 
 ## Sources
 
+* [Source code (git.hardenedbsd.org)](https://git.hardenedbsd.org/0x1eef/portzap)
 * [Source code (GitHub)](https://github.com/0x1eef/portzap)
 * [Source code (GitLab)](https://gitlab.com/0x1eef/portzap)
