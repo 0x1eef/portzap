@@ -53,8 +53,7 @@ help() {
 }
 
 init() {
-    if user_is_not_root;
-    then
+    if user_is_not_root; then
         echo "The init command should be run as root."
         exit 1
     fi;
@@ -64,10 +63,8 @@ init() {
 }
 
 clone() {
-    if has_portzap_access;
-    then
-        if [ -e "$portzap_dir/.git" ];
-        then
+    if has_portzap_access; then
+        if [ -e "$portzap_dir/.git" ]; then
             echo "$portzap_dir has already been cloned."
             echo "Run 'portzap pull' instead."
             exit 1
@@ -80,10 +77,8 @@ clone() {
 }
 
 pull() {
-    if has_portzap_access;
-    then
-        if [ -e "$portzap_dir/.git" ];
-        then
+    if has_portzap_access; then
+        if [ -e "$portzap_dir/.git" ]; then
             umask $pull_mask
             cd $portzap_dir
             git pull --rebase origin hardenedbsd/main
@@ -98,8 +93,7 @@ pull() {
 }
 
 install() {
-    if user_is_not_root;
-    then
+    if user_is_not_root; then
         echo "The install command should be run as root."
         exit 1
     fi
