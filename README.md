@@ -24,3 +24,8 @@ into the `/usr/ports` directory by root.
 * [Source code (git.hardenedbsd.org)](https://git.hardenedbsd.org/0x1eef/portzap)
 * [Source code (GitHub)](https://github.com/0x1eef/portzap)
 * [Source code (GitLab)](https://gitlab.com/0x1eef/portzap)
+
+## License
+
+[BSD Zero Clause](https://choosealicense.com/licenses/0bsd/). <br>
+See [LICENSE](./LICENSE).
