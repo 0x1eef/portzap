@@ -1,5 +1,5 @@
-<p align="center">
-  <strong>portzap</strong>
+<p>
+<strong>portzap</strong>
 </p>
 
 portzap is a utility for staying up to date with the
@@ -9,9 +9,8 @@ The transient copy can be created, and updated by an unprivileged user account
 who is a member of the `_portzap` group. The transient copy can then be installed
 into the `/usr/ports` directory by root.
 
-
-<p align="center">
-  <strong>Usage</usage>
+<p>
+<strong>Usage</strong>
 </p>
 
 * **portzap clone** <br>
@@ -24,7 +23,7 @@ into the `/usr/ports` directory by root.
   This command should be run as root. <br>
   The command installs `/home/_portzap/ports` into `/usr/ports`.
 
-<p align="center">
+<p>
   <strong>Sources</strong>
 </p>
 
