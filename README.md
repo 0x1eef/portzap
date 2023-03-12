@@ -1,33 +1,32 @@
-## About
+<p align="center">
+  <strong>portzap</strong>
+</p>
 
-portzap is a simple bourne shell script that takes care of keeping up to
-date with the [HardenedBSD](https://hardenedbsd.org) ports collection.
+portzap is a utility for staying up to date with the
+[HardenedBSD ports tree](https://hardenedbsd.org).
+The utility stores a transient copy of the ports tree in `/home/_portzap/ports/`.
+The transient copy can be created, and updated by an unprivileged user account
+who is a member of the `_portzap` group. The transient copy can then be installed
+into the `/usr/ports` directory by root.
 
-The
-[HardenedBSD ports collection](https://git.hardenedbsd.org/hardenedbsd/ports.git)
-is maintained as a git repository, and portzap allows the repository to be cloned
-(and updated) using a regular user account. The unpacking of the repository to
-`/usr/ports` is also supported but must be performed by root.
 
-## Usage
-
-* **portzap init** <br>
-  This command should be run as root. <br>
-  The command creates the `_portzap` user / group, and the directory `/home/_portzap`.
+<p align="center">
+  <strong>Usage</usage>
+</p>
 
 * **portzap clone** <br>
-  This command should be run by a user account that is a member of the `_portzap` group. <br>
-  The command clones HardenedBSD's ports collection into `/home/_portzap/ports`.
+  This command clones HardenedBSD's ports tree into `/home/_portzap/ports`.
 
 * **portzap pull** <br>
-  This command should be run by a user account that is a member of the `_portzap` group. <br>
-  The command updates an existing repository previously cloned with `portzap clone`.
+  This command pulls updates into `/home/_portzap/ports`.
 
 * **portzap install** <br>
   This command should be run as root. <br>
   The command installs `/home/_portzap/ports` into `/usr/ports`.
 
-## Sources
+<p align="center">
+  <strong>Sources</strong>
+</p>
 
 * [Source code (git.hardenedbsd.org)](https://git.hardenedbsd.org/0x1eef/portzap)
 * [Source code (GitHub)](https://github.com/0x1eef/portzap)
