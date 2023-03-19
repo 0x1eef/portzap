@@ -5,19 +5,20 @@ portzap is a utility for staying up to date with the
 The utility stores a transient copy of the ports tree in `/home/_portzap/ports/`.
 The transient copy can be created, and updated by an unprivileged user account
 who is a member of the `_portzap` group. The transient copy can then be installed
-into the `/usr/ports` directory by root.
+into the `/usr/ports/` directory by root.
 
 ## Usage
 
 * `portzap clone` <br>
-  This command clones HardenedBSD's ports tree into `/home/_portzap/ports`.
+  This command clones HardenedBSD's ports tree into `/home/_portzap/ports/`.
 
 * `portzap pull` <br>
-  This command pulls updates into `/home/_portzap/ports`.
+  This command pulls updates into `/home/_portzap/ports/`.
 
 * `portzap install` <br>
   This command should be run as root. <br>
-  The command installs `/home/_portzap/ports` into `/usr/ports`.
+  The command installs `/home/_portzap/ports/` into `/usr/ports/`. <br>
+  After the first installation, future installations try to save time by being incremental.
 
 ## Sources
 
