@@ -6,6 +6,7 @@
 # Configuration
 ports_url="https://git.hardenedbsd.org/hardenedbsd/ports.git"
 ports_dir="/usr/ports/"
+portzap_rev="$ports_dir/.portzap_last_rev"
 portzap_dir="/home/_portzap/ports"
 libexec_dir=$(realpath $(dirname $0)/../libexec/portzap/)
 
@@ -17,6 +18,9 @@ pull_mask=007
 
 ##
 # Utils
+. $libexec_dir/functions/perms.sh
+. $libexec_dir/functions/fs.sh
+. $libexec_dir/functions/git.sh
 exit_on_missing_deps() {
     deps=$1
     for dep in $deps; do
@@ -26,24 +30,6 @@ exit_on_missing_deps() {
             exit 1
         fi
     done
-}
-
-has_portzap_access() {
-    groups=$(id -Gn)
-    in_group=1
-    for g in $groups; do
-        if [ $g = "_portzap" ];
-        then
-            in_group=0
-        fi
-    done
-    return $in_group
-}
-
-user_is_not_root() {
-    user_id=$(id -u)
-    result=$(test $user_id -ne "0")
-    return $result
 }
 
 ##
@@ -98,16 +84,35 @@ install() {
         exit 1
     fi
 
+    echo "Please wait..."
     cd $portzap_dir
-    find -s . -maxdepth 1 -type f \
-        \( -not -name ".gitignore" \) \
-        \( -not -name ".arcconfig" \) \
-        -exec $libexec_dir/install-file $ports_dir {} +
-    find -s . -maxdepth 1 -type d \
-         \( -not -name "." \) \
-         \( -not -name ".git" \) \
-         \( -not -name ".hooks" \) \
-         -exec $libexec_dir/install-directory $ports_dir $libexec_dir {} +
+    if [ -e "$portzap_rev" ]; then
+        rev=$(cat $portzap_rev)
+        port_dirs=$(modified_ports $rev)
+        rm_files=$(git diff --name-only --diff-filter=D $rev..HEAD)
+        for file in $rm_files; do
+            rm $ports_dir/$file
+        done
+        for dir in $port_dirs; do
+            if [ -f "$dir" ]; then
+                $libexec_dir/install-file $ports_dir $dir
+            else
+                $libexec_dir/install-directory $ports_dir $libexec_dir $dir
+            fi
+        done
+    else
+        find -s . -maxdepth 1 -type f \
+            \( -not -name ".gitignore" \) \
+            \( -not -name ".arcconfig" \) \
+            -exec $libexec_dir/install-file $ports_dir {} +
+        find -s . -maxdepth 1 -type d \
+            \( -not -name "." \) \
+            \( -not -name ".git" \) \
+            \( -not -name ".hooks" \) \
+            -exec $libexec_dir/install-directory $ports_dir $libexec_dir {} +
+    fi
+    echo $(git rev-parse HEAD) > $portzap_rev
+    echo "Done."
 }
 
 case $1 in
