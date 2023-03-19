@@ -20,6 +20,17 @@ into the `/usr/ports/` directory by root.
   The command installs `/home/_portzap/ports/` into `/usr/ports/`. <br>
   After the first installation, future installations try to save time by being incremental.
 
+## Install
+
+Git installation:
+
+```
+git clone https://git.hardenedbsd.org/0x1eef/portzap.git
+cd portzap
+cp -R bin /usr/local/
+cp -R libexec /usr/local/
+```
+
 ## Sources
 
 * [Source code (git.hardenedbsd.org)](https://git.hardenedbsd.org/0x1eef/portzap)
