@@ -1,26 +1,17 @@
 #!/bin/sh
-# A shell script that takes care of keeping up to date with
-# the HardenedBSD ports collection.
 
-##
-# Configuration
 ports_url="https://git.hardenedbsd.org/hardenedbsd/ports.git"
 ports_dir="/usr/ports/"
 portzap_rev="$ports_dir/.portzap_last_rev"
 portzap_dir="/home/_portzap/ports"
 libexec_dir=$(realpath $(dirname $0)/../libexec/portzap/)
 
-##
-# Default masks
 init_mask=707
 clone_mask=007
 pull_mask=007
 
-##
-# Utils
 . $libexec_dir/functions/perms.sh
-. $libexec_dir/functions/fs.sh
-. $libexec_dir/functions/git.sh
+
 exit_on_missing_deps() {
     deps=$1
     for dep in $deps; do
@@ -84,19 +75,19 @@ install() {
         exit 1
     fi
 
-    echo "Please wait..."
     cd $portzap_dir
     if [ -e "$portzap_rev" ]; then
         rev=$(cat $portzap_rev)
-        port_dirs=$(modified_ports $rev)
+        nw_files=$(git diff --name-only --diff-filter=AM $rev..HEAD | cut -d / -f1 -f2 | uniq)
         rm_files=$(git diff --name-only --diff-filter=D $rev..HEAD)
         for file in $rm_files; do
             rm $ports_dir/$file
         done
-        for dir in $port_dirs; do
-            if [ -f "$dir" ]; then
-                $libexec_dir/install-file $ports_dir $dir
+        for file in $nw_files; do
+            if [ -f "$file" ]; then
+                $libexec_dir/install-file $ports_dir $file
             else
+                dir=$file
                 $libexec_dir/install-directory $ports_dir $libexec_dir $dir
             fi
         done
@@ -112,7 +103,6 @@ install() {
             -exec $libexec_dir/install-directory $ports_dir $libexec_dir {} +
     fi
     echo $(git rev-parse HEAD) > $portzap_rev
-    echo "Done."
 }
 
 case $1 in
