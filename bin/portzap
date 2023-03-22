@@ -26,17 +26,7 @@ exit_on_missing_deps() {
 ##
 # Commands
 help() {
-    echo "Usage: portzap init|clone|pull|install"
-}
-
-init() {
-    if user_is_not_root; then
-        echo "The init command should be run as root."
-        exit 1
-    fi;
-    umask $init_mask
-    pw userdel _portzap -r
-    pw useradd _portzap -m -s /sbin/nologin
+    echo "Usage: portzap clone|pull|install"
 }
 
 clone() {
