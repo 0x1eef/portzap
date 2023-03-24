@@ -8,8 +8,8 @@ tree, which can then be installed into the `/usr/ports/`
 directory by the root user.
 
 Once the initial installation is done, future updates are
-incremental, which means that portzap will only add or update
-ports that have changed since the last update.
+incremental, which means that portzap will only add, remove or
+update ports that have changed since the last update.
 
 ## Usage
 
