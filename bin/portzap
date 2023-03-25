@@ -1,101 +1,24 @@
 #!/bin/sh
 
+# Variables
 ports_url="https://git.hardenedbsd.org/hardenedbsd/ports.git"
 ports_dir="/usr/ports/"
-portzap_rev="$ports_dir/.portzap_last_rev"
+portzap_file="$ports_dir/.portzap"
 portzap_dir="/home/_portzap/ports"
 libexec_dir=$(realpath $(dirname $0)/../libexec/portzap/)
 
+# Masks
 init_mask=707
 clone_mask=007
 pull_mask=007
 
-. $libexec_dir/functions/perms.sh
-
-exit_on_missing_deps() {
-    deps=$1
-    for dep in $deps; do
-        which -s $dep
-        if [ $? -ne 0 ]; then
-            echo $dep is missing
-            exit 1
-        fi
-    done
-}
-
-##
 # Commands
-help() {
-    echo "Usage: portzap clone|pull|install"
-}
+. $libexec_dir/commands/install
+. $libexec_dir/commands/pull
+. $libexec_dir/commands/clone
 
-clone() {
-    if has_portzap_access; then
-        if [ -e "$portzap_dir/.git" ]; then
-            echo "$portzap_dir has already been cloned."
-            echo "Run 'portzap pull' instead."
-            exit 1
-        fi
-        umask $clone_mask
-        git clone $ports_url $portzap_dir
-    else
-        echo "Permission denied."
-    fi
-}
-
-pull() {
-    if has_portzap_access; then
-        if [ -e "$portzap_dir/.git" ]; then
-            umask $pull_mask
-            cd $portzap_dir
-            git pull --rebase origin hardenedbsd/main
-        else
-            echo "Run 'portzap clone' first."
-            exit 1
-        fi
-    else
-        echo "Permission denied."
-        exit 1
-    fi
-}
-
-install() {
-    if user_is_not_root; then
-        echo "The install command should be run as root."
-        exit 1
-    fi
-
-    cd $portzap_dir
-    if [ -e "$portzap_rev" ]; then
-        rev=$(cat $portzap_rev)
-        nw_files=$(git diff --name-only --diff-filter=AM $rev..HEAD | cut -d / -f1 -f2 | uniq)
-        rm_files=$(git diff --name-only --diff-filter=D $rev..HEAD)
-        for file in $rm_files; do
-            echo RM $ports_dir/$file
-            rm $ports_dir/$file
-        done
-        for file in $nw_files; do
-            if [ -f "$file" ]; then
-                echo $file
-                $libexec_dir/install-file $ports_dir $file
-            else
-                dir=$file
-                $libexec_dir/install-directory $ports_dir $libexec_dir $dir
-            fi
-        done
-    else
-        find -s . -maxdepth 1 -type f \
-            \( -not -name ".gitignore" \) \
-            \( -not -name ".arcconfig" \) \
-            -exec $libexec_dir/install-file $ports_dir {} +
-        find -s . -maxdepth 1 -type d \
-            \( -not -name "." \) \
-            \( -not -name ".git" \) \
-            \( -not -name ".hooks" \) \
-            -exec $libexec_dir/install-directory $ports_dir $libexec_dir {} +
-    fi
-    echo $(git rev-parse HEAD) > $portzap_rev
-}
+# Functions
+. $libexec_dir/functions/requirements.sh
 
 case $1 in
     "init")
@@ -103,21 +26,25 @@ case $1 in
         break
         ;;
     "clone")
-        exit_on_missing_deps "git"
-        clone
+        require_deps git
+        require_group _portzap
+        clone $portzap_dir $ports_url $clone_mask
         break
         ;;
     "pull")
-        exit_on_missing_deps "git"
-        pull
+        require_deps git
+        require_group _portzap
+        pull $portzap_dir $pull_mask
         break
         ;;
     "install")
-        install
+        require_root
+        require_deps git
+        install $ports_dir $portzap_dir $libexec_dir $portzap_file
         break
         ;;
     *)
-        help
+        echo "Usage: portzap clone|pull|install"
         break
         ;;
     esac

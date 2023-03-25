@@ -1,0 +1,15 @@
+#!/bin/sh
+
+pull() {
+    portzap_dir=$1
+    pull_mask=$2
+
+    if [ -e "$portzap_dir/.git" ]; then
+        umask $pull_mask
+        cd $portzap_dir
+        git pull --rebase origin hardenedbsd/main
+    else
+        echo "Run 'portzap clone' first."
+        exit 1
+    fi
+}

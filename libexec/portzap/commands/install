@@ -1,0 +1,39 @@
+#!/bin/sh
+
+install() {
+    ports_dir=$1
+    portzap_dir=$2
+    libexec_dir=$3
+    portzap_file=$4
+
+    cd $portzap_dir
+    if [ -e "$portzap_file" ]; then
+        rev=$(cat $portzap_file)
+        nw_files=$(git diff --name-only --diff-filter=AM $rev..HEAD | cut -d / -f1 -f2 | uniq)
+        rm_files=$(git diff --name-only --diff-filter=D $rev..HEAD)
+        for file in $rm_files; do
+            echo RM $ports_dir/$file
+            rm $ports_dir/$file
+        done
+        for file in $nw_files; do
+            if [ -f "$file" ]; then
+                echo $file
+                $libexec_dir/install-file $ports_dir $file
+            else
+                dir=$file
+                $libexec_dir/install-directory $ports_dir $libexec_dir $dir
+            fi
+        done
+    else
+        find -s . -maxdepth 1 -type f \
+            \( -not -name ".gitignore" \) \
+            \( -not -name ".arcconfig" \) \
+            -exec $libexec_dir/install-file $ports_dir {} +
+        find -s . -maxdepth 1 -type d \
+            \( -not -name "." \) \
+            \( -not -name ".git" \) \
+            \( -not -name ".hooks" \) \
+            -exec $libexec_dir/install-directory $ports_dir $libexec_dir {} +
+    fi
+    echo $(git rev-parse HEAD) > $portzap_file
+}
