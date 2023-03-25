@@ -26,11 +26,11 @@ changed since the last update.
 portzap can be installed through git, or via a port. <br>
 The port makes installation, and deinstallation easier.
 
-__port__ <br> 
+__Port__ <br> 
 
-See [0x1eef/ports/freebsd/hardenedbsd/portzap](https://git.hardenedbsd.org/0x1eef/ports/-/tree/main/freebsd/hardenedbsd/portzap)
+See [0x1eef/ports/freebsd/hardenedbsd/portzap](https://git.hardenedbsd.org/0x1eef/ports/-/tree/main/freebsd/hardenedbsd/portzap).
 
-__git__ <br>
+__Git__ <br>
 
 ```
 git clone https://git.hardenedbsd.org/0x1eef/portzap.git
