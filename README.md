@@ -23,13 +23,23 @@ changed since the last update.
 
 ## Install
 
-Git installation:
+portzap can be installed through git, or via a port. The port makes
+installation, and deinstallation easier.
+
+Port: [0x1eef/ports/freebsd/hardenedbsd/portzap](https://git.hardenedbsd.org/0x1eef/ports/-/tree/main/freebsd/hardenedbsd/portzap)                     )
+
+Git :
 
 ```
 git clone https://git.hardenedbsd.org/0x1eef/portzap.git
 cd portzap
 cp -R bin /usr/local/
 cp -R libexec /usr/local/
+pw useradd -n _portzap \
+           -c "portzap utility user" \
+           -m \
+           -s /sbin/nologin
+pw groupmod -g _portzap -m <user>_
 ```
 
 ## Sources
