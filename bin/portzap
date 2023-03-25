@@ -20,10 +20,6 @@ pull_mask=007
 . $libexec_dir/functions/requirements.sh
 
 case $1 in
-    "init")
-        init
-        break
-        ;;
     "clone")
         require_deps git
         require_group _portzap
