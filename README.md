@@ -42,7 +42,6 @@ pw useradd -n _portzap \
            -m \
            -s /sbin/nologin
 pw groupmod -g _portzap -m <user>
-
 ```
 
 ## Sources
