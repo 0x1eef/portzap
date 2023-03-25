@@ -8,7 +8,6 @@ portzap_dir="/home/_portzap/ports"
 libexec_dir=$(realpath $(dirname $0)/../libexec/portzap/)
 
 # Masks
-init_mask=707
 clone_mask=007
 pull_mask=007
 
