@@ -12,13 +12,13 @@ changed since the last update.
 
 ## Usage
 
-* `portzap clone` <br>
+* __portzap clone__ <br>
   Clones the ports tree into `/home/_portzap/ports/`.
 
-* `portzap pull` <br>
+* __portzap pull__ <br>
   Pulls updates into `/home/_portzap/ports/`.
 
-* `portzap install` <br>
+* __portzap install__ <br>
   Installs `/home/_portzap/ports/` into `/usr/ports/`. <br>
 
 ## Install
