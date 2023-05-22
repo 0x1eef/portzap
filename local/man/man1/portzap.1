@@ -1,0 +1,47 @@
+.TH PORTZAP 1 "May 2023" "portzap 0.5.5" "User Commands"
+
+.SH NAME
+portzap - stay up to date with the HardenedBSD ports tree
+
+.SH SYNOPSIS
+.B portzap clone
+.br
+.B portzap pull
+.br
+.B portzap install
+
+.SH DESCRIPTION
+portzap is a utility designed to allow unprivileged users
+who are members of the
+.B _portzap
+group to create and update a
+transient copy of the ports tree, which can then be installed
+into the
+.B /usr/ports/
+directory by root.
+
+.SH EXAMPLES
+
+.TP
+.B portzap clone
+Clones the ports tree into
+.B /home/_portzap/ports/.
+
+.TP
+.B portzap pull
+Pulls updates into
+.B /home/_portzap/ports/.
+
+.TP
+.B portzap install
+Installs
+.B /home/_portzap/ports/
+into
+.B /usr/ports/.
+
+.SH AUTHORS
+
+The
+.B portzap
+utility and this manual page were written by
+0x1eef <0x1eef@protonmail.com>
