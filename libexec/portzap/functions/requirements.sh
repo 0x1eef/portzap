@@ -12,7 +12,7 @@ require_deps() {
 require_group() {
     group=$1
     cmd=$(id -Gn | tr ' ' '\n' | grep ^${group}$)
-    if [ $cmd != $group ]; then
+    if [ [$cmd != $group] ]; then
         echo "You must be a member of the '$group' group to run this command."
         exit 1
     fi
