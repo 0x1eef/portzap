@@ -1,14 +1,11 @@
 ## About
 
-portzap is a utility for staying up to date with the
-HardenedBSD ports tree.
-
 portzap is designed to allow unprivileged users who are members
 of the `_portzap` group to create and update a transient copy of
-the ports tree, which can then be installed into the `/usr/ports/`
-directory by root.  Once the initial installation is complete,
-future updates are incremental, which means that portzap will
-only add, remove or update ports that have changed since the last
+the HardenedBSD ports tree, which can then be installed into the
+`/usr/ports/` directory by root.  Once the initial installation
+is complete, future updates are incremental, which means that portzap
+will only add, remove or update ports that have changed since the last
 update.
 
 ## Usage
