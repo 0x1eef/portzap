@@ -3,7 +3,7 @@
 __changed_files() {
     rev=$1
     echo $(
-      git diff --name-only --diff-filter=AM $rev..HEAD | \
+      git diff --name-only --diff-filter=RAM $rev..HEAD | \
       cut -d / -f1 -f2 | \
       uniq
     )
