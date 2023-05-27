@@ -11,7 +11,7 @@ require_deps() {
 
 require_group() {
     group=$1
-    cmd=$(id -Gn | tr ' ' '\n' | grep ^${group}$)
+    cmd=$(id -Gn | tr ' ' '\n' | grep "^${group}$")
     if [ "$cmd" != "$group" ]; then
         echo "You must be a member of the '$group' group to run this command."
         exit 1
@@ -19,7 +19,7 @@ require_group() {
 }
 
 require_root() {
-    if [ $(id -u) -ne 0 ]; then
+    if [ "$(id -u)" != "0" ]; then
         echo "The install command must be run as root."
         exit 1
     fi
