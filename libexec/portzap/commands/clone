@@ -10,6 +10,6 @@ clone() {
         echo "Run 'portzap pull' instead."
         exit 1
     fi
-    umask $clone_mask
-    git clone $ports_url $portzap_dir
+    umask "$clone_mask"
+    git clone "$ports_url" "$portzap_dir"
 }
