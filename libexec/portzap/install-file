@@ -4,6 +4,7 @@ group=_portzap
 mode=u=rw,g=rw,o=
 files=""
 for i in $(seq 2 $#); do
-    files="${files} $(eval echo -n \${$i})"
+    file=$(eval echo -n "\$$i")
+    files="$files $file"
 done
-install -g $group -m $mode $files $dest
+install -g $group -m $mode "$files" "$dest"
