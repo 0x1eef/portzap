@@ -1,9 +1,10 @@
+#!/bin/sh
+
 require_deps() {
     deps=$1
     for dep in $deps; do
-        which -s $dep
-        if [ $? -ne 0 ]; then
-            echo $dep is required, but not found
+        if ! which -s "$dep"; then
+            echo "$dep" is required, but not found
             exit 1
         fi
     done
