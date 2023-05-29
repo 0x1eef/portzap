@@ -1,17 +1,41 @@
 #!/bin/sh
 
-__changed_files() {
-    rev=$1
-    echo $(
-      git diff --name-only --diff-filter=RAM "$rev"..HEAD | \
-      cut -d / -f1 -f2 | \
-      uniq
-    )
+__install_update() {
+    portzap_file=$1
+    ports_dir=$2
+    libexec_dir=$3
+    rev=$(cat "$portzap_file")
+    rm_files=$(git diff --name-only --diff-filter=D "$rev"..HEAD)
+    ch_files=$(git diff --name-only --diff-filter=RAM "$rev"..HEAD | \
+               cut -d / -f1 -f2 | uniq)
+    for file in $rm_files; do
+        echo RM "$ports_dir/$file"
+        rm "$ports_dir/$file"
+    done
+    for file in $ch_files; do
+        if [ -f "$file" ]; then
+            echo "$file"
+            "$libexec_dir/install-file" "$ports_dir" "$file"
+        else
+            dir=$file
+            "$libexec_dir/install-directory" "$ports_dir" "$libexec_dir" "$dir"
+        fi
+    done
+
 }
 
-__removed_files() {
-    rev=$1
-    echo $(git diff --name-only --diff-filter=D "$rev"..HEAD)
+__install_ports() {
+    ports_dir=$1
+    libexec_dir=$2
+    find -s . -maxdepth 1 -type f \
+        \( -not -name ".gitignore" \) \
+        \( -not -name ".arcconfig" \) \
+        -exec "$libexec_dir/install-file" "$ports_dir" {} +
+    find -s . -maxdepth 1 -type d \
+        \( -not -name "." \) \
+        \( -not -name ".git" \) \
+        \( -not -name ".hooks" \) \
+        -exec "$libexec_dir/install-directory" "$ports_dir" "$libexec_dir" {} +
 }
 
 install() {
@@ -21,32 +45,9 @@ install() {
     portzap_file=$4
     cd "$portzap_dir" || exit 1
     if [ -e "$portzap_file" ]; then
-        rev=$(cat "$portzap_file")
-        ch_files=$(eval __changed_files "$rev")
-        rm_files=$(eval __removed_files "$rev")
-        for file in $rm_files; do
-            echo RM "$ports_dir/$file"
-            rm "$ports_dir/$file"
-        done
-        for file in $ch_files; do
-            if [ -f "$file" ]; then
-                echo "$file"
-                "$libexec_dir/install-file" "$ports_dir" "$file"
-            else
-                dir=$file
-                "$libexec_dir/install-directory" "$ports_dir" "$libexec_dir" "$dir"
-            fi
-        done
+        __install_update "$portzap_file" "$ports_dir" "$libexec_dir"
     else
-        find -s . -maxdepth 1 -type f \
-            \( -not -name ".gitignore" \) \
-            \( -not -name ".arcconfig" \) \
-            -exec "$libexec_dir/install-file" "$ports_dir" {} +
-        find -s . -maxdepth 1 -type d \
-            \( -not -name "." \) \
-            \( -not -name ".git" \) \
-            \( -not -name ".hooks" \) \
-            -exec "$libexec_dir/install-directory" "$ports_dir" "$libexec_dir" {} +
+        __install_ports "$portzap_dir" "$libexec_dir"
     fi
     git rev-parse HEAD > "$portzap_file"
 }
