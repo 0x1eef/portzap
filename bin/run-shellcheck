@@ -1,0 +1,18 @@
+#!/bin/sh
+run_shellcheck() {
+  files="$1"
+  for file in $files; do
+    if shellcheck "$file"; then
+        echo "OK: $file"
+    else
+      echo "ERROR: $file"
+      exit 1
+    fi;
+  done
+}
+
+run_shellcheck "bin/portzap"
+run_shellcheck "libexec/portzap/install-file"
+run_shellcheck "libexec/portzap/install-directory"
+run_shellcheck "libexec/portzap/commands/*"
+run_shellcheck "libexec/portzap/functions/*"
