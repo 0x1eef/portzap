@@ -9,8 +9,10 @@ __install_update() {
     ch_files=$(git diff --name-only --diff-filter=RAM "$rev"..HEAD | \
                cut -d / -f1 -f2 | uniq)
     for file in $rm_files; do
-        echo RM "$ports_dir/$file"
-        rm "$ports_dir/$file"
+        if [ -e "$ports_dir/$file" ]; then
+            echo RM "$ports_dir/$file"
+            rm "$ports_dir/$file"
+        fi;
     done
     for file in $ch_files; do
         if [ -f "$file" ]; then
