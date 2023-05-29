@@ -1,6 +1,6 @@
 #!/bin/sh
 
-pull() {
+portzap_pull() {
     portzap_dir=$1
     pull_mask=$2
     if [ -e "$portzap_dir/.git" ]; then
