@@ -1,12 +1,12 @@
 #!/bin/sh
 
-clone() {
+portzap_clone() {
     portzap_dir=$1
     ports_url=$2
     clone_mask=$3
 
     if [ -e "$portzap_dir/.git" ]; then
-        echo "$portzap_dir has already been cloned."
+        echo "$portzap_dir exists."
         echo "Run 'portzap pull' instead."
         exit 1
     fi
