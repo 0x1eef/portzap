@@ -24,22 +24,18 @@ case $1 in
         require_deps git
         require_group _portzap
         clone $portzap_dir $ports_url $clone_mask
-        break
         ;;
     "pull")
         require_deps git
         require_group _portzap
         pull $portzap_dir $pull_mask
-        break
         ;;
     "install")
         require_root
         require_deps git
         install $ports_dir $portzap_dir $libexec_dir $portzap_file
-        break
         ;;
     *)
         echo "Usage: portzap clone|pull|install"
-        break
         ;;
     esac
