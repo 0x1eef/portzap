@@ -1,0 +1,5 @@
+external-sources=true
+source=./libexec/portzap/commands/portzap-install
+source=./libexec/portzap/commands/portzap-pull
+source=./libexec/portzap/commands/portzap-clone
+source=./libexec/portzap/functions/requirements.sh

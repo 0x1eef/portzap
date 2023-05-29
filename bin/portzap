@@ -1,39 +1,40 @@
 #!/bin/sh
 
 # Variables
+base_dir=$(dirname "$0")
 ports_url="https://git.hardenedbsd.org/hardenedbsd/ports.git"
 ports_dir="/usr/ports/"
 portzap_file="$ports_dir/.portzap"
 portzap_dir="/home/_portzap/ports"
-libexec_dir=$(realpath $(dirname $0)/../libexec/portzap/)
+libexec_dir=$(realpath "$base_dir/../libexec/portzap/")
 
 # Masks
 clone_mask=007
 pull_mask=007
 
 # Commands
-. $libexec_dir/commands/portzap-install
-. $libexec_dir/commands/portzap-pull
-. $libexec_dir/commands/portzap-clone
+. "$libexec_dir/commands/portzap-install"
+. "$libexec_dir/commands/portzap-pull"
+. "$libexec_dir/commands/portzap-clone"
 
 # Functions
-. $libexec_dir/functions/requirements.sh
+. "$libexec_dir/functions/requirements.sh"
 
 case $1 in
     "clone")
         require_deps git
         require_group _portzap
-        portzap_clone $portzap_dir $ports_url $clone_mask
+        portzap_clone "$portzap_dir" "$ports_url" "$clone_mask"
         ;;
     "pull")
         require_deps git
         require_group _portzap
-        portzap_pull $portzap_dir $pull_mask
+        portzap_pull "$portzap_dir" "$pull_mask"
         ;;
     "install")
         require_root
         require_deps git
-        portzap_install $ports_dir $portzap_dir $libexec_dir $portzap_file
+        portzap_install "$ports_dir" "$portzap_dir" "$libexec_dir" "$portzap_file"
         ;;
     *)
         echo "Usage: portzap clone|pull|install"
