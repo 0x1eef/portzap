@@ -13,7 +13,7 @@ pull_mask=007
 
 # Commands
 . $libexec_dir/commands/portzap-install
-. $libexec_dir/commands/pull
+. $libexec_dir/commands/portzap-pull
 . $libexec_dir/commands/portzap-clone
 
 # Functions
@@ -28,7 +28,7 @@ case $1 in
     "pull")
         require_deps git
         require_group _portzap
-        pull $portzap_dir $pull_mask
+        portzap_pull $portzap_dir $pull_mask
         ;;
     "install")
         require_root
