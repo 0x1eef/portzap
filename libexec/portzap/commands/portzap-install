@@ -1,6 +1,6 @@
 #!/bin/sh
 
-__install_update() {
+__portzap_install_update() {
     portzap_file=$1
     ports_dir=$2
     libexec_dir=$3
@@ -26,7 +26,7 @@ __install_update() {
 
 }
 
-__install_ports() {
+__portzap_install_ports() {
     ports_dir=$1
     libexec_dir=$2
     find -s . -maxdepth 1 -type f \
@@ -40,16 +40,16 @@ __install_ports() {
         -exec "$libexec_dir/install-directory" "$ports_dir" "$libexec_dir" {} +
 }
 
-install() {
+portzap_install() {
     ports_dir=$1
     portzap_dir=$2
     libexec_dir=$3
     portzap_file=$4
     cd "$portzap_dir" || exit 1
     if [ -e "$portzap_file" ]; then
-        __install_update "$portzap_file" "$ports_dir" "$libexec_dir"
+        __portzap_install_update "$portzap_file" "$ports_dir" "$libexec_dir"
     else
-        __install_ports "$portzap_dir" "$libexec_dir"
+        __portzap_install_ports "$portzap_dir" "$libexec_dir"
     fi
     git rev-parse HEAD > "$portzap_file"
 }
