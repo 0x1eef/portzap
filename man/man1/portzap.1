@@ -1,47 +1,54 @@
-.TH PORTZAP 1 "May 2023" "portzap 0.5.8" "User Commands"
-
-.SH NAME
-portzap - stay up to date with the HardenedBSD ports tree
-
-.SH SYNOPSIS
-.B portzap clone
-.br
-.B portzap pull
-.br
-.B portzap install
-
-.SH DESCRIPTION
-portzap is a utility designed to allow unprivileged users
+.Dd May 2023
+.Dt PORTZAP 1
+.Os
+.Sh NAME
+.Nm portzap
+.Nd manage the HardenedBSD ports tree
+.Sh SYNOPSIS
+.Nm portzap clone
+.Nm portzap pull
+.Nm portzap install
+.Sh DESCRIPTION
+The
+.Nm portzap
+utility is designed to allow unprivileged users
 who are members of the
 .B _portzap
 group to create and update a
 transient copy of the ports tree, which can then be installed
 into the
-.B /usr/ports/
+.Pa /usr/ports
 directory by root.
-
-.SH EXAMPLES
-
-.TP
-.B portzap clone
+.Sh EXAMPLES
+The following examples demonstrate the usage of
+.Nm portzap
+utility:
+.Pp
+.Nm portzap clone
+.br
 Clones the ports tree into
-.B /home/_portzap/ports/.
-
-.TP
-.B portzap pull
+.Pa /home/_portzap/ports .
+.Pp
+.Nm portzap pull
+.br
 Pulls updates into
-.B /home/_portzap/ports/.
-
-.TP
-.B portzap install
+.Pa /home/_portzap/ports .
+.Pp
+.Nm portzap install
+.br
 Installs
-.B /home/_portzap/ports/
+.Pa /home/_portzap/ports
 into
-.B /usr/ports/.
-
-.SH AUTHORS
-
+.Pa /usr/ports .
+.Sh ENVIRONMENT VARIABLES
+The following variables can be used:
+.Pp
+.Bl -tag -width $PORTZAP_PORTS_URL
+.It Ev PORTZAP_PORTS_URL
+The URL to a git repository.
+Defaults to https://git.hardenedbsd.org/hardenedbsd/ports.git.
+.Sh AUTHORS
 The
-.B portzap
+.Nm portzap
 utility and this manual page were written by
-0x1eef <0x1eef@protonmail.com>
+0x1eef <0x1eef@protonmail.com> .
