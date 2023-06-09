@@ -1,8 +1,9 @@
 #!/bin/sh
 
+
 # Variables
 base_dir=$(dirname "$0")
-ports_url="https://git.hardenedbsd.org/hardenedbsd/ports.git"
+ports_url="${PORTZAP_PORTS_URL:-https://git.hardenedbsd.org/hardenedbsd/ports.git}"
 ports_dir="/usr/ports/"
 portzap_file="$ports_dir/.portzap"
 portzap_dir="/home/_portzap/ports"
