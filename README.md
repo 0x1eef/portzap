@@ -10,6 +10,8 @@ update.
 
 ## Usage
 
+**Commands**
+
 * __portzap clone__ <br>
   Clones the ports tree into `/home/_portzap/ports/`.
 
@@ -18,6 +20,12 @@ update.
 
 * __portzap install__ <br>
   Installs `/home/_portzap/ports/` into `/usr/ports/`. <br>
+
+**Environment variables**
+
+* __$PORTZAP_PORTS_URL__
+  The URL of a git repository. <br>
+  Defaults to https://git.hardenedbsd.org/hardenedbsd/ports.git.
 
 ## Install
 
