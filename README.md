@@ -23,7 +23,7 @@ update.
 
 **Environment variables**
 
-* __$PORTZAP_PORTS_URL__
+* __$PORTZAP_PORTS_URL__ <br>
   The URL of a git repository. <br>
   Defaults to https://git.hardenedbsd.org/hardenedbsd/ports.git.
 
