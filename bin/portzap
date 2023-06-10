@@ -4,7 +4,7 @@
 # Variables
 base_dir=$(dirname "$0")
 ports_url="${PORTZAP_PORTS_URL:-https://git.hardenedbsd.org/hardenedbsd/ports.git}"
-ports_dir="/usr/ports/"
+ports_dir="${PORTZAP_PORTS_DIR:-/usr/ports/}"
 portzap_file="$ports_dir/.portzap"
 portzap_dir="/home/_portzap/ports"
 libexec_dir=$(realpath "$base_dir/../libexec/portzap/")
