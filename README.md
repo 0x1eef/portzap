@@ -30,7 +30,7 @@ update.
 
 * __$PORTZAP_PORTS_DIR__ <br>
   The directory where the ports collection will be installed. <br>
-  Defaults to /usr/ports.
+  Defaults to /usr/ports/.
 
 ## Install
 
