@@ -5,7 +5,7 @@ It is designed to allow regular user accounts who belong to the
 `_portzap` group to create and update a transient copy of
 the HardenedBSD ports tree, which can then be installed into the
 `/usr/ports/` directory by root.  Once the initial installation
-is complete, future updates are incremental, which means that portzap
+is complete, future updates are incremental - which means that portzap
 will only add, remove or update ports that have changed since the last
 update.
 
