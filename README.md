@@ -28,6 +28,10 @@ update.
   The URL of a git repository. <br>
   Defaults to https://git.hardenedbsd.org/hardenedbsd/ports.git.
 
+* __$PORTZAP_PORTS_DIR__ <br>
+  The directory where the ports collection will be installed. <br>
+  Defaults to /usr/ports.
+
 ## Install
 
 portzap can be installed through git, or via a port. <br>
