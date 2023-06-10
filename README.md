@@ -36,15 +36,15 @@ portzap can be installed through git, or via a port. <br>
 * Git: <br>
 
 ```
-git clone https://git.hardenedbsd.org/0x1eef/portzap.git
-cd portzap
-cp -R bin /usr/local/
-cp -R libexec /usr/local/
-pw useradd -n _portzap \
+$ git clone https://git.hardenedbsd.org/0x1eef/portzap.git
+$ cd portzap
+# cp -R bin /usr/local/
+# cp -R libexec /usr/local/
+# pw useradd -n _portzap \
            -c "portzap utility user" \
            -m \
            -s /sbin/nologin
-pw groupmod -n _portzap -m <user>
+# pw groupmod -n _portzap -m <user>
 ```
 
 ## Sources
