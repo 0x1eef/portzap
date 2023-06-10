@@ -26,6 +26,10 @@ portzap is a utility that manages a local copy of the
     # Defaults to "/usr/ports/"
     export PORTZAP_PORTS_DIR=/path/to/ports
 
+* __$PORTZAP_PORTS_DIR__ <br>
+  The directory where the ports collection will be installed. <br>
+  Defaults to /usr/ports.
+
 ## Install
 
 ```
