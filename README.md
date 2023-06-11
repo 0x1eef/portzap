@@ -36,7 +36,7 @@ update.
 
 portzap can be installed through git, or via a port. <br>
 
-* Port: see [0x1eef/ports/freebsd/hardenedbsd/portzap](https://github.com/0x1eef/ports/-/tree/main/freebsd/hardenedbsd/portzap).
+* Port: see [0x1eef/ports/freebsd/hardenedbsd/portzap](https://github.com/0x1eef/ports/tree/main/freebsd/hardenedbsd/portzap).
 
 * Git: <br>
 
