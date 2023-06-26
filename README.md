@@ -1,6 +1,6 @@
 ## About
 
-Portzap is a utility for managing the HardenedBSD ports tree.
+portzap is a utility for managing the HardenedBSD ports tree.
 It is designed to allow regular user accounts who belong to the
 `_portzap` group to create and update a transient copy of
 the HardenedBSD ports tree, which can then be installed into the
