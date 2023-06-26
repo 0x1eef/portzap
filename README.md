@@ -1,7 +1,7 @@
 ## About
 
-portzap is a utility for managing the HardenedBSD ports tree.
-portzap is designed to allow regular user accounts who belong to the
+The portzap utility manages the HardenedBSD ports tree.
+The utility is designed to allow regular user accounts who belong to the
 `_portzap` group to create and update a transient copy of
 the HardenedBSD ports tree, which can then be installed into the
 `/usr/ports/` directory by root.  Once the initial installation
