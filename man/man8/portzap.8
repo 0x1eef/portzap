@@ -3,22 +3,28 @@
 .Os
 .Sh NAME
 .Nm portzap
-.Nd manage the HardenedBSD ports tree
+.Nd manages the HardenedBSD ports tree
 .Sh SYNOPSIS
 .Nm portzap clone
 .Nm portzap pull
 .Nm portzap install
 .Sh DESCRIPTION
-The
-.Nm portzap
-utility is designed to allow unprivileged users
-who are members of the
-.B _portzap
-group to create and update a
-transient copy of the ports tree, which can then be installed
+The portzap utility manages a local copy of the
+HardenedBSD ports tree.
+The utility allows user accounts with
+.Nm _portzap
+group membership to create and update a transient
+copy of the ports tree, which can then be installed
 into the
-.Pa /usr/ports
+.Pa /usr/ports/
 directory by root.
+.Pp
+After the first installation of
+.Pa /usr/ports/
+, future updates
+are incremental - which means that portzap will only add,
+remove or update ports that have changed since the last
+update.
 .Sh EXAMPLES
 The following examples demonstrate the usage of
 .Nm portzap
