@@ -19,7 +19,7 @@ the last update.
     # Clones the ports tree into "/home/_portzap/ports/"
     $ portzap clone
 
-    # Pulls updates into "/home/_portzap/ports/".
+    # Pulls updates into "/home/_portzap/ports/"
     $ portzap pull
 
     # Installs "/home/_portzap/ports/" into "/usr/ports/"
@@ -27,12 +27,12 @@ the last update.
 
 **Environment**
 
-    # The URL of a git repository.
-    # Defaults to https://git.hardenedbsd.org/hardenedbsd/ports.git.
+    # The URL of a git repository
+    # Defaults to https://git.hardenedbsd.org/hardenedbsd/ports.git
     export PORTZAP_PORTS_URL=https://github.com/HardenedBSD/ports
 
-    # The directory where the ports collection will be installed.
-    # Defaults to "/usr/ports/".
+    # The directory where the ports collection will be installed
+    # Defaults to "/usr/ports/"
     export PORTZAP_PORTS_DIR=/path/to/ports
 
 ## Install
