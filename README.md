@@ -21,8 +21,8 @@ the ports collection (typically to `/usr/ports/`).
 **Environment**
 
     # The URL of a git repository
-    # Defaults to https://git.hardenedbsd.org/hardenedbsd/ports.git
-    export PORTZAP_PORTS_URL=https://github.com/HardenedBSD/ports
+    # Defaults to https://github.com/hardenedbsd/ports.git
+    export PORTZAP_PORTS_URL=https://git.hardenedbsd.org/hardenedbsd/ports.git
 
     # The directory where the ports collection will be installed
     # Defaults to "/usr/ports/"
