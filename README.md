@@ -1,16 +1,9 @@
 ## About
 
 The portzap utility manages a local copy of the
-[HardenedBSD ports tree](https://git.hardenedbsd.org/hardenedbsd/ports).
-The utility allows user accounts with `_portzap`
-group membership to create and update a transient
-copy of the ports tree, which can then be installed
-into the `/usr/ports/` directory by root.
-
-After the first installation of `/usr/ports/`, future
-updates are incremental - which means that portzap will
-only add, remove or update ports that have changed since
-the last update.
+[hardenedbsd ports collection](https://git.hardenedbsd.org/hardenedbsd/ports).
+The utility can clone the ports collection, pull updates, and finally install
+the ports collection (typically to `/usr/ports/`).
 
 ## Examples
 
