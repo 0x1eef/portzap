@@ -1,4 +1,6 @@
 #!/bin/sh
+set -e
+
 ports_dir=$1
 libexec_dir=$2
 group=_portzap

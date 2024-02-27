@@ -1,5 +1,5 @@
 #!/bin/sh
-
+set -e
 
 # Variables
 base_dir=$(dirname "$0")
@@ -13,13 +13,11 @@ libexec_dir=$(realpath "$base_dir/../libexec/portzap/")
 clone_mask=007
 pull_mask=007
 
-# Commands
-. "$libexec_dir/commands/portzap-install"
-. "$libexec_dir/commands/portzap-pull"
-. "$libexec_dir/commands/portzap-clone"
-
 # Functions
-. "$libexec_dir/functions/requirements.sh"
+. "$libexec_dir/functions/portzap-install"
+. "$libexec_dir/functions/portzap-pull"
+. "$libexec_dir/functions/portzap-clone"
+. "$libexec_dir/functions/requirements"
 
 case $1 in
     "clone")

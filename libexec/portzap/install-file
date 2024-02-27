@@ -1,4 +1,6 @@
 #!/bin/sh
+set -e
+
 dest=$1
 group=_portzap
 mode=u=rw,g=rw,o=
