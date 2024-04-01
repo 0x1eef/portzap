@@ -3,60 +3,38 @@
 .Os
 .Sh NAME
 .Nm portzap
-.Nd manages the HardenedBSD ports tree
+.Nd manages a copy of the hardenedbsd ports tree
 .Sh SYNOPSIS
-.Nm portzap clone
-.Nm portzap pull
-.Nm portzap install
+.br
+portzap clone
+.br
+portzap pull
+.br
+portzap install
 .Sh DESCRIPTION
-The portzap utility manages a local copy of the
-HardenedBSD ports tree.
-The utility allows user accounts with
-.Nm _portzap
-group membership to create and update a transient
-copy of the ports tree, which can then be installed
-into the
-.Pa /usr/ports/
-directory by root.
-.Pp
-After the first installation of
-.Pa /usr/ports/
-, future updates
-are incremental - which means that portzap will only add,
-remove or update ports that have changed since the last
-update.
-.Sh EXAMPLES
-The following examples demonstrate the usage of
 .Nm portzap
-utility:
+manages a copy of the hardenedbsd ports tree.
+.Sh EXAMPLES
 .Pp
 .Nm portzap clone
 .br
-Clones the ports tree into
-.Pa /home/_portzap/ports .
+Clone the hardenedbsd ports tree into /home/_portzap/ports/.
 .Pp
 .Nm portzap pull
 .br
-Pulls updates into
-.Pa /home/_portzap/ports .
+Pull updates into /home/_portzap/ports/.
 .Pp
 .Nm portzap install
 .br
-Installs
-.Pa /home/_portzap/ports
-into
-.Pa /usr/ports .
+Install /home/_portzap/ports/ into /usr/ports/.
 .Sh ENVIRONMENT VARIABLES
-The following variables can be used:
 .Pp
 .Bl -tag -width $PORTZAP_PORTS_URL
 .It Ev PORTZAP_PORTS_URL
 The URL to a git repository.
-Defaults to https://git.hardenedbsd.org/hardenedbsd/ports.git.
+Default: https://git.hardenedbsd.org/hardenedbsd/ports.git
 .It Ev PORTZAP_PORTS_DIR
-The directory where the ports collection will be installed.
-Defaults to
-.Pa /usr/ports.
+The directory where the ports collection will be installed. Default: /usr/ports/.
 .Sh AUTHORS
 The
 .Nm portzap
