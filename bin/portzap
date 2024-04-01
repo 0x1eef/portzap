@@ -1,6 +1,7 @@
 #!/bin/sh
 set -e
 
+##
 # Variables
 rootdir=$(dirname "$0")
 giturl="${PORTZAP_GITURL:-https://git.hardenedbsd.org/hardenedbsd/ports.git}"
@@ -9,30 +10,50 @@ installdir="${PORTZAP_INSTALLDIR:-/usr/ports/}"
 revision="${installdir}/.portzap"
 libexec=$(realpath "${rootdir}/../libexec/portzap/")
 
-# Masks
-clone_mask=007
-pull_mask=007
-
+##
 # Functions
+require_root() {
+    if [ $(id -u) -ne 0 ]; then
+        echo "This command requires root privileges."
+        exit 1
+    fi
+
+}
+
+require_membership_of() {
+    group=$1
+    if ! id -Gn | tr ' ' '\n' | grep -e "^${group}$"; then
+        echo "This command requires a user to be a member of ${group}."
+        exit 1
+    fi
+}
+
+require_dependency() {
+    deps=$1
+    for dep in $deps; do
+        if ! which -s "$dep"; then
+            echo "This command requires ${dep}, but it was not found."
+            exit 1
+        fi
+    done
+}
+
 . "$libexec/functions/portzap-install"
-. "$libexec/functions/portzap-pull"
-. "$libexec/functions/portzap-clone"
-. "$libexec/functions/requirements"
 
 case $1 in
     "clone")
-        require_deps git
-        require_group _portzap
-        portzap_clone "$portzap_dir" "$giturl" "$clone_mask"
+        require_dependency git
+        require_membership_of _portzap
+        ${libexec}/portzap/portzap-clone "${giturl}" "${gitdir}"
         ;;
     "pull")
-        require_deps git
-        require_group _portzap
-        portzap_pull "$portzap_dir" "$pull_mask"
+        require_dependency git
+        require_membership_of _portzap
+        ${libexec}/portzap/portzap-pull "${gitdir}"
         ;;
     "install")
         require_root
-        require_deps git
+        require_dependency git
         portzap_install "$installdir" "$portzap_dir" "$libexec" "$portzap_file"
         ;;
     *)
