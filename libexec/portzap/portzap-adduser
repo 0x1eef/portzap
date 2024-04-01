@@ -1,0 +1,8 @@
+#!/bin/sh
+set -e
+pw useradd -n _portzap \
+           -c "portzap user" \
+           -m \
+           -M "u=rwx,g=rwx,o=" \
+           -s /sbin/nologin
+echo "/home/_portzap/ has been created."
