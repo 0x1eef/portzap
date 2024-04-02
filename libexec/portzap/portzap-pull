@@ -1,7 +1,7 @@
 #!/bin/sh
 set -ex
 gitdir=$1
-umask rwX,g=rwX,o=
+umask u=rwX,g=rwX,o=
 if [ -e "${gitdir}/.git" ]; then
     cd "${gitdir}"
     git pull --rebase origin hardenedbsd/main
