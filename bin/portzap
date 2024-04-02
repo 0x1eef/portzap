@@ -61,6 +61,12 @@ case $1 in
         ${libexec}/portzap-adduser
         ;;
     *)
-        echo "Usage: portzap COMMAND [OPTIONS]"
+        echo Usage: portzap COMMAND [OPTIONS]
+        echo
+        echo Commands:
+        echo -e "  clone    Clone the hardenedbsd ports tree."
+        echo -e "  pull     Pull updates from the hardenedbsd ports tree."
+        echo -e "  install  Install the ports tree into /usr/ports."
+        echo -e "  adduser  Add the portzap user, group and home directory."
         ;;
 esac
