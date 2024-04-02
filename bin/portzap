@@ -4,11 +4,11 @@ set -e
 ##
 # Variables
 rootdir=$(dirname "$0")
-giturl="${PORTZAP_GITURL:-https://git.hardenedbsd.org/hardenedbsd/ports.git}"
 gitdir="/home/_portzap/ports"
-installdir="${PORTZAP_INSTALLDIR:-/usr/ports/}"
+giturl="${PORTZAP_GITURL:-https://git.hardenedbsd.org/hardenedbsd/ports.git}"
+installdir="${PORTZAP_INSTALLDIR:-/usr/ports}"
 revision="${installdir}/.portzap"
-libexec=$(realpath "${rootdir}/../libexec/portzap/")
+libexec=$(realpath "${rootdir}/../libexec/portzap")
 
 ##
 # Functions
@@ -22,7 +22,7 @@ require_root() {
 
 require_membership_of() {
     group=$1
-    if ! id -Gn | tr ' ' '\n' | grep -e "^${group}$"; then
+    if ! id -Gn | tr ' ' '\n' | grep -e "^${group}$" > /dev/null 2>&1; then
         echo "This command requires a user to be a member of ${group}."
         exit 1
     fi
@@ -38,25 +38,29 @@ require_dependency() {
     done
 }
 
-. "$libexec/functions/portzap-install"
-
+##
+# main
 case $1 in
     "clone")
         require_dependency git
         require_membership_of _portzap
-        ${libexec}/portzap/portzap-clone "${giturl}" "${gitdir}"
+        ${libexec}/portzap-clone "${giturl}" "${gitdir}"
         ;;
     "pull")
         require_dependency git
         require_membership_of _portzap
-        ${libexec}/portzap/portzap-pull "${gitdir}"
+        ${libexec}/portzap-pull "${gitdir}"
         ;;
     "install")
         require_root
         require_dependency git
-        portzap_install "$installdir" "$portzap_dir" "$libexec" "$portzap_file"
+        ${libexec}/portzap-install "${gitdir}" "${installdir}" "${revision}"
+        ;;
+    "adduser")
+        require_root
+        ${libexec}/portzap-adduser
         ;;
     *)
-        echo "Usage: portzap clone|pull|install"
+        echo "Usage: portzap COMMAND [OPTIONS]"
         ;;
-    esac
+esac

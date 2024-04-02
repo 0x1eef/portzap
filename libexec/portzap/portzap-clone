@@ -1,5 +1,5 @@
 #!/bin/sh
-set -e
+set -ex
 giturl=$1
 gitdir=$2
 if [ -e "${gitdir}/.git" ]; then
@@ -8,4 +8,4 @@ if [ -e "${gitdir}/.git" ]; then
     exit 1
 fi
 umask u=rwX,g=rwX,o=
-git clone "${giturl}" "${gitdir}"
+git clone --depth 1 "${giturl}" "${gitdir}"

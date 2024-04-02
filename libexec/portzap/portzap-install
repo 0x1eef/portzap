@@ -1,56 +1,16 @@
 #!/bin/sh
-set -e
+set -ex
+gitdir=$1
+installdir=$2
+revision=$3
+excludes=".git .gitignore .hooks .arcconfig"
 
-__portzap_install_update() {
-    portzap_file=$1
-    ports_dir=$2
-    libexec_dir=$3
-    rev=$(cat "$portzap_file")
-    rm_files=$(git diff --name-only --diff-filter=D "$rev"..HEAD)
-    ch_files=$(git diff --name-only --diff-filter=RAM "$rev"..HEAD | \
-               cut -d / -f1 -f2 | uniq)
-    for file in $rm_files; do
-        if [ -e "$ports_dir/$file" ]; then
-            echo RM "$ports_dir/$file"
-            rm "$ports_dir/$file"
-        fi;
-    done
-    for file in $ch_files; do
-        if [ -f "$file" ]; then
-            echo "$file"
-            "$libexec_dir/install-file" "$ports_dir" "$file"
-        else
-            dir=$file
-            "$libexec_dir/install-directory" "$ports_dir" "$libexec_dir" "$dir"
-        fi
-    done
-
-}
-
-__portzap_install_ports() {
-    ports_dir=$1
-    libexec_dir=$2
-    find -s . -maxdepth 1 -type f \
-        \( -not -name ".gitignore" \) \
-        \( -not -name ".arcconfig" \) \
-        -exec "$libexec_dir/install-file" "$ports_dir" {} +
-    find -s . -maxdepth 1 -type d \
-        \( -not -name "." \) \
-        \( -not -name ".git" \) \
-        \( -not -name ".hooks" \) \
-        -exec "$libexec_dir/install-directory" "$ports_dir" "$libexec_dir" {} +
-}
-
-portzap_install() {
-    ports_dir=$1
-    portzap_dir=$2
-    libexec_dir=$3
-    portzap_file=$4
-    cd "$portzap_dir" || exit 1
-    if [ -e "$portzap_file" ]; then
-        __portzap_install_update "$portzap_file" "$ports_dir" "$libexec_dir"
-    else
-        __portzap_install_ports "$portzap_dir" "$libexec_dir"
-    fi
-    git rev-parse HEAD > "$portzap_file"
-}
+cd ${gitdir}
+find -s . -maxdepth 1 \
+    -exec cp -Rfv {} ${installdir} \; \
+    -exec chown -R root:_portzap ${installdir}/{} \; \
+    -exec chmod -R u=rwX,g=rwX,o= ${installdir}/{} \;
+cd ${installdir}
+for exclude in ${excludes}; do
+    rm -rf ${exclude}
+done
