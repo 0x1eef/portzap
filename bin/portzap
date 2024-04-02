@@ -13,7 +13,7 @@ libexec=$(realpath "${rootdir}/../libexec/portzap")
 ##
 # Functions
 require_root() {
-    if [ $(id -u) -ne 0 ]; then
+    if [ "$(id -u)" != "0" ]; then
         echo "This command requires root privileges."
         exit 1
     fi
@@ -44,29 +44,29 @@ case $1 in
     "clone")
         require_dependency git
         require_membership_of _portzap
-        ${libexec}/portzap-clone "${giturl}" "${gitdir}"
+        "${libexec}"/portzap-clone "${giturl}" "${gitdir}"
         ;;
     "pull")
         require_dependency git
         require_membership_of _portzap
-        ${libexec}/portzap-pull "${gitdir}"
+        "${libexec}"/portzap-pull "${gitdir}"
         ;;
     "install")
         require_root
         require_dependency git
-        ${libexec}/portzap-install "${gitdir}" "${installdir}" "${revision}"
+        "${libexec}"/portzap-install "${gitdir}" "${installdir}" "${revision}"
         ;;
     "adduser")
         require_root
-        ${libexec}/portzap-adduser
+        "${libexec}"/portzap-adduser
         ;;
     *)
-        echo Usage: portzap COMMAND [OPTIONS]
-        echo
-        echo Commands:
-        echo -e "  clone    Clone the hardenedbsd ports tree."
-        echo -e "  pull     Pull updates from the hardenedbsd ports tree."
-        echo -e "  install  Install the ports tree into /usr/ports."
-        echo -e "  adduser  Add the portzap user, group and home directory."
+        printf "Usage: portzap COMMAND [OPTIONS]\n"
+        printf "\n"
+        printf "Commands:\n"
+        printf "  clone    Clone the hardenedbsd ports tree.\n"
+        printf "  pull     Pull updates from the hardenedbsd ports tree.\n"
+        printf "  install  Install the ports tree into /usr/ports.\n"
+        printf "  adduser  Add the portzap user, group and home directory.\n"
         ;;
 esac
