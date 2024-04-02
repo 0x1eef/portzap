@@ -7,28 +7,27 @@ portzap is a utility that manages a local copy of the
 
 **CLI**
 
-    # Clones the ports tree into "/home/_portzap/ports/"
+    # Clone the hardenedbsd ports tree into /home/_portzap/ports/.
     $ portzap clone
 
-    # Pulls updates into "/home/_portzap/ports/"
+    # Pull updates into /home/_portzap/ports/.
     $ portzap pull
 
-    # Installs "/home/_portzap/ports/" into "/usr/ports/"
+    # Install /home/_portzap/ports/ into /usr/ports/.
     # portzap install
 
-**Environment**
+    # Add the portzap user, group and home directory.
+    # portzap adduser
 
-    # The URL of a git repository
-    # Defaults to https://git.hardenedbsd.org/hardenedbsd/ports.git
-    export PORTZAP_PORTS_URL=https://github.com/HardenedBSD/ports
+**ENVIRONMENT VARIABLES**
 
-    # The directory where the ports collection will be installed
-    # Defaults to "/usr/ports/"
-    export PORTZAP_PORTS_DIR=/path/to/ports
+* __$PORTZAP\_GITURL__ <br>
+  The URL to a git repository.  Default:
+  https://git.hardenedbsd.org/hardenedbsd/ports.git
 
-* __$PORTZAP_PORTS_DIR__ <br>
-  The directory where the ports collection will be installed. <br>
-  Defaults to /usr/ports.
+* __$PORTZAP\_INSTALLDIR__ <br>
+  The directory where the ports collection will be
+  installed. Default: /usr/ports/.
 
 ## Install
 
@@ -37,10 +36,7 @@ $ git clone https://github.com/0x1eef/portzap.git
 $ cd portzap
 # cp -R bin /usr/local/
 # cp -R libexec /usr/local/
-# pw useradd -n _portzap \
-           -c "portzap utility user" \
-           -m \
-           -s /sbin/nologin
+# pw adduser
 # pw groupmod -n _portzap -m <user>
 ```
 

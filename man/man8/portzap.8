@@ -11,6 +11,8 @@ portzap clone
 portzap pull
 .br
 portzap install
+.br
+portzap adduser
 .Sh DESCRIPTION
 .Nm portzap
 manages a copy of the hardenedbsd ports tree.
@@ -27,6 +29,10 @@ Pull updates into /home/_portzap/ports/.
 .Nm portzap install
 .br
 Install /home/_portzap/ports/ into /usr/ports/.
+.Pp
+.Nm portzap adduser
+.br
+Add the portzap user, group and home directory.
 .Sh ENVIRONMENT VARIABLES
 .Pp
 .Bl -tag -width $PORTZAP_GITURL
