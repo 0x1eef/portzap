@@ -31,14 +31,11 @@ portzap is a utility that manages a local copy of the
 
 ## Install
 
-```
-$ git clone https://github.com/0x1eef/portzap.git
-$ cd portzap
-# cp -R bin /usr/local/
-# cp -R libexec /usr/local/
-# portzap adduser
-# pw groupmod -n _portzap -m <user>
-```
+    $ git clone https://github.com/0x1eef/portzap.git
+    $ cd portzap
+    # make install
+    # portzap adduser
+    # pw groupmod -n _portzap -m <user>
 
 ## Sources
 
