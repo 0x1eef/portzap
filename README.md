@@ -22,12 +22,12 @@ portzap is a utility that manages a local copy of the
 **ENVIRONMENT VARIABLES**
 
 * __$PORTZAP\_GITURL__ <br>
-  The URL to a git repository.  Default:
-  https://git.hardenedbsd.org/hardenedbsd/ports.git
+  The URL to a git repository.  <br>
+  Default: https://git.hardenedbsd.org/hardenedbsd/ports.git.
 
 * __$PORTZAP\_INSTALLDIR__ <br>
-  The directory where the ports collection will be
-  installed. Default: /usr/ports/.
+  The directory where the ports collection will be installed. <br>
+  Default: /usr/ports/.
 
 ## Install
 
