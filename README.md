@@ -1,7 +1,7 @@
 ## About
 
 portzap is a utility that manages a local copy of the
-[hardenedbsd ports tree](https://git.hardenedbsd.org/hardenedbsd/ports),
+[hardenedbsd ports tree](https://git.hardenedbsd.org/hardenedbsd/ports).
 
 ## Examples
 
@@ -36,7 +36,7 @@ $ git clone https://github.com/0x1eef/portzap.git
 $ cd portzap
 # cp -R bin /usr/local/
 # cp -R libexec /usr/local/
-# pw adduser
+# portzap adduser
 # pw groupmod -n _portzap -m <user>
 ```
 
