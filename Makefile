@@ -13,3 +13,7 @@ deinstall:
 	rm -rf $(LIBEXECDIR)
 	rm -f $(BINDIR)/portzap
 	rm -f $(MANDIR)/portzap.8
+
+shellcheck:
+	shellcheck bin/portzap
+	shellcheck libexec/portzap/*

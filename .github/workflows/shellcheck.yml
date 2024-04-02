@@ -8,7 +8,7 @@ jobs:
     steps:
       - uses: actions/checkout@v3
       - uses: ludeeus/action-shellcheck@master
-      - run: ./bin/run-shellcheck
+      - run: make shellcheck
 on:
   push:
     branches: [ main ]
