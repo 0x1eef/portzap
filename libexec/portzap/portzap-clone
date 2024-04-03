@@ -13,4 +13,5 @@ if [ -e "${gitdir}/.git" ]; then
     exit 1
 fi
 umask u=rwX,g=rwX,o=
+set -x
 git clone --depth 1 "${giturl}" "${gitdir}"

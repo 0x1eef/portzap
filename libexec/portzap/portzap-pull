@@ -8,6 +8,7 @@ gitdir=$1
 # main
 umask u=rwX,g=rwX,o=
 if [ -e "${gitdir}/.git" ]; then
+    set -x
     cd "${gitdir}"
     git pull --rebase origin hardenedbsd/main
 else
