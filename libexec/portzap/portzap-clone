@@ -1,7 +1,12 @@
-#!/bin/sh
-set -ex
+#!/bin/sh -e
+
+##
+# variables
 giturl=$1
 gitdir=$2
+
+##
+# main
 if [ -e "${gitdir}/.git" ]; then
     echo "${gitdir} already exists."
     echo "Try 'portzap pull' instead."

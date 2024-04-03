@@ -1,6 +1,11 @@
-#!/bin/sh
-set -ex
+#!/bin/sh -e
+
+##
+# variables
 gitdir=$1
+
+##
+# main
 umask u=rwX,g=rwX,o=
 if [ -e "${gitdir}/.git" ]; then
     cd "${gitdir}"

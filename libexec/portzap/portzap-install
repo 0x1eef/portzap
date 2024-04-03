@@ -1,9 +1,13 @@
-#!/bin/sh
-set -ex
+#!/bin/sh -e
+
+##
+# variables
 gitdir=$1
 installdir=$2
 excludes=".git .gitignore .hooks .arcconfig"
 
+##
+# main
 cd "${gitdir}"
 find -s . -maxdepth 1 \
     -exec cp -Rfv {} "${installdir}" \; \
