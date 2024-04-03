@@ -3,6 +3,7 @@ set -e
 pw useradd -n _portzap \
            -c "portzap user" \
            -m \
-           -M "u=rwx,g=rwx,o=" \
+           -M "u=rwX,g=rwX,o=" \
            -s /sbin/nologin
+chmod -R u=rwX,g=rwX,o= /home/_portzap/
 echo "/home/_portzap/ has been created."
