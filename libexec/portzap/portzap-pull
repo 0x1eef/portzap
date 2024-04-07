@@ -6,7 +6,7 @@ gitdir=$1
 
 ##
 # main
-umask u=rwX,g=rwX,o=
+umask u=rwX,g=rX,o=rX
 if [ -e "${gitdir}/.git" ]; then
     set -x
     cd "${gitdir}"

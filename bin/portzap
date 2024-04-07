@@ -43,21 +43,21 @@ case $1 in
     "clone")
         require_dependency git
         require_membership_of _portzap
-        "${libexec}"/portzap-clone "${giturl}" "${gitdir}"
+        doas -u _portzap "${libexec}"/portzap-clone "${giturl}" "${gitdir}"
         ;;
     "pull")
         require_dependency git
         require_membership_of _portzap
-        "${libexec}"/portzap-pull "${gitdir}"
+        doas -u _portzap "${libexec}"/portzap-pull "${gitdir}"
         ;;
     "install")
         require_root
         require_dependency git
         "${libexec}"/portzap-install "${gitdir}" "${installdir}" "${revision}"
         ;;
-    "adduser")
+    "setup")
         require_root
-        "${libexec}"/portzap-adduser
+        "${libexec}"/portzap-setup
         ;;
     *)
         printf "Usage: portzap COMMAND [OPTIONS]\n"
@@ -66,6 +66,6 @@ case $1 in
         printf "  clone    Clone the hardenedbsd ports tree.\n"
         printf "  pull     Pull updates from the hardenedbsd ports tree.\n"
         printf "  install  Install the ports tree into /usr/ports.\n"
-        printf "  adduser  Add the portzap user, group and home directory.\n"
+        printf "  setup    Add the _portzap user, group and home directory.\n"
         ;;
 esac

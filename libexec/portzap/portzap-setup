@@ -1,0 +1,22 @@
+#!/bin/sh -e
+
+##
+# variables
+conf=$(cat /usr/local/share/portzap/doas.conf)
+doas=/usr/local/etc/doas.conf
+
+##
+# main
+if ! id -u _portzap > /dev/null 2>&1; then
+    pw useradd -n _portzap \
+        -c "portzap user" \
+        -m \
+        -s /sbin/nologin
+    chmod u=rwX,g=rX,o= /home/_portzap/
+echo "[ok] add _portzap user, group and home directory"
+fi
+
+if ! fgrep "${conf}" "${doas}" > /dev/null 2>&1; then
+    echo "${conf}" >> "${doas}"
+    echo "[ok] update ${doas}"
+fi

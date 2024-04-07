@@ -8,16 +8,20 @@ portzap is a utility that manages a local copy of the
 **CLI**
 
     # Clone the hardenedbsd ports tree into /home/_portzap/ports/.
+    # This command is delegated to the '_portzap' user.
     $ portzap clone
 
     # Pull updates into /home/_portzap/ports/.
+    # This command is delegated to the '_portzap' user.
     $ portzap pull
 
     # Install /home/_portzap/ports/ into /usr/ports/.
+    # This command requires root privileges.
     # portzap install
 
     # Add the portzap user, group and home directory.
-    # portzap adduser
+    # This command requires root privileges.
+    # portzap setup
 
 **ENVIRONMENT VARIABLES**
 
@@ -34,8 +38,13 @@ portzap is a utility that manages a local copy of the
     $ git clone https://github.com/0x1eef/portzap.git
     $ cd portzap
     # make install
-    # portzap adduser
+    # portzap setup
     # pw groupmod -n _portzap -m <user>
+
+## Requirements
+
+* [doas](https://man.openbsd.org/doas) <br>
+  pkg install doas
 
 ## Sources
 
