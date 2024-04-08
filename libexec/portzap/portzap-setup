@@ -16,7 +16,7 @@ if ! id -u _portzap > /dev/null 2>&1; then
 echo "[ok] add _portzap user, group and home directory"
 fi
 
-if ! fgrep "${conf}" "${doas}" > /dev/null 2>&1; then
+if ! grep -F "${conf}" "${doas}" > /dev/null 2>&1; then
     echo "${conf}" >> "${doas}"
     echo "[ok] update ${doas}"
 fi

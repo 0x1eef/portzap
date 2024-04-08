@@ -7,8 +7,8 @@ commit=$2
 
 ##
 # main
-cd ${gitdir}
-add=$(git diff --name-only --diff-filter=A ${commit} HEAD)
-mod=$(git diff --name-only --diff-filter=M ${commit} HEAD)
-echo ${add}
-echo ${mod}
+cd "${gitdir}"
+add=$(git diff --name-only --diff-filter=A "${commit}" HEAD)
+mod=$(git diff --name-only --diff-filter=M "${commit}" HEAD)
+echo "${add}"
+echo "${mod}"

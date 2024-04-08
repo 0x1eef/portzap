@@ -7,5 +7,5 @@ commit=$2
 
 ##
 # main
-cd ${gitdir}
-git diff --name-only --diff-filter=D ${commit} HEAD
+cd "${gitdir}"
+git diff --name-only --diff-filter=D "${commit}" HEAD

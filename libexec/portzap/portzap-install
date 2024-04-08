@@ -23,8 +23,8 @@ perform_update()
     for file in ${add}; do
         target="${installdir}/${file}"
         parent=$(dirname "${target}")
-        if [ ! -e ${parent} ]; then
-            mkdir -p ${parent}
+        if [ ! -e "${parent}" ]; then
+            mkdir -p "${parent}"
         fi
         cp "${file}" "${target}"
         chown root:_portzap "${target}"
@@ -39,7 +39,7 @@ perform_install()
         -exec cp -Rfv {} "${installdir}" \; \
         -exec chown -R root:_portzap "${installdir}/{}" \;
     for path in ${artifacts}; do
-        rm -rf "${installdir}/${path}"
+        rm -rf "${installdir:?}/${path}"
     done
 }
 
@@ -52,4 +52,4 @@ if [ -e "${revfile}" ]; then
 else
     perform_install
 fi
-echo $(doas -u _portzap ${libexec}/git-rev ${gitdir}) > ${revfile}
+doas -u _portzap ${libexec}/git-rev "${gitdir}" > "${revfile}"
