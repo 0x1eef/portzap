@@ -22,18 +22,22 @@ perform_update()
     done
     for file in ${add}; do
         target="${installdir}/${file}"
+        parent=$(dirname "${target}")
+        if [ ! -e ${parent} ]; then
+            mkdir -p ${parent}
+        fi
         cp "${file}" "${target}"
         chown root:_portzap "${target}"
-        chmod u=rw,g=rw,o= "${target}"
+        chown root:_portzap "${parent}"
     done
 }
 
 perform_install()
 {
-    find -s . -maxdepth 1 \
+    find -s . \
+        -maxdepth 1 \
         -exec cp -Rfv {} "${installdir}" \; \
-        -exec chown -R root:_portzap "${installdir}/{}" \; \
-        -exec chmod -R u=rwX,g=rwX,o= "${installdir}/{}" \;
+        -exec chown -R root:_portzap "${installdir}/{}" \;
     for path in ${artifacts}; do
         rm -rf "${installdir}/${path}"
     done
@@ -41,6 +45,7 @@ perform_install()
 
 ##
 # main
+umask u=rwX,g=rwX,o=
 cd "${gitdir}"
 if [ -e "${revfile}" ]; then
     perform_update
