@@ -23,7 +23,7 @@ portzap is a utility that manages a local copy of the
     # This command requires root privileges.
     # portzap setup
 
-**ENVIRONMENT VARIABLES**
+**ENVIRONMENT**
 
 * __$PORTZAP\_GITURL__ <br>
   The URL to a git repository.  <br>
