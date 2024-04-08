@@ -18,5 +18,5 @@ fi
 
 if ! grep -F "${conf}" "${doas}" > /dev/null 2>&1; then
     echo "${conf}" >> "${doas}"
-    echo "[ok] update ${doas}"
+    echo "[ok] modify ${doas}"
 fi
