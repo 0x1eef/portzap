@@ -12,7 +12,7 @@ if [ -e "${gitdir}/.git" ]; then
     echo "Try 'portzap pull' instead."
     exit 1
 fi
-umask u=rwX,g=rX,o=rX
+umask u=rwX,g=rX,o=
 set -x
-git clone --depth 1 "${giturl}" "${gitdir}"
+git clone "${giturl}" "${gitdir}"
 cd "${gitdir}"
