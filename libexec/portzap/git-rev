@@ -1,0 +1,10 @@
+#!/bin/sh -e
+
+##
+# variables
+gitdir=$1
+
+##
+# main
+cd ${gitdir}
+git rev-parse HEAD
