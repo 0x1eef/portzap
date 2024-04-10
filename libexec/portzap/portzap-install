@@ -19,7 +19,9 @@ perform_update()
     set -x
     for file in ${del}; do
         target="${installdir}/${file}"
+        parent=$(dirname "${target}")
         rm "${target}"
+        find "${parent}" -type d -maxdepth 0 -empty -exec rm -rf {} \;
     done
     for file in ${add}; do
         target="${installdir}/${file}"
