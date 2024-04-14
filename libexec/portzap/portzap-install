@@ -16,12 +16,13 @@ perform_update()
     rev=$(cat "${revfile}")
     add=$(doas -u _portzap ${libexec}/git-changed-files "${gitdir}" "${rev}")
     del=$(doas -u _portzap ${libexec}/git-removed-files "${gitdir}" "${rev}")
-    set -x
     for file in ${del}; do
         target="${installdir}/${file}"
         parent=$(dirname "${target}")
-        rm "${target}"
-        find "${parent}" -type d -maxdepth 0 -empty -exec rm -rf {} \;
+        printf "rm $(rm -vf ${target})"
+        if [ -e "${parent}" ]; then
+            find "${parent}" -type d -maxdepth 0 -empty -exec rm -vrf {} \;
+        fi
     done
     for file in ${add}; do
         target="${installdir}/${file}"
@@ -31,7 +32,7 @@ perform_update()
             chown root:_portzap "${parent}"
             chmod ${mode} "${parent}"
         fi
-        cp "${file}" "${target}"
+        cp -v "${file}" "${target}"
         chown root:_portzap "${target}"
         chmod ${mode} "${target}"
     done
@@ -39,6 +40,9 @@ perform_update()
 
 perform_install()
 {
+    mkdir -p "${installdir}"
+    chown root:_portzap "${installdir}"
+    chmod ${mode} "${installdir}"
     find -s . \
         -maxdepth 1 \
         -exec cp -Rfv {} "${installdir}" \; \
