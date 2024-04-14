@@ -20,9 +20,10 @@ perform_update()
     for file in ${del}; do
         target="${installdir}/${file}"
         parent=$(dirname "${target}")
-        printf "rm $(rm -vf ${target})"
+        echo "rm ${target}"
+        rm -f "${target}"
         if [ -e "${parent}" ]; then
-            find "${parent}" -type d -maxdepth 0 -empty -exec rm -vrf {} \;
+            find "${parent}" -type d -maxdepth 0 -empty -exec rm -rf {} \;
         fi
     done
     for file in ${add}; do
