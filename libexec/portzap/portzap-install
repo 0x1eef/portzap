@@ -6,8 +6,9 @@ gitdir=$1
 installdir=$2
 revfile=$3
 artifacts=".git .gitignore .hooks .arcconfig"
-libexec=/usr/local/libexec/portzap
+libexec="/usr/local/libexec/portzap"
 mode="u=rwX,g=rwX,o="
+flags="-o root -g _portzap -m ${mode} -v"
 
 ##
 # functions
@@ -28,21 +29,14 @@ perform_update()
         target="${installdir}/${file}"
         parent=$(dirname "${target}")
         if [ ! -e "${parent}" ]; then
-            mkdir -p "${parent}"
-            chown root:_portzap "${parent}"
-            chmod ${mode} "${parent}"
+            install -d ${flags} "${parent}"
         fi
-        cp -v "${file}" "${target}"
-        chown root:_portzap "${target}"
-        chmod ${mode} "${target}"
+        install ${flags} "${file}" "${target}"
     done
 }
 
 perform_install()
 {
-    mkdir -p "${installdir}"
-    chown root:_portzap "${installdir}"
-    chmod ${mode} "${installdir}"
     find -s . \
         -maxdepth 1 \
         -exec cp -Rfv {} "${installdir}" \; \
@@ -56,6 +50,7 @@ perform_install()
 ##
 # main
 cd "${gitdir}"
+install -d ${flags} "${installdir}"
 if [ -e "${revfile}" ]; then
     perform_update
 else
