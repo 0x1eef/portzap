@@ -41,18 +41,18 @@ require_dependency() {
 # main
 case $1 in
     "clone")
-        require_dependency git
+        require_dependency "git doas"
         require_membership_of _portzap
         doas -u _portzap "${libexec}"/portzap-clone "${giturl}" "${gitdir}"
         ;;
     "pull")
-        require_dependency git
+        require_dependency "git doas"
         require_membership_of _portzap
         doas -u _portzap "${libexec}"/portzap-pull "${gitdir}"
         ;;
     "install")
         require_root
-        require_dependency git
+        require_dependency "git doas"
         "${libexec}"/portzap-install "${gitdir}" "${installdir}" "${revision}"
         ;;
     "setup")
