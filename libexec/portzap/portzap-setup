@@ -2,8 +2,9 @@
 
 ##
 # variables
-conf=$(cat /usr/local/share/portzap/doas.conf)
-doas=/usr/local/etc/doas.conf
+localbase="${LOCALBASE:-/usr/local}"
+conf=$(cat "${localbase}"/share/portzap/doas.conf)
+doas="${localbase}"/etc/doas.conf
 
 ##
 # main
