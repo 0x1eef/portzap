@@ -8,7 +8,6 @@ revfile=$3
 artifacts=".git .gitignore .hooks .arcconfig"
 libexec="/usr/local/libexec/portzap"
 mode="u=rwX,g=rwX,o="
-flags="-o root -g _portzap -m ${mode} -v"
 
 ##
 # functions
@@ -30,9 +29,9 @@ perform_update()
         target="${installdir}/${file}"
         parent=$(dirname "${target}")
         if [ ! -e "${parent}" ]; then
-            install -d ${flags} "${parent}"
+            run_install "-d" "${parent}"
         fi
-        install ${flags} "${file}" "${target}"
+        run_install "${file}" "${target}"
     done
 }
 
@@ -48,10 +47,15 @@ perform_install()
     done
 }
 
+run_install()
+{
+    install -o root -g _portzap -m "${mode}" -v ${@}
+}
+
 ##
 # main
 cd "${gitdir}"
-install -d ${flags} "${installdir}"
+run_install "-d" "${installdir}"
 if [ -e "${revfile}" ]; then
     perform_update
 else
