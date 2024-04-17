@@ -5,6 +5,7 @@
 rootdir=$(dirname "$0")
 gitdir="/home/_portzap/ports"
 giturl="${PORTZAP_GITURL:-https://git.hardenedbsd.org/hardenedbsd/ports.git}"
+branch="${PORTZAP_BRANCH:-hardenedbsd/main}"
 installdir="${PORTZAP_INSTALLDIR:-/usr/ports}"
 revision="${installdir}/.portzap"
 libexec=$(realpath "${rootdir}/../libexec/portzap")
@@ -43,12 +44,12 @@ case $1 in
     "clone")
         require_dependency "git doas"
         require_membership_of _portzap
-        doas -u _portzap "${libexec}"/portzap-clone "${giturl}" "${gitdir}"
+        doas -u _portzap "${libexec}"/portzap-clone "${giturl}" "${gitdir}" "${branch}"
         ;;
     "pull")
         require_dependency "git doas"
         require_membership_of _portzap
-        doas -u _portzap "${libexec}"/portzap-pull "${gitdir}"
+        doas -u _portzap "${libexec}"/portzap-pull "${gitdir}" "${branch}"
         ;;
     "install")
         require_root

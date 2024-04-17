@@ -4,6 +4,7 @@
 # variables
 giturl=$1
 gitdir=$2
+branch=$3
 
 ##
 # main
@@ -12,7 +13,11 @@ if [ -e "${gitdir}/.git" ]; then
     echo "[-] Try 'portzap pull'"
     exit 1
 fi
-umask u=rwX,g=rwX,o=
 set -x
+umask u=rwX,g=rwX,o=
 git clone "${giturl}" "${gitdir}"
 cd "${gitdir}"
+set +x +e
+echo "[-] Checkout ${branch}"
+git checkout -t origin/"${branch}" > /dev/null 2>&1;
+echo "[-] Done"

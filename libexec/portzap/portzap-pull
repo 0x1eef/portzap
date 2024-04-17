@@ -3,6 +3,7 @@
 ##
 # variables
 gitdir=$1
+branch=$2
 
 ##
 # main
@@ -10,7 +11,7 @@ umask u=rwX,g=rwX,o=
 if [ -e "${gitdir}/.git" ]; then
     set -x
     cd "${gitdir}"
-    git pull --rebase origin hardenedbsd/main
+    git pull --rebase origin "${branch}"
 else
     echo "[-] ${gitdir} is not a valid git repository."
     echo "[-] Try 'portzap clone'"

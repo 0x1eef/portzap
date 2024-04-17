@@ -29,6 +29,10 @@ portzap is a utility that manages a local copy of the
   The URL to a git repository.  <br>
   Default: https://git.hardenedbsd.org/hardenedbsd/ports.git.
 
+* __$PORTZAP\_BRANCH__ <br>
+  The git branch to clone and pull updates from. <br>
+  Default: hardenedbsd/main.
+
 * __$PORTZAP\_INSTALLDIR__ <br>
   The directory where the ports collection will be installed. <br>
   Default: /usr/ports/.
