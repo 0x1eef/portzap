@@ -70,8 +70,8 @@ case $1 in
         printf "Commands:\n"
         printf "  clone    Clone the hardenedbsd ports tree.\n"
         printf "  pull     Pull updates from the hardenedbsd ports tree.\n"
-        printf "  install  Install the ports tree into /usr/ports.\n"
         printf "  erase    Erase /usr/ports/ and /home/_portzap/ports/.\n"
+        printf "  install  Install the ports tree into /usr/ports/.\n"
         printf "  setup    Add the _portzap user, group and home directory.\n"
         ;;
 esac
