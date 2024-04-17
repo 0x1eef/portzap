@@ -58,6 +58,7 @@ umask u=rwX,g=rwX,o=
 cd "${gitdir}"
 set +x
 run_install "-d" "${installdir}"
+chmod u=rwx,g=rwx,o= "${installdir}"
 if [ -e "${revfile}" ]; then
     perform_update
 else

@@ -1,0 +1,38 @@
+#!/bin/sh -e
+
+##
+# variables
+gitdir=$1
+installdir=$2
+
+##
+# main
+printf "[-] Are you sure ? \n"
+printf "[-] These directories will be erased:\n"
+printf "    [*] ${gitdir}\n"
+printf "    [*] ${installdir}\n"
+printf "[y|n] "
+while true; do
+    read r
+    if [ "${r}" = "y" ]; then
+        break
+    elif [ "${r}" = "n" ]; then
+        printf "[-] Nothing to do\n"
+        exit
+    else
+        printf "[-] '${r}' is not a valid option.\n"
+        printf "[y|n] "
+    fi
+done
+for dir in "${gitdir}" "${installdir}"; do
+    printf "${dir}  "
+    find "${dir}" \
+        -maxdepth 1 \
+        \! -name "." \
+        \! -name ".." \
+        \! -name "ports" \
+        -exec printf . \; \
+        -exec rm -rf "{}" \;
+    echo
+done
+printf "[-] Done\n"
