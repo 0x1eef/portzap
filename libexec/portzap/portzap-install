@@ -53,8 +53,10 @@ run_install()
 
 ##
 # main
+set -x
 umask u=rwX,g=rwX,o=
 cd "${gitdir}"
+set +x
 run_install "-d" "${installdir}"
 if [ -e "${revfile}" ]; then
     perform_update

@@ -7,12 +7,13 @@ branch=$2
 
 ##
 # main
+set -x
 umask u=rwX,g=rwX,o=
 if [ -e "${gitdir}/.git" ]; then
-    set -x
     cd "${gitdir}"
     git pull --rebase origin "${branch}"
 else
+    set +x
     echo "[-] ${gitdir} is not a valid git repository."
     echo "[-] Try 'portzap clone'"
     exit 1
