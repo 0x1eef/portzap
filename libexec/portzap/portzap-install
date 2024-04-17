@@ -7,7 +7,6 @@ installdir=$2
 revfile=$3
 localbase="${LOCALBASE:-/usr/local}"
 libexec="${localbase}/libexec/portzap"
-mode="u=rwX,g=rwX,o="
 
 ##
 # functions
@@ -42,18 +41,19 @@ perform_install()
         ! -name ".gitignore" \
         ! -name ".hooks" \
         ! -name ".arcconfig" \
-        -exec cp -Rfv {} "${installdir}" \;
-    chown -Rv root:_portzap "${installdir}"
-    chmod -Rv "${mode}" "${installdir}"
+        -exec cp -Rpv {} "${installdir}" \;
+    set -x
+    chown -R root "${installdir}"
 }
 
 run_install()
 {
-    install -o root -g _portzap -m "${mode}" -v "$@"
+    install -o root -g _portzap -v "$@"
 }
 
 ##
 # main
+umask u=rwX,g=rwX,o=
 cd "${gitdir}"
 run_install "-d" "${installdir}"
 if [ -e "${revfile}" ]; then
