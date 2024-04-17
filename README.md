@@ -35,6 +35,17 @@ portzap is a utility that manages a local copy of the
 
 ## Install
 
+**Port**
+
+portzap is available
+[as a hardenedbsd port](https://git.hardenedbsd.org/hardenedbsd/ports/-/tree/hardenedbsd/main/hardenedbsd/portzap). <br>
+`pkg install portzap` should work too but expect slower updates.
+
+**Source**
+
+The most recent version of portzap can be installed directly
+via git:
+
     $ git clone https://github.com/0x1eef/portzap.git
     $ cd portzap
     # make install
@@ -43,8 +54,8 @@ portzap is a utility that manages a local copy of the
 
 ## Requirements
 
-* [doas](https://man.openbsd.org/doas) <br>
-  pkg install doas
+* [doas](https://man.openbsd.org/doas) (`pkg install doas`)
+* [git](https://www.man7.org/linux/man-pages/man1/git.1.html) (`pkg install git`)
 
 ## Sources
 
