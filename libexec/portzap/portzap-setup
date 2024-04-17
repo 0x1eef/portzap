@@ -8,16 +8,24 @@ doas="${localbase}"/etc/doas.conf
 
 ##
 # main
-if ! id -u _portzap > /dev/null 2>&1; then
+if id -u _portzap > /dev/null 2>&1; then
+    echo "[-] The _portzap user exists"
+    echo "[-] Add user(s) to the _portzap group:"
+    echo "root# pw groupmod -n _portzap -m user1,user2"
+else
     pw useradd -n _portzap \
         -c "portzap user" \
         -m \
         -s /sbin/nologin
     chmod u=rwX,g=rX,o= /home/_portzap/
-echo "[ok] add _portzap user, group and home directory"
+    echo "[-] The _portzap user, group and home directory have been created."
+    echo "[-] Add user(s) to the _portzap group:"
+    echo "root# pw groupmod -n _portzap -m user1,user2"
 fi
 
-if ! grep -F "${conf}" "${doas}" > /dev/null 2>&1; then
-    echo "${conf}" >> "${doas}"
-    echo "[ok] modify ${doas}"
+if grep -F "^${conf}$" "${doas}" > /dev/null 2>&1; then
+    echo "[-] No changes made to ${doas}"
+else
+    echo "$conf" >> "$doas"
+    echo "[-] ${doas} has been changed. Please review the changes"
 fi
