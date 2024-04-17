@@ -12,7 +12,7 @@ if [ -e "${gitdir}/.git" ]; then
     cd "${gitdir}"
     git pull --rebase origin hardenedbsd/main
 else
-    echo "A copy of the hardenedbsd ports tree wasn't found."
-    echo "Try 'portzap clone' instead."
+    echo "[-] ${gitdir} is not a valid git repository."
+    echo "[-] Try 'portzap clone'"
     exit 1
 fi

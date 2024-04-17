@@ -8,8 +8,8 @@ gitdir=$2
 ##
 # main
 if [ -e "${gitdir}/.git" ]; then
-    echo "${gitdir} already exists."
-    echo "Try 'portzap pull' instead."
+    echo "[-] ${gitdir} exists."
+    echo "[-] Try 'portzap pull'"
     exit 1
 fi
 umask u=rwX,g=rwX,o=
