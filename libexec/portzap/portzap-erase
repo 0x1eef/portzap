@@ -9,8 +9,8 @@ installdir=$2
 # main
 printf "[-] Are you sure ? \n"
 printf "[-] These directories will be erased:\n"
-printf "    [*] ${gitdir}\n"
-printf "    [*] ${installdir}\n"
+printf "    [*] %s \n" "${gitdir}"
+printf "    [*] %s \n" "${installdir}\n"
 printf "[y|n] "
 while true; do
     read r
@@ -20,7 +20,7 @@ while true; do
         printf "[-] Nothing to do\n"
         exit
     else
-        printf "[-] '${r}' is not a valid option.\n"
+        printf "[-] '%s' is not a valid option.\n" "${r}"
         printf "[y|n] "
     fi
 done
