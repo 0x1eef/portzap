@@ -10,7 +10,7 @@ installdir=$2
 printf "[-] Are you sure ? \n"
 printf "[-] These directories will be erased:\n"
 printf "    [*] %s \n" "${gitdir}"
-printf "    [*] %s \n" "${installdir}\n"
+printf "    [*] %s \n" "${installdir}"
 printf "[y|n] "
 while true; do
     read -r r
