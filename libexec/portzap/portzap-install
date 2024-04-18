@@ -25,9 +25,14 @@ perform_update()
     for file in ${add}; do
         target="${installdir}/${file}"
         parent=$(dirname "${target}")
-        if [ ! -e "${parent}" ]; then
-            run_install "-d" "-m" "u=rwx,g=rwx,o=" "${parent}"
-        fi
+        parents=""
+        while [ ! -e "${parent}" ]; do
+            parents="${parent} ${parents}"
+            parent=$(dirname "${parent}")
+        done
+        for dir in ${parents}; do
+            run_install "-d" "-m" "u=rwx,g=rwx,o=" "${dir}"
+        done
         run_install "-m" "u=rw,g=rw,o=" "${file}" "${target}"
     done
 }
