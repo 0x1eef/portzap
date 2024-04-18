@@ -26,9 +26,9 @@ perform_update()
         target="${installdir}/${file}"
         parent=$(dirname "${target}")
         if [ ! -e "${parent}" ]; then
-            run_install "-d" "${parent}"
+            run_install "-d" "-m" "u=rwx,g=rwx,o=" "${parent}"
         fi
-        run_install "${file}" "${target}"
+        run_install "-m" "u=rw,g=rw,o=" "${file}" "${target}"
     done
 }
 
