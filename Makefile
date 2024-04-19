@@ -14,6 +14,7 @@ install:
 
 deinstall:
 	rm $(BINDIR)/portzap
+	rm $(BINDIR)/setup-portzap
 	rm $(MANDIR)/portzap.8
 	rm -rf $(LIBEXECDIR)
 	rm -rf $(SHAREDIR)
