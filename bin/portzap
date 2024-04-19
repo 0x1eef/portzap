@@ -2,13 +2,13 @@
 
 ##
 # variables
-rootdir=$(dirname "$0")
+localbase="${LOCALBASE:-/usr/local}"
 gitdir="/home/_portzap/ports"
 giturl="${PORTZAP_GITURL:-https://git.hardenedbsd.org/hardenedbsd/ports.git}"
 branch="${PORTZAP_BRANCH:-hardenedbsd/main}"
 installdir="${PORTZAP_INSTALLDIR:-/usr/ports}"
 revision="${installdir}/.portzap"
-libexec=$(realpath "${rootdir}/../libexec/portzap")
+libexec="${localbase}/libexec/portzap"
 
 ##
 # functions
@@ -45,7 +45,7 @@ while [ "${i}" -le "$#" ]; do
     eval "_portzap_option=\$${i}"
     # shellcheck disable=SC2154
     if [ "${_portzap_option}" = "-v" ]; then
-        cat "${rootdir}"/../share/portzap/VERSION
+        cat "${localbase}"/../share/portzap/VERSION
         exit 0
     fi
     # shellcheck disable=SC2003
