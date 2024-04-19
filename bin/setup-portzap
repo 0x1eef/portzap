@@ -9,7 +9,7 @@ doas="${localbase}"/etc/doas.conf
 ##
 # main
 if [ "$(id -u)" != "0" ]; then
-    echo "[-] This command must be run as root"
+    echo "[-] This command must be run by root"
     exit 1
 fi
 
