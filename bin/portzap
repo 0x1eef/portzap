@@ -60,7 +60,6 @@ case $1 in
         doas -u _portzap "${libexec}"/portzap-erase "${gitdir}" "${installdir}"
         ;;
     "install")
-        require_root
         require_dependency "git doas"
         "${libexec}"/portzap-install "${gitdir}" "${installdir}" "${revision}"
         ;;
