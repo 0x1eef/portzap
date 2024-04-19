@@ -7,8 +7,8 @@ gitdir="/home/_portzap/ports"
 giturl="${PORTZAP_GITURL:-https://git.hardenedbsd.org/hardenedbsd/ports.git}"
 branch="${PORTZAP_BRANCH:-hardenedbsd/main}"
 installdir="${PORTZAP_INSTALLDIR:-/usr/ports}"
-revision="${installdir}/.portzap"
-libexec="${localbase}/libexec/portzap"
+revision="${installdir}"/.portzap
+libexec="${localbase}"/libexec/portzap
 
 ##
 # functions
