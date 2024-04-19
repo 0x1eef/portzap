@@ -34,7 +34,7 @@ change_branch()
 ##
 # main
 if ! "${libexec}"/isportzap-member; then
-    echo "[-] This command requires a member of the _portzap group"
+    echo "[-] This command must be run by a member of the _portzap group"
     exit 1
 fi
 
