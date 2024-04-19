@@ -8,6 +8,7 @@ git="${localbase}"/bin/git
 giturl=$1
 gitdir=$2
 branch=$3
+mode="u=rwX,g=rwX,o="
 
 ##
 # main
@@ -23,11 +24,17 @@ if [ -e "${gitdir}/.git" ]; then
 fi
 
 set -x
-umask u=rwX,g=rwX,o=
+umask "${mode}"
 doas -u _portzap "${git}" clone "${giturl}" "${gitdir}"
 cd "${gitdir}"
 doas -u _portzap "${git}" config core.filemode off
-set +x +e
-echo "[-] Checkout ${branch}"
-doas -u _portzap "${git}" checkout -t origin/"${branch}" > /dev/null 2>&1;
-echo "[-] Done"
+echo "[-] git checkout ${branch}"
+if ! doas -u _portzap "${git}" \
+                       checkout -t \
+                       origin/"${branch}" \
+                       > /dev/null 2>&1; then
+    echo "[-] 'git checkout' exited with an error"
+    exit "${?}"
+else
+    echo "[-] Done"
+fi

@@ -22,7 +22,7 @@ change_branch()
     if ! doas -u _portzap "${git}" checkout "${branch}" > /dev/null 2>&1 ||
          doas -u _portzap "${git}" checkout -t "${remote}"/"${branch}" > /dev/null 2>&1; then
         echo "[-] 'git checkout' exited with an error"
-        exit 1
+        exit "${?}"
     else
         echo "[-] Done"
     fi
