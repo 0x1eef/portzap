@@ -2,7 +2,8 @@
 
 ##
 # variables
-git=/usr/local/bin/git
+localbase=${LOCALBASE:-/usr/local}
+git="${localbase}"/bin/git
 giturl=$1
 gitdir=$2
 branch=$3

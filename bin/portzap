@@ -52,7 +52,6 @@ while [ "${i}" -le "$#" ]; do
     i=$(expr "${i}" + 1);
 done
 
-
 case $1 in
     "clone")
         require_dependency "git doas"
