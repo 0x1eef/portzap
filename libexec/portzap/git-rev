@@ -2,9 +2,10 @@
 
 ##
 # variables
+git=/usr/local/bin/git
 gitdir=$1
 
 ##
 # main
 cd "${gitdir}"
-git rev-parse HEAD
+doas -u _portzap "${git}" rev-parse HEAD

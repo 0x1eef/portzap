@@ -2,10 +2,11 @@
 
 ##
 # variables
+git=/usr/local/bin/git
 gitdir=$1
 commit=$2
 
 ##
 # main
 cd "${gitdir}"
-git diff --name-only --diff-filter=D "${commit}" HEAD
+doas -u _portzap "${git}" diff --name-only --diff-filter=D "${commit}" HEAD

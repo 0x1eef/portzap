@@ -2,6 +2,7 @@
 
 ##
 # variables
+git=/usr/local/bin/git
 giturl=$1
 gitdir=$2
 branch=$3
@@ -15,9 +16,9 @@ if [ -e "${gitdir}/.git" ]; then
 fi
 set -x
 umask u=rwX,g=rwX,o=
-git clone "${giturl}" "${gitdir}"
+"${git}" clone "${giturl}" "${gitdir}"
 cd "${gitdir}"
 set +x +e
 echo "[-] Checkout ${branch}"
-git checkout -t origin/"${branch}" > /dev/null 2>&1;
+"${git}" checkout -t origin/"${branch}" > /dev/null 2>&1;
 echo "[-] Done"

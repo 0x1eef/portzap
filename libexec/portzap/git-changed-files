@@ -2,13 +2,14 @@
 
 ##
 # variables
+git=/usr/local/bin/git
 gitdir=$1
 commit=$2
 
 ##
 # main
 cd "${gitdir}"
-add=$(git diff --name-only --diff-filter=A "${commit}" HEAD)
-mod=$(git diff --name-only --diff-filter=M "${commit}" HEAD)
+add=$(doas -u _portzap "${git}" diff --name-only --diff-filter=A "${commit}" HEAD)
+mod=$(doas -u _portzap "${git}" diff --name-only --diff-filter=M "${commit}" HEAD)
 echo "${add}"
 echo "${mod}"

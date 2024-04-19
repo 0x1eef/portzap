@@ -2,16 +2,46 @@
 
 ##
 # variables
+git=/usr/local/bin/git
 gitdir=$1
 branch=$2
+libexec=$(dirname "$0")
+
+##
+# functions
+set_repository_permissions()
+{
+    gitdir=$1
+    doas -u root /bin/chmod -R u=rwX,g=rwX,o= "${gitdir}/.git"
+    doas -u root /usr/sbin/chown -R _portzap:_portzap "${gitdir}/.git"
+}
+
+change_branch()
+{
+    set +e
+    remote=$1
+    branch=$2
+    echo "[-] Attempt to change branch: ${branch}"
+    "${git}" fetch "${remote}" > /dev/null 2>&1
+    "${git}" checkout "${branch}" > /dev/null 2>&1 ||
+    "${git}" checkout -t "${remote}"/"${branch}" > /dev/null 2>&1
+    "${git}" reset HEAD --hard > /dev/null 2>&1
+    echo "[-] Done"
+    set -e
+}
 
 ##
 # main
-set -x
-umask u=rwX,g=rwX,o=
 if [ -e "${gitdir}/.git" ]; then
+    umask u=rwX,g=rwX,o=
+    set_repository_permissions "${gitdir}"
     cd "${gitdir}"
-    git pull --rebase origin "${branch}"
+    remote=$("${git}" remote | head -n1)
+    if [ $(git branch --show-current) != "${branch}" ]; then
+        change_branch "${remote}" "${branch}"
+    fi
+    set -x
+    "${git}" pull --rebase "${remote}" "${branch}"
 else
     set +x
     echo "[-] ${gitdir} is not a valid git repository."

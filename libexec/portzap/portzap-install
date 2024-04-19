@@ -5,16 +5,15 @@
 gitdir=$1
 installdir=$2
 revfile=$3
-localbase="${LOCALBASE:-/usr/local}"
-libexec="${localbase}/libexec/portzap"
+libexec=$(dirname $0)
 
 ##
 # functions
 perform_update()
 {
     rev=$(cat "${revfile}")
-    add=$(doas -u _portzap "${libexec}"/git-changed-files "${gitdir}" "${rev}")
-    del=$(doas -u _portzap "${libexec}"/git-removed-files "${gitdir}" "${rev}")
+    add=$("${libexec}"/git-changed-files "${gitdir}" "${rev}")
+    del=$("${libexec}"/git-removed-files "${gitdir}" "${rev}")
     for file in ${del}; do
         target="${installdir}/${file}"
         parent=$(dirname "${target}")
@@ -69,4 +68,4 @@ if [ -e "${revfile}" ]; then
 else
     perform_install
 fi
-doas -u _portzap "${libexec}"/git-rev "${gitdir}" > "${revfile}"
+"${libexec}"/git-rev "${gitdir}" > "${revfile}"
