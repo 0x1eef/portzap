@@ -7,6 +7,8 @@ localbase=${LOCALBASE:-/usr/local}
 git="${localbase}"/bin/git
 gitdir=$1
 branch=$2
+mode="u=rwX,g=rwX,o="
+owner="_portzap:_portzap"
 
 ##
 # functions
@@ -37,14 +39,15 @@ if [ ! -e "${gitdir}/.git" ]; then
     exit 1
 fi
 
-umask u=rwX,g=rwX,o=
-doas -u root /bin/chmod -R u=rwX,g=rwX,o= "${gitdir}/.git"
-doas -u root /usr/sbin/chown -R _portzap:_portzap "${gitdir}/.git"
+umask "${mode}"
+doas -u root /bin/chmod -R "${mode}" "${gitdir}/.git"
+doas -u root /usr/sbin/chown -R "${owner}" "${gitdir}/.git"
 cd "${gitdir}"
 remote=$("${git}" remote | head -n1)
 if [ "$(git branch --show-current)" != "${branch}" ]; then
     change_branch "${remote}" "${branch}"
-    doas -u root /bin/chmod -R u=rwX,g=rwX,o= "${gitdir}"
+    echo "[-] Set filemode. This might take a while"
+    doas -u root /bin/chmod -R "${mode}" "${gitdir}"
 fi
 set -x
 doas -u _portzap "${git}" pull --rebase "${remote}" "${branch}"
