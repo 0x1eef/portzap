@@ -45,7 +45,7 @@ while [ "${i}" -le "$#" ]; do
     eval "_portzap_option=\$${i}"
     # shellcheck disable=SC2154
     if [ "${_portzap_option}" = "-v" ]; then
-        cat "${localbase}"/../share/portzap/VERSION
+        cat "${localbase}"/share/portzap/VERSION
         exit 0
     fi
     # shellcheck disable=SC2003
