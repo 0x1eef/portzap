@@ -1,0 +1,11 @@
+#!/bin/sh -e
+
+group="_portzap"
+if id -Gn | \
+   tr ' ' '\n' | \
+   grep -e "^${group}$" \
+   > /dev/null 2>&1; then
+   exit 0
+else
+   exit 1
+fi

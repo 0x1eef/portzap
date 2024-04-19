@@ -2,6 +2,7 @@
 
 ##
 # variables
+libexec=$(dirname "$0")
 localbase=${LOCALBASE:-/usr/local}
 git="${localbase}"/bin/git
 gitdir=$1
@@ -22,16 +23,21 @@ change_branch()
     remote=$1
     branch=$2
     echo "[-] Attempt to change branch: ${branch}"
-    "${git}" fetch "${remote}" > /dev/null 2>&1
-    "${git}" checkout "${branch}" > /dev/null 2>&1 ||
-    "${git}" checkout -t "${remote}"/"${branch}" > /dev/null 2>&1
-    "${git}" reset HEAD --hard > /dev/null 2>&1
+    doas -u _portzap "${git}" fetch "${remote}" > /dev/null 2>&1
+    doas -u _portzap "${git}" checkout "${branch}" > /dev/null 2>&1 ||
+    doas -u _portzap "${git}" checkout -t "${remote}"/"${branch}" > /dev/null 2>&1
+    doas -u _portzap "${git}" reset HEAD --hard > /dev/null 2>&1
     echo "[-] Done"
     set -e
 }
 
 ##
 # main
+if ! "${libexec}"/isportzap-member; then
+    echo "[-] This command requires a member of the _portzap group"
+    exit 1
+fi
+
 if [ -e "${gitdir}/.git" ]; then
     umask u=rwX,g=rwX,o=
     set_repository_permissions "${gitdir}"
@@ -41,7 +47,7 @@ if [ -e "${gitdir}/.git" ]; then
         change_branch "${remote}" "${branch}"
     fi
     set -x
-    "${git}" pull --rebase "${remote}" "${branch}"
+    doas -u _portzap "${git}" pull --rebase "${remote}" "${branch}"
 else
     set +x
     echo "[-] ${gitdir} is not a valid git repository."

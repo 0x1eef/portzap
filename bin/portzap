@@ -12,14 +12,6 @@ libexec="${localbase}"/libexec/portzap
 
 ##
 # functions
-require_membership_of() {
-    group=$1
-    if ! id -Gn | tr ' ' '\n' | grep -e "^${group}$" > /dev/null 2>&1; then
-        echo "[-] This command requires a user to be a member of ${group}."
-        exit 1
-    fi
-}
-
 require_dependency() {
     deps=$1
     for dep in $deps; do
@@ -47,17 +39,14 @@ done
 case $1 in
     "clone")
         require_dependency "git doas"
-        require_membership_of _portzap
-        doas -u _portzap "${libexec}"/portzap-clone "${giturl}" "${gitdir}" "${branch}"
+        "${libexec}"/portzap-clone "${giturl}" "${gitdir}" "${branch}"
         ;;
     "pull")
         require_dependency "git doas"
-        require_membership_of _portzap
-        doas -u _portzap "${libexec}"/portzap-pull "${gitdir}" "${branch}"
+        "${libexec}"/portzap-pull "${gitdir}" "${branch}"
         ;;
     "erase")
-        require_membership_of _portzap
-        doas -u _portzap "${libexec}"/portzap-erase "${gitdir}" "${installdir}"
+        "${libexec}"/portzap-erase "${gitdir}" "${installdir}"
         ;;
     "install")
         require_dependency "git doas"
