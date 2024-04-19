@@ -2,8 +2,8 @@
 
 portzap is a utility that manages a local copy of the
 [hardenedbsd ports tree](https://git.hardenedbsd.org/hardenedbsd/ports).
-The copy of the ports tree is maintained by members of 
-the `_portzap` group, and the copy of the ports tree 
+The copy of the ports tree is maintained by members of
+the `_portzap` group, and the copy of the ports tree
 can be installed to `/usr/ports` by root.
 
 
