@@ -8,6 +8,11 @@ doas="${localbase}"/etc/doas.conf
 
 ##
 # main
+if [ "$(id -u)" != "0" ]; then
+    echo "[-] This command must be run as root"
+    exit 1
+fi
+
 if id -u _portzap > /dev/null 2>&1; then
     echo "[-] The _portzap user exists"
     echo "[-] Add user(s) to the _portzap group:"

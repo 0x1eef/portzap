@@ -7,6 +7,7 @@ SHAREDIR = $(PREFIX)/share/portzap
 install:
 	install -d $(BINDIR) $(LIBEXECDIR) $(SHAREDIR) $(MANDIR)
 	install -m 0755 bin/portzap $(BINDIR)
+	install -m 0755 bin/setup-portzap $(BINDIR)
 	install -m 0755 libexec/portzap/* $(LIBEXECDIR)
 	install -m 0644 share/portzap/* $(SHAREDIR)
 	install -m 0644 man/man8/portzap.8 $(MANDIR)

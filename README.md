@@ -9,7 +9,17 @@ can be installed to `/usr/ports` by root.
 
 ## Examples
 
-**CLI**
+### CLI: setup-portzap
+
+This command should be run after installing portzap for
+the first time.
+
+    # Add the portzap user, group and home directory.
+    # This command requires root privileges.
+    # setup-portzap
+
+### CLI: portzap
+
 
     # Clone the hardenedbsd ports tree into /home/_portzap/ports/.
     # This command is delegated to the '_portzap' user.
@@ -27,11 +37,8 @@ can be installed to `/usr/ports` by root.
     # This command requires root privileges.
     # portzap install
 
-    # Add the portzap user, group and home directory.
-    # This command requires root privileges.
-    # portzap setup
 
-**ENVIRONMENT**
+### ENVIRONMENT
 
 * __$PORTZAP\_GITURL__ <br>
   The URL to a git repository.  <br>
