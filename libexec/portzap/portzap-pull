@@ -10,13 +10,6 @@ branch=$2
 
 ##
 # functions
-set_repository_permissions()
-{
-    gitdir=$1
-    doas -u root /bin/chmod -R u=rwX,g=rwX,o= "${gitdir}/.git"
-    doas -u root /usr/sbin/chown -R _portzap:_portzap "${gitdir}/.git"
-}
-
 change_branch()
 {
     set +e
@@ -26,7 +19,6 @@ change_branch()
     doas -u _portzap "${git}" fetch "${remote}" > /dev/null 2>&1
     doas -u _portzap "${git}" checkout "${branch}" > /dev/null 2>&1 ||
     doas -u _portzap "${git}" checkout -t "${remote}"/"${branch}" > /dev/null 2>&1
-    doas -u _portzap "${git}" reset HEAD --hard > /dev/null 2>&1
     echo "[-] Done"
     set -e
 }
@@ -38,19 +30,21 @@ if ! "${libexec}"/isportzap-member; then
     exit 1
 fi
 
-if [ -e "${gitdir}/.git" ]; then
-    umask u=rwX,g=rwX,o=
-    set_repository_permissions "${gitdir}"
-    cd "${gitdir}"
-    remote=$("${git}" remote | head -n1)
-    if [ "$(git branch --show-current)" != "${branch}" ]; then
-        change_branch "${remote}" "${branch}"
-    fi
-    set -x
-    doas -u _portzap "${git}" pull --rebase "${remote}" "${branch}"
-else
+if [ ! -e "${gitdir}/.git" ]; then
     set +x
     echo "[-] ${gitdir} is not a valid git repository."
     echo "[-] Try 'portzap clone'"
     exit 1
 fi
+
+umask u=rwX,g=rwX,o=
+doas -u root /bin/chmod -R u=rwX,g=rwX,o= "${gitdir}/.git"
+doas -u root /usr/sbin/chown -R _portzap:_portzap "${gitdir}/.git"
+cd "${gitdir}"
+remote=$("${git}" remote | head -n1)
+if [ "$(git branch --show-current)" != "${branch}" ]; then
+    change_branch "${remote}" "${branch}"
+    doas -u root /bin/chmod -R u=rwX,g=rwX,o= "${gitdir}"
+fi
+set -x
+doas -u _portzap "${git}" pull --rebase "${remote}" "${branch}"

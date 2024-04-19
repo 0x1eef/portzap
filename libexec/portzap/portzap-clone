@@ -20,13 +20,14 @@ if [ -e "${gitdir}/.git" ]; then
     echo "[-] ${gitdir} exists."
     echo "[-] Try 'portzap pull'"
     exit 1
-else
-    set -x
-    umask u=rwX,g=rwX,o=
-    doas -u _portzap "${git}" clone "${giturl}" "${gitdir}"
-    cd "${gitdir}"
-    set +x +e
-    echo "[-] Checkout ${branch}"
-    doas -u _portzap "${git}" checkout -t origin/"${branch}" > /dev/null 2>&1;
-    echo "[-] Done"
 fi
+
+set -x
+umask u=rwX,g=rwX,o=
+doas -u _portzap "${git}" clone "${giturl}" "${gitdir}"
+cd "${gitdir}"
+doas -u _portzap "${git}" config core.filemode off
+set +x +e
+echo "[-] Checkout ${branch}"
+doas -u _portzap "${git}" checkout -t origin/"${branch}" > /dev/null 2>&1;
+echo "[-] Done"
