@@ -5,7 +5,6 @@
 git=/usr/local/bin/git
 gitdir=$1
 branch=$2
-libexec=$(dirname "$0")
 
 ##
 # functions
@@ -37,7 +36,7 @@ if [ -e "${gitdir}/.git" ]; then
     set_repository_permissions "${gitdir}"
     cd "${gitdir}"
     remote=$("${git}" remote | head -n1)
-    if [ $(git branch --show-current) != "${branch}" ]; then
+    if [ "$(git branch --show-current)" != "${branch}" ]; then
         change_branch "${remote}" "${branch}"
     fi
     set -x
