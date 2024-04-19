@@ -19,9 +19,13 @@ change_branch()
     branch=$2
     echo "[-] Attempt to change branch: ${branch}"
     doas -u _portzap "${git}" fetch "${remote}" > /dev/null 2>&1
-    doas -u _portzap "${git}" checkout "${branch}" > /dev/null 2>&1 ||
-    doas -u _portzap "${git}" checkout -t "${remote}"/"${branch}" > /dev/null 2>&1
-    echo "[-] Done"
+    if ! doas -u _portzap "${git}" checkout "${branch}" > /dev/null 2>&1 ||
+         doas -u _portzap "${git}" checkout -t "${remote}"/"${branch}" > /dev/null 2>&1; then
+        echo "[-] 'git checkout' exited with an error"
+        exit 1
+    else
+        echo "[-] Done"
+    fi
     set -e
 }
 
