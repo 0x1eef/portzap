@@ -29,13 +29,13 @@ the first time.
     # This command is delegated to the '_portzap' user.
     $ portzap pull
 
-    # Start over: erase /usr/ports/ and /home/_portzap/ports/.
-    # This command is delegated to the '_portzap' user.
-    $ portzap erase
-
     # Install /home/_portzap/ports/ into /usr/ports/.
     # This command requires root privileges.
     # portzap install
+
+    # Start over: erase /usr/ports/ and /home/_portzap/ports/.
+    # This command requires root privileges.
+    $ portzap erase
 
 
 ### ENVIRONMENT

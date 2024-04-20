@@ -7,7 +7,7 @@ localbase=${LOCALBASE:-/usr/local}
 git="${localbase}"/bin/git
 gitdir=$1
 branch=$2
-mode="ug=rwX,o="
+mode="u=rwX,g=rX,o="
 owner="_portzap:_portzap"
 
 ##

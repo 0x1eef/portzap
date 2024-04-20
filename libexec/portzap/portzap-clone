@@ -8,7 +8,7 @@ git="${localbase}"/bin/git
 giturl=$1
 gitdir=$2
 branch=$3
-mode="ug=rwX,o="
+mode="u=rwX,g=rX,o="
 
 ##
 # main
