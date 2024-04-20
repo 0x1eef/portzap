@@ -32,13 +32,8 @@ echo "[-] Adjust filemode. This might take a while"
 doas -u _portzap "${git}" config core.filemode off
 doas -u root /bin/chmod -R ${mode} "${gitdir}"
 echo "[-] git checkout ${branch}"
-if ! doas -u _portzap "${git}" \
-                       checkout -t \
-                       origin/"${branch}" \
-                       > /dev/null 2>&1; then
-    r="${?}"
-    echo "[-] 'git checkout' exited with an error"
-    exit "${r}"
-else
-    echo "[-] Done"
-fi
+doas -u _portzap "${git}" \
+     checkout -t \
+     origin/"${branch}" \
+     > /dev/null 2>&1
+echo "[-] Done"
