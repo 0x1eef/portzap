@@ -33,8 +33,9 @@ if ! doas -u _portzap "${git}" \
                        checkout -t \
                        origin/"${branch}" \
                        > /dev/null 2>&1; then
+    r="${?}"
     echo "[-] 'git checkout' exited with an error"
-    exit "${?}"
+    exit "${r}"
 else
     echo "[-] Done"
 fi
