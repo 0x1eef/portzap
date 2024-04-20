@@ -31,9 +31,9 @@ perform_update()
             parent=$(dirname "${parent}")
         done
         for dir in ${parents}; do
-            run_install "-d" "-m" "${mode}" "${dir}"
+            run_install "-d" "${dir}"
         done
-        run_install "-m" "${mode}" "${file}" "${target}"
+        run_install "${file}" "${target}"
     done
 }
 
@@ -53,7 +53,7 @@ perform_install()
 
 run_install()
 {
-    install -o root -g _portzap -v "$@"
+    install -o root -g _portzap -m "${mode}" -v "$@"
 }
 
 ##
