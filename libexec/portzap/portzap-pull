@@ -51,7 +51,7 @@ cd "${gitdir}"
 remote=$("${git}" remote | head -n1)
 if [ "$(git branch --show-current)" != "${branch}" ]; then
     change_branch "${remote}" "${branch}"
-    echo "[-] Adjust filemode for new branch. This might take a while"
+    echo "[-] Adjust filemode. This might take a while"
     doas -u root /bin/chmod -R "${mode}" "${gitdir}"
 fi
 set -x
