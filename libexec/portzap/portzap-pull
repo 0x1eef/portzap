@@ -51,8 +51,9 @@ cd "${gitdir}"
 remote=$("${git}" remote | head -n1)
 if [ "$(git branch --show-current)" != "${branch}" ]; then
     change_branch "${remote}" "${branch}"
-    echo "[-] Adjust filemode. This might take a while"
-    doas -u root /bin/chmod -R "${mode}" "${gitdir}"
 fi
 set -x
 doas -u _portzap "${git}" pull --rebase "${remote}" "${branch}"
+set +x
+echo "[-] Adjust filemode. This might take a while"
+doas -u root /bin/chmod -R "${mode}" "${gitdir}"
