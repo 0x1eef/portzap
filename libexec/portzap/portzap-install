@@ -6,6 +6,7 @@ gitdir=$1
 installdir=$2
 revfile=$3
 libexec=$(dirname "$0")
+mode="u=rwX,g=rwX,o="
 
 ##
 # functions
@@ -63,7 +64,7 @@ if [ "$(id -u)" != "0" ]; then
 fi
 
 set -x
-umask u=rwX,g=rwX,o=
+umask "${mode}"
 cd "${gitdir}"
 set +x
 run_install "-d" "${installdir}"
