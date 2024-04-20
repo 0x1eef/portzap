@@ -2,7 +2,6 @@
 
 ##
 # variables
-libexec=$(dirname "$0")
 gitdir=$1
 installdir=$2
 

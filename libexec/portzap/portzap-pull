@@ -8,7 +8,6 @@ git="${localbase}"/bin/git
 gitdir=$1
 branch=$2
 mode="u=rwX,g=rX,o="
-owner="_portzap:_portzap"
 
 ##
 # functions
