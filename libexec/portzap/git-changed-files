@@ -8,9 +8,17 @@ gitdir=$1
 commit=$2
 
 ##
+# functions
+gitexec()
+{
+    doas -n -u _portzap \
+         /bin/sh -c "umask ${mode}; ${git} ${1}"
+}
+
+##
 # main
 cd "${gitdir}"
-add=$(doas -u _portzap "${git}" diff --name-only --diff-filter=A "${commit}" HEAD)
-mod=$(doas -u _portzap "${git}" diff --name-only --diff-filter=M "${commit}" HEAD)
+add=$(gitexec "diff --name-only --diff-filter=A ${commit} HEAD")
+mod=$(gitexec "diff --name-only --diff-filter=M ${commit} HEAD")
 echo "${add}"
 echo "${mod}"

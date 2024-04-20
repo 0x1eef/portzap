@@ -12,15 +12,21 @@ owner="_portzap:_portzap"
 
 ##
 # functions
+gitexec()
+{
+    doas -n -u _portzap \
+         /bin/sh -c "umask ${mode}; ${git} ${1}"
+}
+
 change_branch()
 {
     set +e
     remote=$1
     branch=$2
     echo "[-] Attempt to change branch: ${branch}"
-    doas -u _portzap "${git}" fetch "${remote}" > /dev/null 2>&1
-    if ! doas -u _portzap "${git}" checkout "${branch}" > /dev/null 2>&1 ||
-         doas -u _portzap "${git}" checkout -t "${remote}"/"${branch}" > /dev/null 2>&1; then
+    gitexec "fetch ${remote} > /dev/null 2>&1"
+    if ! gitexec "checkout ${branch} > /dev/null 2>&1" ||
+         gitexec "checkout -t ${remote}/${branch} > /dev/null 2>&1"; then
         r="${?}"
         echo "[-] 'git checkout' exited with an error"
         exit "${r}"
@@ -45,15 +51,10 @@ if [ ! -e "${gitdir}/.git" ]; then
 fi
 
 umask ${mode}
-doas -u root /bin/chmod -R "${mode}" "${gitdir}/.git"
-doas -u root /usr/sbin/chown -R "${owner}" "${gitdir}/.git"
 cd "${gitdir}"
-remote=$("${git}" remote | head -n1)
-if [ "$(git branch --show-current)" != "${branch}" ]; then
+remote=$(gitexec "remote" | head -n1)
+cbranch=$(gitexec "branch --show-current")
+if [ "${cbranch}" != "${branch}" ]; then
     change_branch "${remote}" "${branch}"
 fi
-set -x
-doas -u _portzap "${git}" pull --rebase "${remote}" "${branch}"
-set +x
-echo "[-] Adjust filemode. This might take a while"
-doas -u root /bin/chmod -R "${mode}" "${gitdir}"
+gitexec "pull --rebase ${remote} ${branch}"
