@@ -31,9 +31,9 @@ perform_update()
             parent=$(dirname "${parent}")
         done
         for dir in ${parents}; do
-            run_install "-d" "-m" "u=rwx,g=rwx,o=" "${dir}"
+            run_install "-d" "-m" "${mode}" "${dir}"
         done
-        run_install "-m" "u=rw,g=rw,o=" "${file}" "${target}"
+        run_install "-m" "${mode}" "${file}" "${target}"
     done
 }
 
