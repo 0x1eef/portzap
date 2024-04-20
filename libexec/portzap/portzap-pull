@@ -7,7 +7,7 @@ localbase=${LOCALBASE:-/usr/local}
 git="${localbase}"/bin/git
 gitdir=$1
 branch=$2
-mode="u=rwX,g=rwX,o="
+mode="ug=rwX,o="
 owner="_portzap:_portzap"
 
 ##
@@ -43,7 +43,7 @@ if [ ! -e "${gitdir}/.git" ]; then
     exit 1
 fi
 
-umask "${mode}"
+umask ${mode}
 doas -u root /bin/chmod -R "${mode}" "${gitdir}/.git"
 doas -u root /usr/sbin/chown -R "${owner}" "${gitdir}/.git"
 cd "${gitdir}"

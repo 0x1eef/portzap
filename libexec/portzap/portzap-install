@@ -6,7 +6,7 @@ gitdir=$1
 installdir=$2
 revfile=$3
 libexec=$(dirname "$0")
-mode="u=rwX,g=rwX,o="
+mode="ug=rwX,o="
 
 ##
 # functions
@@ -64,11 +64,11 @@ if [ "$(id -u)" != "0" ]; then
 fi
 
 set -x
-umask "${mode}"
+umask ${mode}
 cd "${gitdir}"
 set +x
 run_install "-d" "${installdir}"
-chmod u=rwx,g=rwx,o= "${installdir}"
+chmod ${mode} "${installdir}"
 if [ -e "${revfile}" ]; then
     perform_update
 else

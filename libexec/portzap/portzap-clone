@@ -8,7 +8,7 @@ git="${localbase}"/bin/git
 giturl=$1
 gitdir=$2
 branch=$3
-mode="u=rwX,g=rwX,o="
+mode="ug=rwX,o="
 
 ##
 # main
@@ -24,7 +24,7 @@ if [ -e "${gitdir}/.git" ]; then
 fi
 
 set -x
-umask "${mode}"
+umask ${mode}
 doas -u _portzap "${git}" clone "${giturl}" "${gitdir}"
 cd "${gitdir}"
 doas -u _portzap "${git}" config core.filemode off
