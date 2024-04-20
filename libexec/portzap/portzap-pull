@@ -50,11 +50,11 @@ if [ ! -e "${gitdir}/.git" ]; then
     exit 1
 fi
 
-umask ${mode}
 cd "${gitdir}"
 remote=$(gitexec "remote" | head -n1)
 cbranch=$(gitexec "branch --show-current")
 if [ "${cbranch}" != "${branch}" ]; then
     change_branch "${remote}" "${branch}"
 fi
+set -x
 gitexec "pull --rebase ${remote} ${branch}"
