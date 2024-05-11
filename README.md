@@ -1,7 +1,7 @@
 ## About
 
 portzap is a utility that manages a local copy of the
-[hardenedbsd ports tree](https://git.hardenedbsd.org/hardenedbsd/ports).
+[HardenedBSD ports tree](https://git.HardenedBSD.org/HardenedBSD/ports).
 The copy of the ports tree is maintained by members of
 the `_portzap` group, and the copy of the ports tree
 can be installed to `/usr/ports/` by root.
@@ -11,7 +11,7 @@ can be installed to `/usr/ports/` by root.
 ### CLI: setup-portzap
 
 This command should be run after installing portzap for
-the first time.
+the first time:
 
     # Add the portzap user, group and home directory.
     # This command requires root privileges.
@@ -19,8 +19,7 @@ the first time.
 
 ### CLI: portzap
 
-
-    # Clone the hardenedbsd ports tree into /home/_portzap/ports/.
+    # Clone the HardenedBSD ports tree into /home/_portzap/ports/.
     # This command is delegated to the '_portzap' user.
     $ portzap clone
 
@@ -41,7 +40,7 @@ the first time.
 
 * __$PORTZAP\_GITURL__ <br>
   The URL to a git repository.  <br>
-  Default: https://git.hardenedbsd.org/hardenedbsd/ports.git.
+  Default: https://git.HardenedBSD.org/HardenedBSD/ports.git.
 
 * __$PORTZAP\_BRANCH__ <br>
   The git branch to clone and pull updates from. <br>
@@ -56,7 +55,7 @@ the first time.
 **Port**
 
 portzap is available
-[as a hardenedbsd port](https://git.hardenedbsd.org/hardenedbsd/ports/-/tree/hardenedbsd/main/hardenedbsd/portzap). <br>
+[as a HardenedBSD port](https://git.HardenedBSD.org/HardenedBSD/ports/-/tree/HardenedBSD/main/hardenedbsd/portzap). <br>
 `pkg install portzap` should work too but expect slower updates.
 
 **Source**
@@ -79,7 +78,7 @@ via git:
 
 * [GitHub](https://github.com/0x1eef/portzap)
 * [GitLab](https://gitlab.com/0x1eef/portzap)
-* [git.hardenedbsd.org](https://git.hardenedbsd.org/0x1eef/portzap)
+* [git.HardenedBSD.org](https://git.HardenedBSD.org/0x1eef/portzap)
 
 ## License
 
