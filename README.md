@@ -19,21 +19,21 @@ the first time:
 
 ### CLI: portzap
 
-    # Clone the HardenedBSD ports tree into /home/_portzap/ports/.
-    # This command is delegated to the '_portzap' user.
+    # Clone the HardenedBSD ports tree into /home/_portzap/ports/
+    # This command is delegated to the '_portzap' user
     $ portzap clone
 
-    # Pull updates into /home/_portzap/ports/.
-    # This command is delegated to the '_portzap' user.
+    # Pull updates into /home/_portzap/ports/
+    # This command is delegated to the '_portzap' user
     $ portzap pull
 
-    # Install /home/_portzap/ports/ into /usr/ports/.
-    # This command requires root privileges.
+    # Install /home/_portzap/ports/ into /usr/ports/
+    # This command requires root privileges
     # portzap install
 
-    # Start over: erase /usr/ports/ and /home/_portzap/ports/.
-    # This command requires root privileges.
-    $ portzap erase
+    # Remove the contents of /usr/ports/ and /home/_portzap/ports/
+    # This command requires root privileges
+    $ portzap rm
 
 
 ### ENVIRONMENT
