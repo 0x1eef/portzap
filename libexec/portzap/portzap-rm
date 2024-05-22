@@ -3,6 +3,7 @@ set -e
 
 ##
 # variables
+libexec=$(dirname "$0")
 gitdir=$1
 installdir=$2
 
@@ -22,10 +23,14 @@ erase()
     echo
 }
 
+printerr() {
+    "${libexec}"/print-err "$1"
+}
+
 ##
 # main
 if [ "$(id -u)" != "0" ]; then
-    echo "ERR This command must be run by root"
+    printerr "you must be root"
     exit 1
 fi
 

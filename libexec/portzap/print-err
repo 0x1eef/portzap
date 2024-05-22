@@ -1,0 +1,10 @@
+#!/bin/sh
+set -e
+
+##
+# variables
+err="${1}"
+
+##
+# main
+printf "error: %s\n" "${err}" > /dev/stderr

@@ -18,16 +18,19 @@ gitexec()
          /bin/sh -c "umask ${mode}; ${git} ${1}"
 }
 
+printerr() {
+    "${libexec}"/print-err "$1"
+}
+
 ##
 # main
 if ! "${libexec}"/isportzap-member; then
-    echo "ERR This command must be run by a member of the '_portzap' group"
+    printerr "$(id -un) is not a member of _portzap"
     exit 1
 fi
 
 if [ ! -e "${gitdir}/.git" ]; then
-    echo "ERR ${gitdir} is not a valid git repository."
-    echo "ERR Try: portzap clone"
+    printerr "try 'portzap clone' instead"
     exit 1
 fi
 
