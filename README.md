@@ -13,7 +13,7 @@ can be installed into `/usr/ports/` by root.
 This command should be run after installing portzap for
 the first time:
 
-    # Add the portzap user, group and home directory
+    # Add the '_portzap' user, group and home directory
     # This command requires root privileges
     # setup-portzap
 
