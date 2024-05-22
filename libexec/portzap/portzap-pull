@@ -27,7 +27,7 @@ fi
 if [ ! -e "${gitdir}/.git" ]; then
     set +x
     echo "ERR ${gitdir} is not a valid git repository."
-    echo "ERR Try 'portzap clone'"
+    echo "ERR Try: portzap clone"
     exit 1
 fi
 
