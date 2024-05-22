@@ -6,8 +6,9 @@ set -e
 libexec=$(dirname "$0")
 localbase=${LOCALBASE:-/usr/local}
 git="${localbase}"/bin/git
-gitdir=$1
 mode="u=rwX,g=rX,o="
+gitdir="$1"
+branch="$2"
 
 ##
 # functions
@@ -25,13 +26,15 @@ if ! "${libexec}"/isportzap-member; then
 fi
 
 if [ ! -e "${gitdir}/.git" ]; then
-    set +x
     echo "[x] ${gitdir} is not a valid git repository."
-    echo "[x] Try 'portzap clone'"
+    echo "[x] Try: portzap clone"
     exit 1
 fi
 
 set -x
 cd "${gitdir}"
-branch=$(gitexec "branch --show-current")
-gitexec "pull --rebase origin ${branch}"
+gitexec "fetch origin"
+gitexec "checkout ${branch}" ||
+gitexec "checkout -t origin/${branch}"
+set +x
+printf "current branch: %s\n" "${branch}"

@@ -10,6 +10,8 @@ portzap clone
 .br
 portzap pull
 .br
+portzap checkout
+.br
 portzap install
 .br
 portzap rm
@@ -33,6 +35,13 @@ This command is delegated to the '_portzap' user
 Pull updates into /home/_portzap/ports/
 .br
 This command is delegated to the '_portzap' user
+.br
+.Pp
+.Nm portzap checkout
+.br
+Checkout a branch other than the default: hardenedbsd/main
+.br
+This command is delegated to the '_portzap' user
 .Pp
 .Nm portzap install
 .br
@@ -54,13 +63,6 @@ This command requires root privileges
 The URL to a git repository
 .br
 Default: https://git.HardenedBSD.org/HardenedBSD/ports.git
-.sp
-.Nm PORTZAP_BRANCH
-.br
-The git branch to clone and pull updates from
-.br
-Default: hardenedbsd/main
-.br
 .sp
 .Nm PORTZAP_INSTALLDIR
 .br

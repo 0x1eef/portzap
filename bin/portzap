@@ -4,9 +4,9 @@ set -e
 ##
 # variables
 localbase="${LOCALBASE:-/usr/local}"
+defaultbranch="hardenedbsd/main"
 gitdir="/home/_portzap/ports"
 giturl="${PORTZAP_GITURL:-https://git.hardenedbsd.org/hardenedbsd/ports.git}"
-branch="${PORTZAP_BRANCH:-hardenedbsd/main}"
 installdir="${PORTZAP_INSTALLDIR:-/usr/ports}"
 revision="${installdir}"/.portzap
 libexec="${localbase}"/libexec/portzap
@@ -40,11 +40,15 @@ done
 case $1 in
     "clone")
         require_dependency "git doas"
-        "${libexec}"/portzap-clone "${giturl}" "${gitdir}" "${branch}"
+        "${libexec}"/portzap-clone "${giturl}" "${gitdir}" "${defaultbranch}"
         ;;
     "pull")
         require_dependency "git doas"
-        "${libexec}"/portzap-pull "${gitdir}" "${branch}"
+        "${libexec}"/portzap-pull "${gitdir}"
+        ;;
+    "checkout")
+        require_dependency "git doas"
+        "${libexec}"/portzap-checkout "${gitdir}" "${2}"
         ;;
     "rm")
         "${libexec}"/portzap-rm "${gitdir}" "${installdir}"
@@ -57,9 +61,10 @@ case $1 in
         printf "Usage: portzap COMMAND [OPTIONS]\n"
         printf "\n"
         printf "Commands:\n"
-        printf "  clone    Clone the hardenedbsd ports tree\n"
-        printf "  pull     Pull updates from the hardenedbsd ports tree\n"
-        printf "  rm       Remove /usr/ports/ and /home/_portzap/ports/\n"
-        printf "  install  Install the ports tree into /usr/ports/\n"
+        printf "  clone       Clone the hardenedbsd ports tree\n"
+        printf "  pull        Pull updates from the hardenedbsd ports tree\n"
+        printf "  checkout    Checkout a branch other than the default\n"
+        printf "  rm          Remove /usr/ports/ and /home/_portzap/ports/\n"
+        printf "  install     Install the ports tree into /usr/ports/\n"
         ;;
 esac

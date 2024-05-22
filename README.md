@@ -13,8 +13,8 @@ can be installed into `/usr/ports/` by root.
 This command should be run after installing portzap for
 the first time:
 
-    # Add the portzap user, group and home directory.
-    # This command requires root privileges.
+    # Add the portzap user, group and home directory
+    # This command requires root privileges
     # setup-portzap
 
 ### CLI: portzap
@@ -27,6 +27,10 @@ the first time:
     # This command is delegated to the '_portzap' user
     $ portzap pull
 
+    # Checkout a branch other than the default: hardenedbsd/main
+    # This command is delegated to the '_portzap' user
+    $ portzap checkout
+
     # Install /home/_portzap/ports/ into /usr/ports/
     # This command requires root privileges
     # portzap install
@@ -35,20 +39,15 @@ the first time:
     # This command requires root privileges
     $ portzap rm
 
-
 ### ENVIRONMENT
 
 * __$PORTZAP\_GITURL__ <br>
-  The URL to a git repository.  <br>
-  Default: https://git.HardenedBSD.org/HardenedBSD/ports.git.
-
-* __$PORTZAP\_BRANCH__ <br>
-  The git branch to clone and pull updates from. <br>
-  Default: hardenedbsd/main.
+  The URL to a git repository <br>
+  Default: https://git.HardenedBSD.org/HardenedBSD/ports.git
 
 * __$PORTZAP\_INSTALLDIR__ <br>
-  The directory where the ports collection will be installed. <br>
-  Default: /usr/ports/.
+  The directory where the ports collection will be installed <br>
+  Default: /usr/ports/
 
 ## Install
 
@@ -82,5 +81,5 @@ via git:
 
 ## License
 
-[BSD Zero Clause](https://choosealicense.com/licenses/0bsd/). <br>
-See [LICENSE](./LICENSE).
+[BSD Zero Clause](https://choosealicense.com/licenses/0bsd/) <br>
+See [LICENSE](./LICENSE)
