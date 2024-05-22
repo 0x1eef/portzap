@@ -1,12 +1,9 @@
 #!/bin/sh
 set -e
 
+##
+# main
 group="_portzap"
-if id -Gn | \
-   tr ' ' '\n' | \
-   grep -e "^${group}$" \
-   > /dev/null 2>&1; then
-   exit 0
-else
-   exit 1
-fi
+mygroups=$(id -Gn | tr ' ' '\n')
+echo "${mygroups}" | grep -e "^${group}$" > /dev/null 2>&1
+exit "${?}"
