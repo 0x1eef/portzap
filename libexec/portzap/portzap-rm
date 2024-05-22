@@ -1,0 +1,54 @@
+#!/bin/sh
+set -e
+
+##
+# variables
+gitdir=$1
+installdir=$2
+
+##
+# functions
+erase()
+{
+    dir="${1}"
+    printf "%s  " "${dir}"
+    find "${dir}" \
+        -maxdepth 1 \
+        \! -name "." \
+        \! -name ".." \
+        \! -name "ports" \
+        -exec printf . \; \
+        -exec rm -rf "{}" \;
+    echo
+}
+
+##
+# main
+if [ "$(id -u)" != "0" ]; then
+    echo "[-] This command must be run by root"
+    exit 1
+fi
+
+printf "1 Remove the contents of %s\n" "${gitdir}"
+printf "2 Remove the contents of %s\n" "${installdir}"
+printf "3 Remove the contents of both (%s and %s)\n" "${gitdir}" "${installdir}"
+printf "4 Do nothing\n"
+printf "1-4: "
+while true; do
+    read -r r
+    if [ "${r}" = "1" ]; then
+        erase "${gitdir}"
+    elif [ "${r}" = "2" ]; then
+        erase "${installdir}"
+    elif [ "${r}" = "3" ]; then
+        erase "${gitdir}"
+        erase "${installdir}"
+    elif [ "${r}" = "4" ]; then
+        break
+    else
+        printf "%s is not a valid option\n" "${r}"
+        printf "1-4: "
+        continue
+    fi
+    exit
+done

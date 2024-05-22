@@ -17,7 +17,7 @@ require_dependency() {
     deps=$1
     for dep in $deps; do
         if ! which -s "$dep"; then
-            echo "[-] This command requires ${dep}, but ${dep} wasn't found"
+            echo "[x] This command requires ${dep}, but ${dep} wasn't found"
             exit 1
         fi
     done
@@ -46,8 +46,8 @@ case $1 in
         require_dependency "git doas"
         "${libexec}"/portzap-pull "${gitdir}" "${branch}"
         ;;
-    "erase")
-        "${libexec}"/portzap-erase "${gitdir}" "${installdir}"
+    "rm")
+        "${libexec}"/portzap-rm "${gitdir}" "${installdir}"
         ;;
     "install")
         require_dependency "git doas"
@@ -59,7 +59,7 @@ case $1 in
         printf "Commands:\n"
         printf "  clone    Clone the hardenedbsd ports tree.\n"
         printf "  pull     Pull updates from the hardenedbsd ports tree.\n"
-        printf "  erase    Erase /usr/ports/ and /home/_portzap/ports/.\n"
+        printf "  rm       Remove /usr/ports/ and /home/_portzap/ports/.\n"
         printf "  install  Install the ports tree into /usr/ports/.\n"
         ;;
 esac
