@@ -22,13 +22,13 @@ gitexec()
 ##
 # main
 if ! "${libexec}"/isportzap-member; then
-    echo "[-] This command must be run by a member of the '_portzap' group"
+    echo "ERR This command must be run by a member of the '_portzap' group"
     exit 1
 fi
 
 if [ -e "${gitdir}/.git" ]; then
-    echo "[-] ${gitdir} exists."
-    echo "[-] Try 'portzap pull'"
+    echo "ERR ${gitdir} exists."
+    echo "ERR Try: portzap pull"
     exit 1
 fi
 

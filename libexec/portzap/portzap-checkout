@@ -21,13 +21,13 @@ gitexec()
 ##
 # main
 if ! "${libexec}"/isportzap-member; then
-    echo "[x] This command must be run by a member of the '_portzap' group"
+    echo "ERR This command must be run by a member of the '_portzap' group"
     exit 1
 fi
 
 if [ ! -e "${gitdir}/.git" ]; then
-    echo "[x] ${gitdir} is not a valid git repository."
-    echo "[x] Try: portzap clone"
+    echo "ERR ${gitdir} is not a valid git repository."
+    echo "ERR Try: portzap clone"
     exit 1
 fi
 

@@ -17,7 +17,7 @@ require_dependency() {
     deps=$1
     for dep in $deps; do
         if ! which -s "$dep"; then
-            echo "[x] This command requires ${dep}, but ${dep} wasn't found"
+            echo "ERR This command requires ${dep}, but ${dep} wasn't found"
             exit 1
         fi
     done
