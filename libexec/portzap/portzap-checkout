@@ -4,7 +4,7 @@ set -e
 ##
 # variables
 libexec=$(dirname "$0")
-localbase=${LOCALBASE:-/usr/local}
+localbase=${LOCALBASE:-$(realpath $(dirname $0)/../..)}
 git="${localbase}"/bin/git
 mode="u=rwX,g=rX,o="
 gitdir="$1"
