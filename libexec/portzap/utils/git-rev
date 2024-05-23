@@ -3,16 +3,15 @@ set -e
 
 ##
 # variables
-git=$(which git)
-mode=u=rwX,g=rX,o=
+localbase=${LOCALBASE:-$(realpath "$(dirname "$0")"/../../..)}
+libexec="${localbase}"/libexec/portzap
 gitdir=$1
 
 ##
 # functions
 gitexec()
 {
-    doas -n -u _portzap \
-         /bin/sh -c "umask ${mode}; ${git} ${1}"
+    "${libexec}"/utils/gitexec "${1}"
 }
 
 ##

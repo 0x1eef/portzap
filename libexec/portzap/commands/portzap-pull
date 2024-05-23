@@ -5,16 +5,13 @@ set -e
 # variables
 localbase=${LOCALBASE:-$(realpath "$(dirname "$0")"/../../..)}
 libexec="${localbase}"/libexec/portzap
-git=$(which git)
-mode=u=rwX,g=rX,o=
 gitdir=$1
 
 ##
 # functions
 gitexec()
 {
-    doas -n -u _portzap \
-         /bin/sh -c "umask ${mode}; ${git} ${1}"
+    "${libexec}"/utils/gitexec "${1}"
 }
 
 printok() {
