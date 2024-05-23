@@ -3,11 +3,11 @@ set -e
 
 ##
 # variables
-libexec=$(dirname "$0")
 localbase=${LOCALBASE:-$(realpath "$(dirname "$0")"/../..)}
+libexec="${localbase}"/libexec/portzap
 git="${localbase}"/bin/git
-gitdir=$1
 mode="u=rwX,g=rX,o="
+gitdir=$1
 
 ##
 # functions

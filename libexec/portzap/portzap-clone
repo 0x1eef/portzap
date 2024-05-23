@@ -4,7 +4,7 @@ set -e
 ##
 # variables
 localbase=${LOCALBASE:-$(realpath "$(dirname "$0")"/../..)}
-libexec=$(dirname "$0")
+libexec="${localbase}"/libexec/portzap
 git="${localbase}"/bin/git
 giturl=$1
 gitdir=$2

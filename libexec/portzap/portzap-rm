@@ -3,7 +3,8 @@ set -e
 
 ##
 # variables
-libexec=$(dirname "$0")
+localbase=${LOCALBASE:-$(realpath "$(dirname "$0")"/../..)}
+libexec="${localbase}"/libexec/portzap
 gitdir=$1
 installdir=$2
 
