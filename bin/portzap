@@ -24,7 +24,7 @@ require_dependency() {
 }
 
 printerr() {
-    "${libexec}"/printerr "$1"
+    "${libexec}"/utils/printerr "$1"
 }
 
 ##
@@ -44,22 +44,22 @@ done
 case $1 in
     "clone")
         require_dependency "git doas"
-        "${libexec}"/portzap-clone "${giturl}" "${gitdir}" "${defaultbranch}"
+        "${libexec}"/commands/portzap-clone "${giturl}" "${gitdir}" "${defaultbranch}"
         ;;
     "pull")
         require_dependency "git doas"
-        "${libexec}"/portzap-pull "${gitdir}"
+        "${libexec}"/commands/portzap-pull "${gitdir}"
         ;;
     "checkout")
         require_dependency "git doas"
-        "${libexec}"/portzap-checkout "${gitdir}" "${2}"
+        "${libexec}"/commands/portzap-checkout "${gitdir}" "${2}"
         ;;
     "rm")
-        "${libexec}"/portzap-rm "${gitdir}" "${installdir}"
+        "${libexec}"/commands/portzap-rm "${gitdir}" "${installdir}"
         ;;
     "install")
         require_dependency "git doas"
-        "${libexec}"/portzap-install "${gitdir}" "${installdir}" "${revision}"
+        "${libexec}"/commands/portzap-install "${gitdir}" "${installdir}" "${revision}"
         ;;
     *)
         printf "Usage: portzap COMMAND [OPTIONS]\n"

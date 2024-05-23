@@ -1,0 +1,26 @@
+#!/bin/sh
+set -e
+
+##
+# variables
+localbase=${LOCALBASE:-$(realpath "$(dirname "$0")"/../../..)}
+git=$(which git)
+mode=u=rwX,g=rX,o=
+gitdir=$1
+commit=$2
+
+##
+# functions
+gitexec()
+{
+    doas -n -u _portzap \
+         /bin/sh -c "umask ${mode}; ${git} ${1}"
+}
+
+##
+# main
+cd "${gitdir}"
+add=$(gitexec "diff --name-only --diff-filter=A ${commit} HEAD")
+mod=$(gitexec "diff --name-only --diff-filter=M ${commit} HEAD")
+echo "${add}"
+echo "${mod}"

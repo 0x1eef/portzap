@@ -3,7 +3,7 @@ set -e
 
 ##
 # variables
-localbase=${LOCALBASE:-$(realpath "$(dirname "$0")"/../..)}
+localbase=${LOCALBASE:-$(realpath "$(dirname "$0")"/../../..)}
 git=$(which git)
 mode=u=rwX,g=rX,o=
 gitdir=$1

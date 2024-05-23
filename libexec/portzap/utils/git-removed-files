@@ -3,7 +3,7 @@ set -e
 
 ##
 # variables
-localbase=${LOCALBASE:-$(realpath "$(dirname "$0")"/../..)}
+localbase=${LOCALBASE:-$(realpath "$(dirname "$0")"/../../..)}
 git=$(which git)
 mode=u=rwX,g=rX,o=
 gitdir=$1
@@ -20,7 +20,4 @@ gitexec()
 ##
 # main
 cd "${gitdir}"
-add=$(gitexec "diff --name-only --diff-filter=A ${commit} HEAD")
-mod=$(gitexec "diff --name-only --diff-filter=M ${commit} HEAD")
-echo "${add}"
-echo "${mod}"
+gitexec "diff --name-only --diff-filter=D ${commit} HEAD"

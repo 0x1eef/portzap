@@ -11,11 +11,11 @@ doas="${localbase}"/etc/doas.conf
 ##
 # functions
 printok() {
-    "${libexec}"/printok "$1"
+    "${libexec}"/utils/printok "$1"
 }
 
 printerr() {
-    "${libexec}"/printerr "$1"
+    "${libexec}"/utils/printerr "$1"
 }
 
 ##

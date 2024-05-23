@@ -3,7 +3,7 @@ set -e
 
 ##
 # variables
-localbase=${LOCALBASE:-$(realpath "$(dirname "$0")"/../..)}
+localbase=${LOCALBASE:-$(realpath "$(dirname "$0")"/../../..)}
 libexec="${localbase}"/libexec/portzap
 git=$(which git)
 mode=u=rwX,g=rX,o=
@@ -19,7 +19,7 @@ gitexec()
 }
 
 printerr() {
-    "${libexec}"/printerr "$1"
+    "${libexec}"/utils/printerr "$1"
 }
 
 ##
@@ -29,7 +29,7 @@ if [ "$(id -u)" = "0" ]; then
     exit 1
 fi
 
-if ! "${libexec}"/isportzap-member > /dev/null 2>&1; then
+if ! "${libexec}"/utils/isportzap-member > /dev/null 2>&1; then
     printerr "$(id -un) is not a member of _portzap"
     exit 1
 fi

@@ -3,7 +3,7 @@ set -e
 
 ##
 # variables
-localbase=${LOCALBASE:-$(realpath "$(dirname "$0")"/../..)}
+localbase=${LOCALBASE:-$(realpath "$(dirname "$0")"/../../..)}
 libexec="${localbase}"/libexec/portzap
 mode=u=rwX,g=rX,o=
 gitdir=$1
@@ -16,8 +16,8 @@ revfile=$3
 perform_update()
 {
     rev=$(cat "${revfile}")
-    add=$("${libexec}"/git-changed-files "${gitdir}" "${rev}")
-    del=$("${libexec}"/git-removed-files "${gitdir}" "${rev}")
+    add=$("${libexec}"/utils/git-changed-files "${gitdir}" "${rev}")
+    del=$("${libexec}"/utils/git-removed-files "${gitdir}" "${rev}")
     for file in ${del}; do
         target="${installdir}/${file}"
         parent=$(dirname "${target}")
@@ -60,11 +60,11 @@ run_install()
 }
 
 printok() {
-    "${libexec}"/printok "$1"
+    "${libexec}"/utils/printok "$1"
 }
 
 printerr() {
-    "${libexec}"/printerr "$1"
+    "${libexec}"/utils/printerr "$1"
 }
 
 ##
@@ -85,5 +85,5 @@ if [ -e "${revfile}" ]; then
 else
     perform_install
 fi
-"${libexec}"/git-rev "${gitdir}" > "${revfile}"
+"${libexec}"/utils/git-rev "${gitdir}" > "${revfile}"
 printok "install complete"
