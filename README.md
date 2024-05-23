@@ -8,7 +8,7 @@ can be installed into `/usr/ports/` by root.
 
 ## Examples
 
-### CLI: setup-portzap
+#### CLI: setup-portzap
 
 This command should be run after installing portzap for
 the first time:
@@ -17,7 +17,7 @@ the first time:
     # This command requires root privileges
     # setup-portzap
 
-### CLI: portzap
+#### CLI: portzap
 
     # Clone the HardenedBSD ports tree into /home/_portzap/ports/
     # This command is delegated to the '_portzap' user
@@ -39,7 +39,7 @@ the first time:
     # This command requires root privileges
     $ portzap rm
 
-### ENVIRONMENT
+#### Environment
 
 * __$PORTZAP\_GITURL__ <br>
   The URL to a git repository <br>
