@@ -3,13 +3,13 @@ set -e
 
 ##
 # variables
-localbase="${LOCALBASE:-/usr/local}"
-defaultbranch="hardenedbsd/main"
+localbase=${LOCALBASE:-$(realpath "$(dirname "$0")"/..)}
+libexec="${localbase}"/libexec/portzap
 gitdir="/home/_portzap/ports"
 giturl="${PORTZAP_GITURL:-https://git.hardenedbsd.org/hardenedbsd/ports.git}"
 installdir="${PORTZAP_INSTALLDIR:-/usr/ports}"
+defaultbranch="hardenedbsd/main"
 revfile="${installdir}"/.portzap
-libexec=$(realpath "$(dirname "$0")")/../libexec/portzap
 
 ##
 # functions
