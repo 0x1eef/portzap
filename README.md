@@ -15,29 +15,29 @@ the first time:
 
     # Add the '_portzap' user, group and home directory
     # This command requires root privileges
-    # setup-portzap
+    root@localhost# setup-portzap
 
 #### CLI: portzap
 
     # Clone the HardenedBSD ports tree into /home/_portzap/ports/
     # This command is delegated to the '_portzap' user
-    $ portzap clone
+    user@localhost$ portzap clone
 
     # Pull updates into /home/_portzap/ports/
     # This command is delegated to the '_portzap' user
-    $ portzap pull
+    user@localhost$ portzap pull
 
     # Checkout a branch other than the default: hardenedbsd/main
     # This command is delegated to the '_portzap' user
-    $ portzap checkout freebsd/main
+    user@localhost$ portzap checkout freebsd/main
 
     # Install /home/_portzap/ports/ into /usr/ports/
     # This command requires root privileges
-    # portzap install
+    root@localhost# portzap install
 
     # Remove the contents of /usr/ports/ and /home/_portzap/ports/
     # This command requires root privileges
-    $ portzap rm
+    root@localhost# portzap rm
 
 #### Environment
 
@@ -62,11 +62,11 @@ portzap is available
 The most recent version of portzap can be installed directly
 via git:
 
-    $ git clone https://github.com/0x1eef/portzap.git
-    $ cd portzap
-    # make install
-    # setup-portzap
-    # pw groupmod -n _portzap -m <user>
+    user@localhost$ git clone https://github.com/0x1eef/portzap.git
+    user@localhost$ cd portzap
+    root@localhost# doas -u root make install
+    root@localhost# setup-portzap
+    root@localhost# pw groupmod -n _portzap -m <user>
 
 ## Requirements
 
