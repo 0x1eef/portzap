@@ -86,4 +86,5 @@ else
     perform_install
 fi
 "${libexec}"/utils/git-rev "${gitdir}" > "${revfile}"
+set +x
 printok "install complete"
