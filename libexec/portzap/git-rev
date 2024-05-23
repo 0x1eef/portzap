@@ -4,7 +4,7 @@ set -e
 ##
 # variables
 localbase=${LOCALBASE:-$(realpath "$(dirname "$0")"/../..)}
-git="${localbase}"/bin/git
+git=$(which git)
 mode=u=rwX,g=rX,o=
 gitdir=$1
 
