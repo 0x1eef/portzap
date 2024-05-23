@@ -29,7 +29,7 @@ the first time:
 
     # Checkout a branch other than the default: hardenedbsd/main
     # This command is delegated to the '_portzap' user
-    $ portzap checkout
+    $ portzap checkout freebsd/main
 
     # Install /home/_portzap/ports/ into /usr/ports/
     # This command requires root privileges
