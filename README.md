@@ -65,7 +65,7 @@ via git:
     $ git clone https://github.com/0x1eef/portzap.git
     $ cd portzap
     # make install
-    # portzap setup
+    # setup-portzap
     # pw groupmod -n _portzap -m <user>
 
 ## Requirements
