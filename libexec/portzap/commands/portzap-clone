@@ -46,5 +46,6 @@ gitexec "clone ${giturl} ${gitdir}"
 cd "${gitdir}"
 gitexec "config core.filemode off"
 set +x
-gitexec "checkout -t origin/${branch}"
+set +e
+gitexec "checkout -t origin/${branch} > /dev/null 2>&1"
 printok "clone complete"
