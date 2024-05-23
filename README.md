@@ -41,8 +41,8 @@ the first time:
 
 #### Environment
 
-* __$PORTZAP\_GITURL__ <br>
-  The URL to a git repository <br>
+* __$PORTZAP\_CLONEURL__ <br>
+  The URL of a git repository <br>
   Default: https://git.HardenedBSD.org/HardenedBSD/ports.git
 
 * __$PORTZAP\_INSTALLDIR__ <br>
