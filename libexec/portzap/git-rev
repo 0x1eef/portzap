@@ -5,8 +5,8 @@ set -e
 # variables
 localbase=${LOCALBASE:-$(realpath "$(dirname "$0")"/../..)}
 git="${localbase}"/bin/git
-gitdir=$1
 mode=u=rwX,g=rX,o=
+gitdir=$1
 
 ##
 # functions
