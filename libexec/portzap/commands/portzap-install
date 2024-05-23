@@ -10,7 +10,6 @@ gitdir=$1
 installdir=$2
 revfile=$3
 
-
 ##
 # functions
 perform_update()
