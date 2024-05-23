@@ -5,7 +5,7 @@ set -e
 # variables
 localbase=${LOCALBASE:-$(realpath "$(dirname "$0")"/../..)}
 libexec="${localbase}"/libexec/portzap
-mode="u=rwX,g=rX,o="
+mode=u=rwX,g=rX,o=
 gitdir=$1
 installdir=$2
 revfile=$3
