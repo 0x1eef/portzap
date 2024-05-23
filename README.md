@@ -64,7 +64,7 @@ via git:
 
     user@localhost$ git clone https://github.com/0x1eef/portzap.git
     user@localhost$ cd portzap
-    root@localhost# root make install
+    root@localhost# make install
     root@localhost# setup-portzap
     root@localhost# pw groupmod -n _portzap -m <user>
 
