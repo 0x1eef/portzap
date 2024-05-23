@@ -46,4 +46,5 @@ set -x
 cd "${gitdir}"
 branch=$(gitexec "branch --show-current")
 gitexec "pull --rebase origin ${branch}"
+set +x
 printok "pull complete"
