@@ -1,0 +1,10 @@
+#!/bin/sh
+set -e
+
+##
+# variables
+msg="${1}"
+
+##
+# main
+printf "ok: %s\n" "${msg}" > /dev/stdout

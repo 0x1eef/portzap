@@ -57,8 +57,12 @@ run_install()
     install -o root -g _portzap -m "${mode}" -v "$@"
 }
 
+printok() {
+    "${libexec}"/printok "$1"
+}
+
 printerr() {
-    "${libexec}"/print-err "$1"
+    "${libexec}"/printerr "$1"
 }
 
 ##
@@ -80,3 +84,4 @@ else
     perform_install
 fi
 "${libexec}"/git-rev "${gitdir}" > "${revfile}"
+printok "install complete"

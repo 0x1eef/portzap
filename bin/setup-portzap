@@ -3,35 +3,45 @@ set -e
 
 ##
 # variables
-localbase="${LOCALBASE:-/usr/local}"
+localbase="${LOCALBASE:-$(realpath $(dirname $0)/..)}"
+libexec="${localbase}/libexec/portzap"
 conf=$(cat "${localbase}"/share/portzap/doas.conf)
 doas="${localbase}"/etc/doas.conf
 
 ##
+# functions
+printok() {
+    "${libexec}"/printok "$1"
+}
+
+printerr() {
+    "${libexec}"/printerr "$1"
+}
+
+##
 # main
 if [ "$(id -u)" != "0" ]; then
-    echo "ERR This command must be run by root"
+    printerr "you must be root"
     exit 1
 fi
 
 if id -u _portzap > /dev/null 2>&1; then
-    echo "[-] The _portzap user exists"
-    echo "[-] Add user(s) to the _portzap group:"
-    echo "root# pw groupmod -n _portzap -m user1,user2"
+    printok "_portzap user exists"
 else
     pw useradd -n _portzap \
         -c "portzap user" \
         -m \
         -s /sbin/nologin
     chmod u=rwX,g=rX,o= /home/_portzap/
-    echo "[-] The _portzap user, group and home directory have been created."
-    echo "[-] Add user(s) to the _portzap group:"
-    echo "root# pw groupmod -n _portzap -m user1,user2"
+    printok "create _portzap user"
 fi
 
 if grep -F "^${conf}$" "${doas}" > /dev/null 2>&1; then
-    echo "[-] No changes made to ${doas}"
+    printok "${doas} is up to date"
 else
     echo "$conf" >> "$doas"
-    echo "[-] ${doas} has been changed. Please review the changes"
+    printok "update ${doas} (note: review the update)"
 fi
+
+printf "Add user(s) to the _portzap group:\n"
+printf "root# pw groupmod -n _portzap -m user1,user2\n"

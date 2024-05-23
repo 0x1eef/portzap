@@ -19,8 +19,12 @@ gitexec()
          /bin/sh -c "umask ${mode}; ${git} ${1}"
 }
 
+printok() {
+    "${libexec}"/printok "$1"
+}
+
 printerr() {
-    "${libexec}"/print-err "$1"
+    "${libexec}"/printerr "$1"
 }
 
 ##
@@ -45,6 +49,5 @@ gitexec "clone ${giturl} ${gitdir}"
 cd "${gitdir}"
 gitexec "config core.filemode off"
 set +x
-echo "[-] git checkout ${branch}"
-gitexec "checkout -t origin/${branch} > /dev/null 2>&1"
-echo "[-] Done"
+gitexec "checkout -t origin/${branch}"
+printok "clone complete"

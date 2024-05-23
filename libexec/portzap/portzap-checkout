@@ -19,7 +19,7 @@ gitexec()
 }
 
 printerr() {
-    "${libexec}"/print-err "$1"
+    "${libexec}"/printerr "$1"
 }
 
 ##
