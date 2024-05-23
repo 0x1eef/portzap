@@ -5,5 +5,5 @@ set -e
 # main
 group="_portzap"
 mygroups=$(id -Gn | tr ' ' '\n')
-anymatch=$(echo "${mygroups}" | grep -e "^${group}$")
+echo "${mygroups}" | grep -e "^${group}$"
 exit "${?}"

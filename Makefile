@@ -22,4 +22,5 @@ deinstall:
 
 shellcheck:
 	shellcheck bin/portzap
-	shellcheck libexec/portzap/*
+	shellcheck libexec/portzap/utils/*
+	shellcheck libexec/portzap/commands/*
