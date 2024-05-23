@@ -3,7 +3,7 @@ set -e
 
 ##
 # variables
-localbase="${LOCALBASE:-$(realpath $(dirname $0)/..)}"
+localbase=${LOCALBASE:-$(realpath "$(dirname "$0")"/..)}
 libexec="${localbase}"/libexec/portzap
 conf=$(cat "${localbase}"/share/portzap/doas.conf)
 doas="${localbase}"/etc/doas.conf

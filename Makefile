@@ -21,6 +21,6 @@ deinstall:
 	rm -rf $(SHAREDIR)
 
 shellcheck:
-	shellcheck bin/portzap
+	shellcheck bin/*
 	shellcheck libexec/portzap/utils/*
 	shellcheck libexec/portzap/commands/*
