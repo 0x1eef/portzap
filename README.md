@@ -62,7 +62,7 @@ portzap is available
 The most recent version of portzap can be installed directly
 via git:
 
-    user@localhost$ git clone https://github.com/0x1eef/portzap.git
+    user@localhost$ git clone https://git.hardenedbsd.org/0x1eef/portzap.git
     user@localhost$ cd portzap
     root@localhost# make install
     root@localhost# setup-portzap
@@ -70,8 +70,8 @@ via git:
 
 ## Requirements
 
-* [doas](https://man.openbsd.org/doas) (`pkg install doas`)
-* [git](https://www.man7.org/linux/man-pages/man1/git.1.html) (`pkg install git`)
+* [doas](https://man.openbsd.org/doas)
+* [git](https://www.man7.org/linux/man-pages/man1/git.1.html)
 
 ## Sources
 
