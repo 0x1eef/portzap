@@ -15,11 +15,11 @@ gitexec()
 }
 
 printok() {
-    "${libexec}"/utils/printok "$1"
+    "${libexec}"/utils/printok "${1}"
 }
 
 printerr() {
-    "${libexec}"/utils/printerr "$1"
+    "${libexec}"/utils/printerr "${1}"
 }
 
 ##

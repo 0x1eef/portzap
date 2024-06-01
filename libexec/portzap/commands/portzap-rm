@@ -25,7 +25,7 @@ erase()
 }
 
 printerr() {
-    "${libexec}"/utils/printerr "$1"
+    "${libexec}"/utils/printerr "${1}"
 }
 
 ##

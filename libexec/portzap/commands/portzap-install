@@ -55,15 +55,15 @@ perform_install()
 
 run_install()
 {
-    install -o root -g _portzap -m "${mode}" -v "$@"
+    install -o root -g _portzap -m "${mode}" -v "${@}"
 }
 
 printok() {
-    "${libexec}"/utils/printok "$1"
+    "${libexec}"/utils/printok "${1}"
 }
 
 printerr() {
-    "${libexec}"/utils/printerr "$1"
+    "${libexec}"/utils/printerr "${1}"
 }
 
 ##

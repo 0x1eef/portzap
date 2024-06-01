@@ -5,8 +5,8 @@ set -e
 # variables
 localbase=${LOCALBASE:-$(realpath "$(dirname "$0")"/../../..)}
 libexec="${localbase}"/libexec/portzap
-gitdir="$1"
-branch="$2"
+gitdir=$1
+branch=$2
 
 ##
 # functions
@@ -16,11 +16,11 @@ gitexec()
 }
 
 printok() {
-    "${libexec}"/utils/printok "$1"
+    "${libexec}"/utils/printok "${1}"
 }
 
 printerr() {
-    "${libexec}"/utils/printerr "$1"
+    "${libexec}"/utils/printerr "${1}"
 }
 
 ##
