@@ -45,6 +45,7 @@ set -x
 gitexec "clone ${giturl} ${gitdir}"
 cd "${gitdir}"
 gitexec "config core.filemode off"
+gitexec "config diff.renameList 7000"
 set +x
 set +e
 gitexec "checkout -t origin/${branch} > /dev/null 2>&1"
