@@ -25,3 +25,4 @@ shellcheck:
 	shellcheck bin/*
 	shellcheck libexec/portzap/utils/*
 	shellcheck libexec/portzap/commands/*
+	shellcheck libexec/portzap/setup/*

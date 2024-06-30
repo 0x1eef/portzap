@@ -4,29 +4,49 @@ set -e
 ##
 # variables
 user="_portzap"
-localbase="$(realpath $(dirname $0)/../../..)"
-libexec="${localbase}/libexec/portzap"
-sharedir="${localbase}/share/portzap"
+localbase=$(realpath "$(dirname "$0")"/../../..)
+libexec="${localbase}"/libexec/portzap
+sharedir="${localbase}"/share/portzap
 
 ##
 # functions
-printok() {
+printok()
+{
     "${libexec}"/utils/printok "$1"
 }
 
-printerr() {
+printerr()
+{
     "${libexec}"/utils/printerr "$1"
 }
 
-verify_crontab()
+verify_allowfile()
 {
     allowfile="/var/cron/allow"
     if [ -e "${allowfile}" ]; then
-        if ! grep "${user}" "${allowfile}" > /dev/null 2>&1; then
-            printerr "in order to use the portzap crontab, add ${user} to ${allowfile}"
+        if grep -Eqe "^${user}$" "${allowfile}"; then
+            printok "${user} found in ${allowfile}"
+        else
+            printerr "add ${user} to ${allowfile} in order to proceed"
             exit 1
         fi
-        printok "${user} exists in ${allowfile}"
+    else
+        printok "${allowfile} not found"
+    fi
+}
+
+verify_denyfile()
+{
+    denyfile="/var/cron/deny"
+    if [ -e "${denyfile}" ]; then
+        if grep -Eqe "^${user}$" "${denyfile}"; then
+            printerr "remove ${user} from ${denyfile} in order to proceed"
+            exit 1
+        else
+            printok "${user} not found in ${denyfile}"
+        fi
+    else
+        printok "${denyfile} not found"
     fi
 }
 
@@ -45,19 +65,20 @@ install_crontab()
 
 ##
 # main
-printf "Do you want to run 'portzap pull' daily via cron(8) ? (yes|no) "
+echo -n "configure portzap to run via cron(8) ? yes or no: "
 while read -r r; do
     case "${r}" in
-    y|Y|yes|YES)
-        verify_crontab
+    yes|YES)
+        verify_allowfile
+        verify_denyfile
         install_crontab
         break
         ;;
-    n|N|no|NO)
+    no|NO)
         break
         ;;
     *)
-        printf "Please answer yes or no: "
+        echo -n "yes or no: "
         ;;
     esac
 done

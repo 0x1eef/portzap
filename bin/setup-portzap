@@ -4,16 +4,17 @@ set -e
 ##
 # variables
 localbase=${LOCALBASE:-$(realpath "$(dirname "$0")"/..)}
-sharedir="${localbase}"/share/portzap
 libexec="${localbase}"/libexec/portzap
 
 ##
 # functions
-printok() {
+printok()
+{
     "${libexec}"/utils/printok "$1"
 }
 
-printerr() {
+printerr()
+{
     "${libexec}"/utils/printerr "$1"
 }
 
@@ -37,5 +38,7 @@ fi
 
 "${libexec}"/setup/setup-doas
 "${libexec}"/setup/setup-cron
-printf "\nAdd user(s) to the _portzap group:\n"
-printf "root# pw groupmod -n _portzap -m user1,user2\n"
+echo
+echo "If you haven't already, add users to the _portzap group: "
+echo "root@$(hostname)# pw groupmod -n _portzap -m user1,user2"
+echo

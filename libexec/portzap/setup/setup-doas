@@ -3,18 +3,19 @@ set -e
 
 ##
 # variables
-user="_portzap"
-localbase="$(realpath $(dirname $0)/../../..)"
+localbase=$(realpath "$(dirname "$0")"/../../..)
 libexec="${localbase}/libexec/portzap"
 sharedir="${localbase}/share/portzap"
 
 ##
 # functions
-printok() {
+printok()
+{
     "${libexec}"/utils/printok "$1"
 }
 
-printerr() {
+printerr()
+{
     "${libexec}"/utils/printerr "$1"
 }
 

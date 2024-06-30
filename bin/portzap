@@ -13,11 +13,13 @@ revfile="${installdir}"/.portzap
 
 ##
 # functions
-printerr() {
+printerr()
+{
     "${libexec}"/utils/printerr "$1"
 }
 
-require_dependency() {
+require_dependency()
+{
     deps=$1
     for dep in $deps; do
         if ! which -s "$dep"; then
