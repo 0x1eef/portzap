@@ -1,0 +1,63 @@
+#!/bin/sh
+set -e
+
+##
+# variables
+user="_portzap"
+localbase="$(realpath $(dirname $0)/../../..)"
+libexec="${localbase}/libexec/portzap"
+sharedir="${localbase}/share/portzap"
+
+##
+# functions
+printok() {
+    "${libexec}"/utils/printok "$1"
+}
+
+printerr() {
+    "${libexec}"/utils/printerr "$1"
+}
+
+verify_crontab()
+{
+    allowfile="/var/cron/allow"
+    if [ -e "${allowfile}" ]; then
+        if ! grep "${user}" "${allowfile}" > /dev/null 2>&1; then
+            printerr "in order to use the portzap crontab, add ${user} to ${allowfile}"
+            exit 1
+        fi
+        printok "${user} exists in ${allowfile}"
+    fi
+}
+
+install_crontab()
+{
+    src="${sharedir}/crontab"
+    dest="/var/cron/tabs/${user}"
+    if [ -e "${dest}" ]; then
+        yes | crontab -u "${user}" -r
+        printok "crontab removed (${dest})"
+    fi
+    crontab -u "${user}" "${src}"
+    chmod u=rw,g=,o= "${dest}"
+    printok "crontab installed (${dest})"
+}
+
+##
+# main
+printf "Do you want to run 'portzap pull' daily via cron(8) ? (yes|no) "
+while read -r r; do
+    case "${r}" in
+    y|Y|yes|YES)
+        verify_crontab
+        install_crontab
+        break
+        ;;
+    n|N|no|NO)
+        break
+        ;;
+    *)
+        printf "Please answer yes or no: "
+        ;;
+    esac
+done

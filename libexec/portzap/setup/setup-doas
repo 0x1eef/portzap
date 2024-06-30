@@ -1,0 +1,35 @@
+#!/bin/sh
+set -e
+
+##
+# variables
+user="_portzap"
+localbase="$(realpath $(dirname $0)/../../..)"
+libexec="${localbase}/libexec/portzap"
+sharedir="${localbase}/share/portzap"
+
+##
+# functions
+printok() {
+    "${libexec}"/utils/printok "$1"
+}
+
+printerr() {
+    "${libexec}"/utils/printerr "$1"
+}
+
+install_doasconf()
+{
+    src="${sharedir}/doas.conf"
+    dest="${localbase}/etc/doas.conf"
+    if grep -Fq "$(cat "${src}")" "${dest}"; then
+        printok "doas.conf looks up to date"
+    else
+        cat "${src}" >> "${dest}"
+        printok "${dest} has been updated"
+    fi
+}
+
+##
+# main
+install_doasconf

@@ -4,9 +4,8 @@ set -e
 ##
 # variables
 localbase=${LOCALBASE:-$(realpath "$(dirname "$0")"/..)}
+sharedir="${localbase}"/share/portzap
 libexec="${localbase}"/libexec/portzap
-conf=$(cat "${localbase}"/share/portzap/doas.conf)
-doas="${localbase}"/etc/doas.conf
 
 ##
 # functions
@@ -33,15 +32,10 @@ else
         -m \
         -s /sbin/nologin
     chmod u=rwX,g=rX,o= /home/_portzap/
-    printok "create _portzap user"
+    printok "_portzap user created"
 fi
 
-if grep -F "^${conf}$" "${doas}" > /dev/null 2>&1; then
-    printok "${doas} is up to date"
-else
-    echo "$conf" >> "$doas"
-    printok "update ${doas} (note: review the update)"
-fi
-
-printf "Add user(s) to the _portzap group:\n"
+"${libexec}"/setup/setup-doas
+"${libexec}"/setup/setup-cron
+printf "\nAdd user(s) to the _portzap group:\n"
 printf "root# pw groupmod -n _portzap -m user1,user2\n"
