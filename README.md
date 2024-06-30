@@ -51,16 +51,15 @@ the first time:
 
 ## Install
 
-**Port**
+#### Package
 
 portzap is available
-[as a HardenedBSD port](https://git.HardenedBSD.org/HardenedBSD/ports/-/tree/HardenedBSD/main/hardenedbsd/portzap). <br>
+[from the HardenedBSD ports tree](https://git.HardenedBSD.org/HardenedBSD/ports/-/tree/HardenedBSD/main/hardenedbsd/portzap). <br>
 `pkg install portzap` should work too but expect slower updates.
 
-**Source**
+#### Git
 
-The most recent version of portzap can be installed directly
-via git:
+The most recent version of portzap can be installed via git:
 
     user@localhost$ git clone https://git.hardenedbsd.org/0x1eef/portzap.git
     user@localhost$ cd portzap
