@@ -1,0 +1,11 @@
+#!/bin/sh
+set -e
+
+##
+# variables
+localbase=${LOCALBASE:-$(realpath "$(dirname "$0")"/../../..)}
+libexec="${localbase}"/libexec/portzap
+
+##
+# main
+"${libexec}"/utils/gitexec diff -l0 ${@}

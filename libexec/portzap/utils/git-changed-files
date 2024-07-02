@@ -10,15 +10,13 @@ commit=$2
 
 ##
 # functions
-gitexec()
+diff()
 {
-    "${libexec}"/utils/gitexec "${1}"
+    "${libexec}"/utils/gitdiff ${@}
 }
 
 ##
 # main
 cd "${gitdir}"
-add=$(gitexec "diff --name-only --diff-filter=A ${commit} HEAD")
-mod=$(gitexec "diff --name-only --diff-filter=M ${commit} HEAD")
-echo "${add}"
-echo "${mod}"
+diff "--name-only" "--diff-filter=A" "${commit}" "HEAD"
+diff "--name-only" "--diff-filter=M" "${commit}" "HEAD"
