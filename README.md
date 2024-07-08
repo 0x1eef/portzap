@@ -77,6 +77,7 @@ The most recent version of portzap can be installed via git:
 * [GitHub](https://github.com/0x1eef/portzap)
 * [GitLab](https://gitlab.com/0x1eef/portzap)
 * [git.HardenedBSD.org](https://git.HardenedBSD.org/0x1eef/portzap)
+* [brew.bsd.cafe](https://brew.bsd.cafe/0x1eef/portzap)
 
 ## License
 
