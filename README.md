@@ -61,10 +61,15 @@ portzap is available
 
 The most recent version of portzap can be installed via git:
 
+    # Clone
     user@localhost$ git clone https://git.hardenedbsd.org/0x1eef/portzap.git
     user@localhost$ cd portzap
+
+    # Install
     root@localhost# make install
     root@localhost# setup-portzap
+
+    # Add user to '_portzap' group
     root@localhost# pw groupmod -n _portzap -m <user>
 
 ## Requirements
