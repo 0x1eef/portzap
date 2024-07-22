@@ -5,14 +5,9 @@ LIBEXECDIR = $(PREFIX)/libexec/portzap
 SHAREDIR = $(PREFIX)/share/portzap
 
 install:
-	install -d $(BINDIR) $(LIBEXECDIR) $(LIBEXECDIR)/commands $(LIBEXECDIR)/utils $(LIBEXECDIR)/setup $(SHAREDIR) $(MANDIR)
-	install -m 0755 bin/portzap $(BINDIR)
-	install -m 0755 bin/setup-portzap $(BINDIR)
-	install -m 0755 libexec/portzap/commands/* $(LIBEXECDIR)/commands
-	install -m 0755 libexec/portzap/utils/* $(LIBEXECDIR)/utils
-	install -m 0755 libexec/portzap/setup/* $(LIBEXECDIR)/setup
-	install -m 0644 share/portzap/* $(SHAREDIR)
-	install -m 0644 man/man8/portzap.8 $(MANDIR)
+	@find bin/ libexec/ share/ man/ -type d -exec install -v -d $(PREFIX)/"{}" \;
+	@find bin/ libexec/ -type f -exec install -v -m 0755 "{}" $(PREFIX)/"{}" \;
+	@find share/ man/ -type f -exec install -v -m 0644 "{}" $(PREFIX)/"{}" \;
 
 deinstall:
 	rm $(BINDIR)/portzap
@@ -22,7 +17,4 @@ deinstall:
 	rm -rf $(SHAREDIR)
 
 shellcheck:
-	shellcheck bin/*
-	shellcheck libexec/portzap/utils/*
-	shellcheck libexec/portzap/commands/*
-	shellcheck libexec/portzap/setup/*
+	find bin/ libexec/ -type f -exec shellcheck "{}" \;
