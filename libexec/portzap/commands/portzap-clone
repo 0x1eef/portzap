@@ -34,5 +34,5 @@ fi
 "${git}" clone "${giturl}" "${gitdir}"
 cd "${gitdir}"
 "${git}" config core.filemode off
-"${git}" checkout -t origin/"${branch}"
+"${git}" checkout -t origin/"${branch}" || true
 printok "clone complete"
