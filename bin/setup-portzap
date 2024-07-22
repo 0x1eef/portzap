@@ -29,7 +29,6 @@ else
 fi
 
 "${libexec}"/setup/setup-doas
-"${libexec}"/setup/setup-cron
 echo
 echo "If you haven't already, add users to the _portzap group: "
 echo "root@$(hostname)# pw groupmod -n _portzap -m user1,user2"
