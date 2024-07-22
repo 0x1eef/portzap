@@ -10,6 +10,8 @@ installdir=$2
 
 ##
 # functions
+. "${libexec}"/functions/print.sh
+
 erase()
 {
     dir="${1}"
@@ -22,10 +24,6 @@ erase()
         -exec printf . \; \
         -exec rm -rf "{}" \;
     echo
-}
-
-printerr() {
-    "${libexec}"/utils/printerr "${1}"
 }
 
 ##

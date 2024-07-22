@@ -13,6 +13,8 @@ revfile=$3
 
 ##
 # functions
+. "${libexec}"/functions/print.sh
+
 perform_update()
 {
     rev=$(cat "${revfile}")
@@ -56,14 +58,6 @@ perform_install()
 run_install()
 {
     install -o root -g _portzap -m "${mode}" -v "${@}"
-}
-
-printok() {
-    "${libexec}"/utils/printok "${1}"
-}
-
-printerr() {
-    "${libexec}"/utils/printerr "${1}"
 }
 
 ##

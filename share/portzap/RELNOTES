@@ -8,3 +8,6 @@ v?.?.?
 
 | Remove "set -x"
   After this change, portzap emits less output
+
+| Remove scripts
+  Remove "utils/printok", "utils/printerr", and "utils/git-rev"

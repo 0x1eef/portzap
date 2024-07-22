@@ -13,10 +13,7 @@ revfile="${installdir}"/.portzap
 
 ##
 # functions
-printerr()
-{
-    "${libexec}"/utils/printerr "$1"
-}
+. "${libexec}"/functions/print.sh
 
 require_dependency()
 {

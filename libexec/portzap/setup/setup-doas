@@ -9,15 +9,7 @@ sharedir="${localbase}/share/portzap"
 
 ##
 # functions
-printok()
-{
-    "${libexec}"/utils/printok "$1"
-}
-
-printerr()
-{
-    "${libexec}"/utils/printerr "$1"
-}
+. "${libexec}"/functions/print.sh
 
 install_doasconf()
 {

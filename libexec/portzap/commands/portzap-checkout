@@ -5,23 +5,13 @@ set -e
 # variables
 localbase=${LOCALBASE:-$(realpath "$(dirname "$0")"/../../..)}
 libexec="${localbase}"/libexec/portzap
+git="${libexec}"/utils/git/run
 gitdir=$1
 branch=$2
 
 ##
 # functions
-gitexec()
-{
-    "${libexec}"/utils/gitexec "${1}"
-}
-
-printok() {
-    "${libexec}"/utils/printok "${1}"
-}
-
-printerr() {
-    "${libexec}"/utils/printerr "${1}"
-}
+. "${libexec}"/functions/print.sh
 
 ##
 # main
@@ -41,7 +31,7 @@ if [ ! -e "${gitdir}/.git" ]; then
 fi
 
 cd "${gitdir}"
-gitexec "fetch origin"
-gitexec "checkout ${branch}" ||
-gitexec "checkout -t origin/${branch}"
+"${git}" fetch origin
+"${git}" checkout "${branch}" ||
+"${git}" checkout -t origin/"${branch}"
 printok "${branch} checked out"
