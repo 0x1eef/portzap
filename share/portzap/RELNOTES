@@ -1,0 +1,4 @@
+v?.?.?
+
+| Remove "set -x"
+  After this change, portzap emits less output

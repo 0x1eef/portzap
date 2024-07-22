@@ -40,10 +40,8 @@ if [ ! -e "${gitdir}/.git" ]; then
     exit 1
 fi
 
-set -x
 cd "${gitdir}"
 gitexec "fetch origin"
 gitexec "checkout ${branch}" ||
 gitexec "checkout -t origin/${branch}"
-set +x
 printok "${branch} checked out"

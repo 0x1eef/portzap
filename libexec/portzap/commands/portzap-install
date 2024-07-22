@@ -49,8 +49,7 @@ perform_install()
         ! -name ".hooks" \
         ! -name ".arcconfig" \
         -exec cp -Rpv {} "${installdir}" \;
-    set -x
-    chown -R root "${installdir}"
+    chown -Rv root "${installdir}"
 }
 
 run_install()
@@ -73,10 +72,8 @@ if [ "$(id -u)" != "0" ]; then
     exit 1
 fi
 
-set -x
 umask ${mode}
 cd "${gitdir}"
-set +x
 run_install "-d" "${installdir}"
 chmod ${mode} "${installdir}"
 if [ -e "${revfile}" ]; then
@@ -85,5 +82,4 @@ else
     perform_install
 fi
 "${libexec}"/utils/git-rev "${gitdir}" > "${revfile}"
-set +x
 printok "install complete"

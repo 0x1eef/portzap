@@ -11,7 +11,7 @@ branch=$3
 
 ##
 # functions
-gitexec()
+git()
 {
     "${libexec}"/utils/gitexec "${1}"
 }
@@ -41,11 +41,8 @@ if [ -e "${gitdir}/.git" ]; then
     exit 1
 fi
 
-set -x
-gitexec "clone ${giturl} ${gitdir}"
+git clone "${giturl}" "${gitdir}"
 cd "${gitdir}"
-gitexec "config core.filemode off"
-set +x
-set +e
-gitexec "checkout -t origin/${branch} > /dev/null 2>&1"
+git config core.filemode off
+git checkout -t origin/"${branch}"
 printok "clone complete"
