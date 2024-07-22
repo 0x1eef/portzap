@@ -16,10 +16,10 @@ install_doasconf()
     src="${sharedir}/doas.conf"
     dest="${localbase}/etc/doas.conf"
     if grep -Fq "$(cat "${src}")" "${dest}"; then
-        printok "doas.conf looks up to date"
+        printok "doas.conf is up to date"
     else
         cat "${src}" >> "${dest}"
-        printok "${dest} has been updated"
+        printok "${dest} updated"
     fi
 }
 

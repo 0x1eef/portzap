@@ -12,24 +12,19 @@ libexec="${localbase}"/libexec/portzap
 
 ##
 # main
-if [ "$(id -u)" != "0" ]; then
+if [ "$(id -u)" = "0" ]; then
+    if id -u _portzap > /dev/null 2>&1; then
+        printok "_portzap user exists"
+    else
+        pw useradd -n _portzap \
+                   -c "portzap user" \
+                   -m \
+                   -s /sbin/nologin
+        chmod u=rwX,g=rX,o= /home/_portzap/
+        printok "_portzap user created"
+    fi
+    "${libexec}"/setup/setup-doas
+else
     printerr "you must be root"
     exit 1
 fi
-
-if id -u _portzap > /dev/null 2>&1; then
-    printok "_portzap user exists"
-else
-    pw useradd -n _portzap \
-        -c "portzap user" \
-        -m \
-        -s /sbin/nologin
-    chmod u=rwX,g=rX,o= /home/_portzap/
-    printok "_portzap user created"
-fi
-
-"${libexec}"/setup/setup-doas
-echo
-echo "If you haven't already, add users to the _portzap group: "
-echo "root@$(hostname)# pw groupmod -n _portzap -m user1,user2"
-echo
