@@ -1,4 +1,10 @@
 v?.?.?
 
+| Replace utils/gitexec with utils/git/run
+  After this change, we talk to git via utils/git/run
+
+| Add utils/git
+  A dedicated directory for git-related scripts
+
 | Remove "set -x"
   After this change, portzap emits less output

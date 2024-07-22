@@ -1,0 +1,16 @@
+#!/bin/sh
+set -e
+
+##
+# variables
+localbase=${LOCALBASE:-$(realpath "$(dirname "$0")"/../../../..)}
+libexec="${localbase}"/libexec/portzap
+git="${libexec}"/utils/git/run
+gitdir=$1
+commit=$2
+
+##
+# main
+cd "${gitdir}"
+"${git}" diff -l0 --name-only --diff-filter=A "${commit}" "HEAD"
+"${git}" diff -l0 --name-only --diff-filter=M "${commit}" "HEAD"

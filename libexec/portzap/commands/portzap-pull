@@ -5,15 +5,11 @@ set -e
 # variables
 localbase=${LOCALBASE:-$(realpath "$(dirname "$0")"/../../..)}
 libexec="${localbase}"/libexec/portzap
+git="${libexec}"/utils/git/run
 gitdir=$1
 
 ##
 # functions
-git()
-{
-    "${libexec}"/utils/git "${@}"
-}
-
 printok() {
     "${libexec}"/utils/printok "${1}"
 }
@@ -40,6 +36,6 @@ if [ ! -e "${gitdir}/.git" ]; then
 fi
 
 cd "${gitdir}"
-branch=$(gitexec "branch --show-current")
-gitexec "pull --rebase origin ${branch}"
+branch=$("${git}" branch --show-current)
+"${git}"  pull --rebase origin "${branch}"
 printok "pull complete"

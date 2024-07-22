@@ -5,17 +5,13 @@ set -e
 # variables
 localbase=${LOCALBASE:-$(realpath "$(dirname "$0")"/../../..)}
 libexec="${localbase}"/libexec/portzap
+git="${libexec}"/utils/git/run
 giturl=$1
 gitdir=$2
 branch=$3
 
 ##
 # functions
-git()
-{
-    "${libexec}"/utils/gitexec "${1}"
-}
-
 printok() {
     "${libexec}"/utils/printok "${1}"
 }
@@ -41,8 +37,8 @@ if [ -e "${gitdir}/.git" ]; then
     exit 1
 fi
 
-git clone "${giturl}" "${gitdir}"
+"${git}" clone "${giturl}" "${gitdir}"
 cd "${gitdir}"
-git config core.filemode off
-git checkout -t origin/"${branch}"
+"${git}" config core.filemode off
+"${git}" checkout -t origin/"${branch}"
 printok "clone complete"
