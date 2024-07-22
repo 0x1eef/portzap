@@ -1,7 +1,7 @@
 v?.?.?
 
 | Set "diff.renameLimit" to unlimited
-  After this change, sourcezap forwards "-l0" to "git diff"
+  After this change, portzap forwards "-l0" to "git diff"
 
 | Replace utils/gitexec with utils/git/run
   After this change, we talk to git via utils/git/run
