@@ -45,13 +45,13 @@ perform_update()
 perform_install()
 {
     find -s . \
-        -maxdepth 1 \
-        ! -name "." \
-        ! -name ".git" \
-        ! -name ".gitignore" \
-        ! -name ".hooks" \
-        ! -name ".arcconfig" \
-        -exec cp -Rpv {} "${installdir}" \;
+         -maxdepth 1 \
+         ! -name "." \
+         ! -name ".git" \
+         ! -name ".gitignore" \
+         ! -name ".hooks" \
+         ! -name ".arcconfig" \
+         -exec cp -Rpv {} "${installdir}" \;
     chown -Rv root "${installdir}"
 }
 
