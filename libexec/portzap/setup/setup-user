@@ -1,0 +1,26 @@
+#!/bin/sh
+set -e
+
+##
+# variables
+localbase=${LOCALBASE:-$(realpath "$(dirname "$0")"/../../..)}
+libexec="${localbase}"/libexec/portzap
+user="_portzap"
+
+##
+# functions
+. "${libexec}"/functions/print.sh
+
+##
+# main
+if id -u "${user}" > /dev/null 2>&1; then
+   printok "${user} user exists"
+else
+    pw useradd
+       -n "${user}" \
+       -c "portzap user" \
+       -m \
+       -s /sbin/nologin
+    chmod u=rwX,g=rX,o= /home/"${user}"/
+    printok "${user} user created"
+fi

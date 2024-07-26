@@ -10,8 +10,9 @@ can be installed into `/usr/ports/` by root.
 
 #### CLI: setup-portzap
 
-This command should be run after installing portzap for
-the first time:
+`setup-portzap` should be run after installing portzap for
+the first time. <br> There is no harm in running `setup-portzap`
+multiple times:
 
     # Add the '_portzap' user, group and home directory
     # This command requires root privileges

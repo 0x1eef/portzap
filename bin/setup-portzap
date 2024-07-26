@@ -13,16 +13,7 @@ libexec="${localbase}"/libexec/portzap
 ##
 # main
 if [ "$(id -u)" = "0" ]; then
-    if id -u _portzap > /dev/null 2>&1; then
-        printok "_portzap user exists"
-    else
-        pw useradd -n _portzap \
-                   -c "portzap user" \
-                   -m \
-                   -s /sbin/nologin
-        chmod u=rwX,g=rX,o= /home/_portzap/
-        printok "_portzap user created"
-    fi
+    "${libexec}"/setup/setup-user
     "${libexec}"/setup/setup-doas
 else
     printerr "you must be root"

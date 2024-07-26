@@ -1,5 +1,10 @@
 v?.?.?
 
+| Add libexec/portzap/setup/setup-user
+  Move the code that handles the creation of the '_portzap'
+  user from bin/setup-portzap to the libexec/portzap/setup/
+  directory
+
 | Set "diff.renameLimit" to unlimited
   After this change, portzap forwards "-l0" to "git diff"
 
