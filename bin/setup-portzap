@@ -8,6 +8,7 @@ libexec="${localbase}"/libexec/portzap
 
 ##
 # functions
+# shellcheck source=/dev/null
 . "${libexec}"/functions/print.sh
 
 ##

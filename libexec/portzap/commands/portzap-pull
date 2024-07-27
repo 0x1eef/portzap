@@ -10,6 +10,7 @@ gitdir=$1
 
 ##
 # functions
+# shellcheck source=/dev/null
 . "${libexec}"/functions/print.sh
 
 ##

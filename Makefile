@@ -17,4 +17,4 @@ deinstall:
 	rm -rf $(SHAREDIR)
 
 shellcheck:
-	find bin/ libexec/ -type f -exec shellcheck "{}" \;
+	find bin/ libexec/ -type f -exec shellcheck -x "{}" \;

@@ -9,6 +9,7 @@ user="_portzap"
 
 ##
 # functions
+# shellcheck source=/dev/null
 . "${libexec}"/functions/print.sh
 
 ##
@@ -16,7 +17,7 @@ user="_portzap"
 if id -u "${user}" > /dev/null 2>&1; then
    printok "${user} user exists"
 else
-    pw useradd
+    pw useradd \
        -n "${user}" \
        -c "portzap user" \
        -m \

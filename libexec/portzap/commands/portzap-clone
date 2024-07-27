@@ -12,6 +12,7 @@ branch=$3
 
 ##
 # functions
+# shellcheck source=/dev/null
 . "${libexec}"/functions/print.sh
 
 ##

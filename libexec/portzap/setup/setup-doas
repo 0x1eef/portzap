@@ -9,6 +9,7 @@ sharedir="${localbase}"/share/portzap
 
 ##
 # functions
+# shellcheck source=/dev/null
 . "${libexec}"/functions/print.sh
 
 ##

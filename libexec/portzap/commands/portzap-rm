@@ -10,6 +10,7 @@ installdir=$2
 
 ##
 # functions
+# shellcheck source=/dev/null
 . "${libexec}"/functions/print.sh
 
 erase()
