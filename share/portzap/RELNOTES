@@ -1,21 +1,19 @@
-v?.?.?
+* v1.0.0
 
-| Add libexec/portzap/setup/setup-user
-  Move the code that handles the creation of the "_portzap"
-  user from bin/setup-portzap to the libexec/portzap/setup/
-  directory
+** Add libexec/portzap/setup/setup-user
+setup-user sets up the '_portzap' user and environment
 
-| Set "diff.renameLimit" to unlimited
-  After this change, portzap forwards "-l0" to "git diff"
+** Remove git-diff limit
+Remove file rename limit from git-diff
 
-| Replace utils/gitexec with utils/git/run
-  After this change, we talk to git via utils/git/run
+** Replace utils/gitexec with utils/git/run
+Communicate with git via utils/git/run
 
-| Add utils/git
-  A dedicated directory for git-related scripts
+** Add utils/git
+A dedicated directory for git-related scripts
 
-| Remove "set -x"
-  After this change, portzap emits less output
+** Remove "set -x"
+Emit less output
 
-| Remove scripts
-  Remove "utils/printok", "utils/printerr", and "utils/git-rev"
+** Remove scripts
+Remove utils/printok, utils/printerr, utils/git-rev
