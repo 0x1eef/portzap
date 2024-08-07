@@ -8,7 +8,7 @@ can be installed into `/usr/ports/` by root.
 
 ## Examples
 
-#### CLI: setup-portzap
+### CLI: setup-portzap
 
 `setup-portzap` should be run after installing portzap for
 the first time. <br> There is no harm in running `setup-portzap`
@@ -18,37 +18,37 @@ multiple times:
     # This command requires root privileges
     root@localhost# setup-portzap
 
-#### CLI: portzap
+### CLI: group
 
-    # Clone the HardenedBSD ports tree into /home/_portzap/ports/
-    # This command is delegated to the '_portzap' user and
-    # limited to members of the '_portzap' group
-    user@localhost$ portzap clone
+The following commands are delegated to the `_portzap` user and
+restricted to members of the `_portzap` group. The restrictions
+are enforced by portzap and to a lesser extent by 
+[doas(1)](https://man.openbsd.org/doas):
 
-    # Pull updates into /home/_portzap/ports/
-    # This command is delegated to the '_portzap' user and
-    # limited to members of the '_portzap' group
-    user@localhost$ portzap pull
+**portzap clone** <br>
+Clone the HardenedBSD ports tree into `/home/_portzap/ports/` <br>
 
-    # Checkout a branch other than the default: hardenedbsd/main
-    # This command is delegated to the '_portzap' user and
-    # limited to members of the '_portzap' group
-    user@localhost$ portzap checkout freebsd/main
+**portzap pull** <br>
+Pull updates into `/home/_portzap/ports/` <br>
 
-    # Run /bin/sh within /home/_portzap/ports/
-    # This command is delegated to the '_portzap' user and
-    # limited to members of the '_portzap' group
-    user@localhost$ portzap sh
+**portzap checkout** <br>
+Checkout a branch other than the default: `hardenedbsd/main` <br>
 
-    # Remove the contents of /usr/ports/ and /home/_portzap/ports/
-    # This command requires root privileges
-    root@localhost# portzap rm
+**portzap sh** <br>
+Run `/bin/sh` within `/home/_portzap/ports/` <br>
 
-    # Install /home/_portzap/ports/ into /usr/ports/
-    # This command requires root privileges
-    root@localhost# portzap install
+### CLI: superuser
 
-#### Environment
+The following commands are restricted to root. <br>
+The restrictions are enforced by portzap:
+
+**portzap rm** <br>
+Remove the contents of `/usr/ports/` and `/home/_portzap/ports/` <br>
+
+**portzap install** <br>
+Install `/home/_portzap/ports/` into `/usr/ports/` <br>
+
+## Environment
 
 * __$PORTZAP\_CLONEURL__ <br>
   The URL of a git repository <br>
