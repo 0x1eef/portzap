@@ -38,15 +38,21 @@ Checkout a branch other than the default: hardenedbsd/main
 .br
 This command is delegated to the '_portzap' user
 .Pp
-.Nm portzap install
+.Nm portzap sh
 .br
-Install /home/_portzap/ports/ into /usr/ports/
+Run /bin/sh within /home/_portzap/ports/
 .br
-This command requires root privileges
+This command is delegated to the '_portzap' user
 .Pp
 .Nm portzap rm
 .br
 Remove the contents of /usr/ports/ and /home/_portzap/ports/
+.br
+This command requires root privileges
+.Pp
+.Nm portzap install
+.br
+Install /home/_portzap/ports/ into /usr/ports/
 .br
 This command requires root privileges
 .br

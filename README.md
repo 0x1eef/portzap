@@ -32,13 +32,17 @@ multiple times:
     # This command is delegated to the '_portzap' user
     user@localhost$ portzap checkout freebsd/main
 
-    # Install /home/_portzap/ports/ into /usr/ports/
-    # This command requires root privileges
-    root@localhost# portzap install
+    # Run /bin/sh within /home/_portzap/ports/
+    # This command is delegated to the '_portzap' user
+    user@localhost$ portzap sh
 
     # Remove the contents of /usr/ports/ and /home/_portzap/ports/
     # This command requires root privileges
     root@localhost# portzap rm
+
+    # Install /home/_portzap/ports/ into /usr/ports/
+    # This command requires root privileges
+    root@localhost# portzap install
 
 #### Environment
 

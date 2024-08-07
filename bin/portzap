@@ -54,6 +54,10 @@ case $1 in
         require_dependency "git doas"
         "${libexec}"/commands/portzap-checkout "${gitdir}" "${2}"
         ;;
+     "sh")
+        require_dependency "doas"
+        "${libexec}"/commands/portzap-sh "${gitdir}"
+        ;;
     "rm")
         "${libexec}"/commands/portzap-rm "${gitdir}" "${installdir}"
         ;;
@@ -68,6 +72,7 @@ case $1 in
         printf "  clone       Clone the hardenedbsd ports tree\n"
         printf "  pull        Pull updates from the hardenedbsd ports tree\n"
         printf "  checkout    Checkout a branch other than the default\n"
+        printf "  sh          Run /bin/sh within /home/_portzap/ports/\n"
         printf "  rm          Remove /usr/ports/ and /home/_portzap/ports/\n"
         printf "  install     Install the ports tree into /usr/ports/\n"
         ;;
