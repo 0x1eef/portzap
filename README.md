@@ -21,19 +21,23 @@ multiple times:
 #### CLI: portzap
 
     # Clone the HardenedBSD ports tree into /home/_portzap/ports/
-    # This command is delegated to the '_portzap' user
+    # This command is delegated to the '_portzap' user and
+    # limited to members of the '_portzap' group
     user@localhost$ portzap clone
 
     # Pull updates into /home/_portzap/ports/
-    # This command is delegated to the '_portzap' user
+    # This command is delegated to the '_portzap' user and
+    # limited to members of the '_portzap' group
     user@localhost$ portzap pull
 
     # Checkout a branch other than the default: hardenedbsd/main
-    # This command is delegated to the '_portzap' user
+    # This command is delegated to the '_portzap' user and
+    # limited to members of the '_portzap' group
     user@localhost$ portzap checkout freebsd/main
 
     # Run /bin/sh within /home/_portzap/ports/
-    # This command is delegated to the '_portzap' user
+    # This command is delegated to the '_portzap' user and
+    # limited to members of the '_portzap' group
     user@localhost$ portzap sh
 
     # Remove the contents of /usr/ports/ and /home/_portzap/ports/
