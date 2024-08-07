@@ -6,7 +6,7 @@ The copy of the ports tree is maintained by members of
 the `_portzap` group, and the copy of the ports tree
 can be installed into `/usr/ports/` by root.
 
-## Examples
+## CLI
 
 ### CLI: setup-portzap
 
@@ -25,16 +25,16 @@ restricted to members of the `_portzap` group. The restrictions
 are enforced by portzap and to a lesser extent by 
 [doas(1)](https://man.openbsd.org/doas):
 
-**portzap clone** <br>
+* **portzap clone** <br>
 Clone the HardenedBSD ports tree into `/home/_portzap/ports/` <br>
 
-**portzap pull** <br>
+* **portzap pull** <br>
 Pull updates into `/home/_portzap/ports/` <br>
 
-**portzap checkout** <br>
+* **portzap checkout** <br>
 Checkout a branch other than the default: `hardenedbsd/main` <br>
 
-**portzap sh** <br>
+* **portzap sh** <br>
 Run `/bin/sh` within `/home/_portzap/ports/` <br>
 
 ### CLI: superuser
@@ -42,10 +42,10 @@ Run `/bin/sh` within `/home/_portzap/ports/` <br>
 The following commands are restricted to root. <br>
 The restrictions are enforced by portzap:
 
-**portzap rm** <br>
+* **portzap rm** <br>
 Remove the contents of `/usr/ports/` and `/home/_portzap/ports/` <br>
 
-**portzap install** <br>
+* **portzap install** <br>
 Install `/home/_portzap/ports/` into `/usr/ports/` <br>
 
 ## Environment
@@ -60,15 +60,11 @@ Install `/home/_portzap/ports/` into `/usr/ports/` <br>
 
 ## Install
 
-#### Package
 
 portzap is available
-[from the HardenedBSD ports tree](https://git.HardenedBSD.org/HardenedBSD/ports/-/tree/HardenedBSD/main/hardenedbsd/portzap). <br>
-`pkg install portzap` should work too but expect slower updates.
-
-#### Git
-
-The most recent version of portzap can be installed via git:
+[from the HardenedBSD ports tree](https://git.HardenedBSD.org/HardenedBSD/ports/-/tree/HardenedBSD/main/hardenedbsd/portzap). 
+`pkg install portzap` should work too but expect slower updates. The most 
+recent version of portzap can be installed via git:
 
     # Clone
     user@localhost$ git clone https://git.hardenedbsd.org/0x1eef/portzap.git
