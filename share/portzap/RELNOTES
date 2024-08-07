@@ -1,3 +1,8 @@
+* vNEXT
+
+** Add libexec/portzap/commands/portzap-sh
+Runs /bin/sh within /home/_portzap/ports as the '_portzap' user
+
 * v1.0.0
 
 ** Add libexec/portzap/setup/setup-user
