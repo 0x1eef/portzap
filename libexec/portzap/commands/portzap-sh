@@ -20,13 +20,14 @@ if [ "$(id -u)" = "0" ]; then
     exit 1
 fi
 
+if ! "${libexec}"/utils/isportzap-member; then
+   printerr "$(id -un) is not a member of _portzap"
+   exit 1
+fi
+
 if [ ! -e "${gitdir}" ]; then
     printerr "try 'portzap clone' instead"
     exit 1
-fi
-
-if ! "${libexec}"/utils/isportzap-member; then
-   printerr "$(id -un) is not a member of _portzap"
 fi
 
 cd "${gitdir}"
