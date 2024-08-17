@@ -16,9 +16,12 @@ sharedir="${localbase}"/share/portzap
 # main
 src="${sharedir}"/doas.conf
 dest="${localbase}"/etc/doas.conf
-if grep -Fq "$(cat "${src}")" "${dest}"; then
-    printok "doas.conf is up to date"
-else
+cat "${src}" |
+while read -r line; do
+    if grep "${line}" "${dest}" > /dev/null 2>&1; then
+	continue
+    fi
     cat "${src}" >> "${dest}"
-    printok "${dest} updated"
-fi
+    printok "modified ${dest}"
+    break
+done

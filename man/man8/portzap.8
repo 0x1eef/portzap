@@ -5,6 +5,8 @@
 .Nm portzap
 .Nd manages a copy of the HardenedBSD ports tree
 .Sh SYNOPSIS
+.Nm portzap setup
+.Nm portzap teardown
 .Nm portzap clone
 .Nm portzap pull
 .Nm portzap checkout
@@ -16,7 +18,22 @@ manages a copy of the HardenedBSD ports tree.
 The copy of the ports tree is maintained by members of
 the '_portzap' group, and the copy of the ports tree
 can be installed into /usr/ports/ by root.
-.Sh EXAMPLES
+.Sh SETUP
+.sp
+.sp
+.Nm portzap setup
+.br
+Setup portzap for the first time
+.br
+This command requires root privileges
+.Pp
+.Nm portzap teardown
+.br
+Reverse the changes made by 'portzap setup'
+.br
+This command requires root privileges
+.Pp
+.Sh GENERAL
 .sp
 .sp
 .Nm portzap clone

@@ -1,0 +1,25 @@
+#!/bin/sh
+set -e
+
+##
+# variables
+localbase=${LOCALBASE:-$(realpath "$(dirname "$0")"/../../..)}
+libexec="${localbase}"/libexec/portzap
+user=_portzap
+
+##
+# functions
+# shellcheck source=/dev/null
+. "${libexec}"/functions/print.sh
+
+##
+# main
+if [ "$(id -u)" = "0" ]; then
+    pw userdel  -n "${user}" || true
+    pw groupdel -n "${user}" || true
+    rm -rf /home/"${user}"/  || true
+    printok "done"
+else
+    printerr "you must be root"
+    exit 1
+fi

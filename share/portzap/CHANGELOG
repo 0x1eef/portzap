@@ -1,5 +1,11 @@
 * vNEXT
 
+** Add 'setup/setup-doas' improvements
+More likely to do what's expected, but blind spots still exist
+
+** Add 'portzap setup', 'portzap teardown'
+Replaces and enhances 'setup-portzap'
+
 ** Add libexec/portzap/commands/portzap-sh
 Runs /bin/sh within /home/_portzap/ports as the '_portzap' user
 

@@ -42,6 +42,12 @@ while [ "${i}" -le "$#" ]; do
 done
 
 case $1 in
+    "setup")
+	"${libexec}"/commands/portzap-setup
+	;;
+    "teardown")
+	"${libexec}"/commands/portzap-teardown
+	;;
     "clone")
         require_dependency "git doas"
         "${libexec}"/commands/portzap-clone "${giturl}" "${gitdir}" "${defaultbranch}"
@@ -68,7 +74,11 @@ case $1 in
     *)
         printf "Usage: portzap COMMAND [OPTIONS]\n"
         printf "\n"
-        printf "Commands:\n"
+        printf "Setup\n"
+        printf "  setup       Setup portzap for the first time\n"
+        printf "  teardown    Reverse the changes made by 'portzap setup'\n"
+        printf "\n"
+        printf "General\n"
         printf "  clone       Clone the hardenedbsd ports tree\n"
         printf "  pull        Pull updates from the hardenedbsd ports tree\n"
         printf "  checkout    Checkout a branch other than the default\n"

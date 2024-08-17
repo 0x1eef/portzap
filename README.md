@@ -8,15 +8,19 @@ can be installed into `/usr/ports/` by root.
 
 ## CLI
 
-### CLI: setup-portzap
+### CLI: setup
 
-`setup-portzap` should be run after installing portzap for
-the first time. <br> There is no harm in running `setup-portzap`
+`portzap setup` should be run after installing portzap for
+the first time. <br> There is no harm in running `portzap setup`
 multiple times:
 
     # Add the '_portzap' user, group and home directory
     # This command requires root privileges
-    root@localhost# setup-portzap
+    root@localhost# portzap setup
+
+    # Reverse the changes made by 'portzap setup'
+    # This command requires root privileges
+    root@localhost# portzap teardown
 
 ### CLI: group
 
@@ -72,7 +76,7 @@ recent version of portzap can be installed via git:
 
     # Install
     root@localhost# make install
-    root@localhost# setup-portzap
+    root@localhost# portzap setup
 
     # Add user to '_portzap' group
     root@localhost# pw groupmod -n _portzap -m <user>
