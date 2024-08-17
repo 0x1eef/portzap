@@ -43,11 +43,11 @@ done
 
 case $1 in
     "setup")
-	"${libexec}"/commands/portzap-setup
-	;;
+        "${libexec}"/commands/portzap-setup
+        ;;
     "teardown")
-	"${libexec}"/commands/portzap-teardown
-	;;
+        "${libexec}"/commands/portzap-teardown
+        ;;
     "clone")
         require_dependency "git doas"
         "${libexec}"/commands/portzap-clone "${giturl}" "${gitdir}" "${defaultbranch}"
