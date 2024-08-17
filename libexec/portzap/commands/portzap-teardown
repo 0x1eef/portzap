@@ -15,9 +15,9 @@ user=_portzap
 ##
 # main
 if [ "$(id -u)" = "0" ]; then
-    pw userdel  -n "${user}" || true
-    pw groupdel -n "${user}" || true
-    rm -rf /home/"${user}"/  || true
+    pw userdel  -n "${user}"  || true
+    pw groupdel -n "${user}"  || true
+    rm -rf /home/"${user:?}"/ || true
     printok "done"
 else
     printerr "you must be root"
