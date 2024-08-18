@@ -16,6 +16,7 @@ libexec="${localbase}"/libexec/portzap
 if [ "$(id -u)" = "0" ]; then
     "${libexec}"/setup/setup-user
     "${libexec}"/setup/setup-doas
+    printok "setup complete"
 else
     printerr "you must be root"
     exit 1
