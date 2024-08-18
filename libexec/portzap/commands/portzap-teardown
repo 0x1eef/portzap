@@ -15,10 +15,10 @@ user=_portzap
 ##
 # main
 if [ "$(id -u)" = "0" ]; then
-    pw userdel  -n "${user}"  || true
-    pw groupdel -n "${user}"  || true
-    rm -rf /home/"${user:?}"/ || true
-    printok "done"
+    pw userdel  -n "${user}"  > /dev/null 2>&1 || true
+    pw groupdel -n "${user}"  > /dev/null 2>&1 || true
+    rm -rf /home/"${user:?}"/ > /dev/null 2>&1 || true
+    printok "teardown complete"
 else
     printerr "you must be root"
     exit 1
