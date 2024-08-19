@@ -1,0 +1,14 @@
+#!/bin/sh
+set -e
+
+##
+# variables
+mode=u=rwX,g=rX,o=
+
+##
+# main
+install -o root \
+        -g _portzap \
+        -m "${mode}" \
+        -v \
+        "${@}"

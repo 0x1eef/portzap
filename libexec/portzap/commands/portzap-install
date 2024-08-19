@@ -5,7 +5,6 @@ set -e
 # variables
 localbase=${LOCALBASE:-$(realpath "$(dirname "$0")"/../../..)}
 libexec="${localbase}"/libexec/portzap
-mode=u=rwX,g=rX,o=
 git="${libexec}"/utils/git/run
 gitdir=$1
 installdir=$2
@@ -16,51 +15,6 @@ revfile=$3
 # shellcheck source=/dev/null
 . "${libexec}"/functions/print.sh
 
-perform_update()
-{
-    rev=$(cat "${revfile}")
-    add=$("${libexec}"/utils/git/get-changed-files "${gitdir}" "${rev}")
-    del=$("${libexec}"/utils/git/get-removed-files "${gitdir}" "${rev}")
-    for file in ${del}; do
-        target="${installdir}/${file}"
-        parent=$(dirname "${target}")
-        echo "rm ${target}"
-        rm -f "${target}"
-        find "${parent}" -type d -maxdepth 0 -empty -delete
-    done
-    for file in ${add}; do
-        target="${installdir}/${file}"
-        parent=$(dirname "${target}")
-        parents=""
-        while [ ! -e "${parent}" ]; do
-            parents="${parent} ${parents}"
-            parent=$(dirname "${parent}")
-        done
-        for dir in ${parents}; do
-            run_install "-d" "${dir}"
-        done
-        run_install "${file}" "${target}"
-    done
-}
-
-perform_install()
-{
-    find -s . \
-         -maxdepth 1 \
-         ! -name "." \
-         ! -name ".git" \
-         ! -name ".gitignore" \
-         ! -name ".hooks" \
-         ! -name ".arcconfig" \
-         -exec cp -Rpv {} "${installdir}" \;
-    chown -Rv root "${installdir}"
-}
-
-run_install()
-{
-    install -o root -g _portzap -m "${mode}" -v "${@}"
-}
-
 ##
 # main
 if [ "$(id -u)" != "0" ]; then
@@ -68,14 +22,34 @@ if [ "$(id -u)" != "0" ]; then
     exit 1
 fi
 
-umask "${mode}"
 cd "${gitdir}"
-run_install "-d" "${installdir}"
-chmod ${mode} "${installdir}"
 if [ -e "${revfile}" ]; then
-    perform_update
+    ##
+    # install update
+    rev=$(cat "${revfile}")
+    "${libexec}"/utils/install/run -d "${installdir}"
+    "${libexec}"/utils/install/update-deleted-files "${gitdir}" "${installdir}" "${rev}"
+    "${libexec}"/utils/install/update-changed-files "${gitdir}" "${installdir}" "${rev}"
 else
-    perform_install
+    ##
+    # install from scratch
+    umask u=rwX,g=rX,o=
+    "${libexec}"/utils/install/run -d "${installdir}"
+    find -s . \
+         -maxdepth 1 \
+         ! -name "." \
+         ! -name ".git" \
+         ! -name ".github" \
+         ! -name ".gitignore" \
+         ! -name ".gitattributes" \
+         ! -name ".git-blame-ignore-revs" \
+         ! -name ".cirrus-ci" \
+         ! -name ".cirrus.yml" \
+         ! -name ".gitignore" \
+         ! -name ".arclint" \
+         ! -name ".arcconfig" \
+         -exec cp -Rpv {} "${installdir}" \;
+    chown -Rv root "${installdir}"
 fi
 "${git}" rev-parse HEAD > "${revfile}"
 printok "install complete"
