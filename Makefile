@@ -10,9 +10,8 @@ install:
 	@find share/ man/ -type f -exec install -v -m 0644 "{}" $(PREFIX)/"{}" \;
 
 deinstall:
-	rm $(BINDIR)/portzap
-	rm $(BINDIR)/setup-portzap
-	rm $(MANDIR)/portzap.8
+	rm -rf $(BINDIR)/portzap
+	rm -rf $(MANDIR)/portzap.8
 	rm -rf $(LIBEXECDIR)
 	rm -rf $(SHAREDIR)
 

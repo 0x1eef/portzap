@@ -1,5 +1,9 @@
 * vNEXT
 
+** Break up 'portzap-install' into multiple files
+'libexec/portzap/utils/install/' contains files that cover both
+a fresh install and applying an update
+
 ** Add 'setup/setup-doas' improvements
 More likely to do what's expected, but blind spots still exist
 

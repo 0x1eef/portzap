@@ -1,0 +1,28 @@
+#!/bin/sh
+set -e
+
+##
+# variables
+localbase=${LOCALBASE:-$(realpath "$(dirname "$0")"/../../../..)}
+libexec="${localbase}"/libexec/portzap
+gitdir=$1
+installdir=$2
+rev=$3
+
+##
+# main
+cd "${gitdir}"
+files=$("${libexec}"/utils/git/get-changed-files "${gitdir}" "${rev}")
+for file in ${files}; do
+    target="${installdir}/${file}"
+    parent=$(dirname "${target}")
+    parents=""
+    while [ ! -e "${parent}" ]; do
+        parents="${parent} ${parents}"
+        parent=$(dirname "${parent}")
+    done
+    for dir in ${parents}; do
+        "${libexec}"/utils/install/run -d "${dir}"
+    done
+    "${libexec}"/utils/install/run "${file}" "${target}"
+done
