@@ -18,8 +18,9 @@ revfile="${installdir}"/.portzap
 
 require_dependency()
 {
-    deps=$1
-    for dep in $deps; do
+    local dep
+    for i in $(seq 1 ${#}); do
+        eval "dep=\$${i}"
         if ! which -s "$dep"; then
             printerr "${dep} wasn't found on \$PATH"
             exit 1
@@ -49,26 +50,26 @@ case $1 in
         "${libexec}"/commands/portzap-teardown
         ;;
     "clone")
-        require_dependency "git doas"
+        require_dependency git doas
         "${libexec}"/commands/portzap-clone "${giturl}" "${gitdir}" "${defaultbranch}"
         ;;
     "pull")
-        require_dependency "git doas"
+        require_dependency git doas
         "${libexec}"/commands/portzap-pull "${gitdir}"
         ;;
     "checkout")
-        require_dependency "git doas"
+        require_dependency git doas
         "${libexec}"/commands/portzap-checkout "${gitdir}" "${2}"
         ;;
      "sh")
-        require_dependency "doas"
+        require_dependency doas
         "${libexec}"/commands/portzap-sh "${gitdir}"
         ;;
     "rm")
         "${libexec}"/commands/portzap-rm "${gitdir}" "${installdir}"
         ;;
     "install")
-        require_dependency "git doas"
+        require_dependency git doas
         "${libexec}"/commands/portzap-install "${gitdir}" "${installdir}" "${revfile}"
         ;;
     *)
