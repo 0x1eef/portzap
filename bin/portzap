@@ -9,7 +9,7 @@ gitdir="/home/_portzap/ports"
 giturl="${PORTZAP_CLONEURL:-https://git.hardenedbsd.org/hardenedbsd/ports.git}"
 installdir="${PORTZAP_INSTALLDIR:-/usr/ports}"
 defaultbranch="hardenedbsd/main"
-revfile="${installdir}"/.portzap
+commitfile="${installdir}"/.portzap
 
 ##
 # functions
@@ -71,7 +71,7 @@ case $1 in
         ;;
     "install")
         require_dependency git doas
-        "${libexec}"/commands/portzap-install "${gitdir}" "${installdir}" "${revfile}"
+        "${libexec}"/commands/portzap-install "${gitdir}" "${installdir}" "${commitfile}"
         ;;
     *)
         printf "Usage: portzap COMMAND [OPTIONS]\n"
