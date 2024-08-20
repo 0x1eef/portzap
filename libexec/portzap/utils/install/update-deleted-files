@@ -5,14 +5,14 @@ set -e
 # variables
 localbase=${LOCALBASE:-$(realpath "$(dirname "$0")"/../../../..)}
 libexec="${localbase}"/libexec/portzap
-gitdir=$1
+repodir=$1
 installdir=$2
 rev=$3
 
 ##
 # main
-cd "${gitdir}"
-files=$("${libexec}"/utils/git/get-removed-files "${gitdir}" "${rev}")
+cd "${repodir}"
+files=$("${libexec}"/utils/git/get-removed-files "${repodir}" "${rev}")
 for file in ${files}; do
     target="${installdir}"/"${file}"
     parent=$(dirname "${target}")

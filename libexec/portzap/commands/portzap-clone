@@ -6,8 +6,8 @@ set -e
 localbase=${LOCALBASE:-$(realpath "$(dirname "$0")"/../../..)}
 libexec="${localbase}"/libexec/portzap
 git="${libexec}"/utils/git/run
-giturl=$1
-gitdir=$2
+repourl=$1
+repodir=$2
 branch=$3
 
 ##
@@ -27,13 +27,13 @@ if ! "${libexec}"/utils/isportzap-member; then
     exit 1
 fi
 
-if [ -e "${gitdir}/.git" ]; then
+if [ -e "${repodir}/.git" ]; then
     printerr "try 'portzap pull' instead"
     exit 1
 fi
 
-"${git}" clone "${giturl}" "${gitdir}"
-cd "${gitdir}"
+"${git}" clone "${repourl}" "${repodir}"
+cd "${repodir}"
 "${git}" config core.filemode off
 "${git}" checkout -t origin/"${branch}" > /dev/null 2>&1 || true
 printok "clone complete"

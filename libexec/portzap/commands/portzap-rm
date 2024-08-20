@@ -5,7 +5,7 @@ set -e
 # variables
 localbase=${LOCALBASE:-$(realpath "$(dirname "$0")"/../../..)}
 libexec="${localbase}"/libexec/portzap
-gitdir=$1
+repodir=$1
 installdir=$2
 
 ##
@@ -34,19 +34,19 @@ if [ "$(id -u)" != "0" ]; then
     exit 1
 fi
 
-printf "1 Remove the contents of %s\n" "${gitdir}"
+printf "1 Remove the contents of %s\n" "${repodir}"
 printf "2 Remove the contents of %s\n" "${installdir}"
-printf "3 Remove the contents of both (%s and %s)\n" "${gitdir}" "${installdir}"
+printf "3 Remove the contents of both (%s and %s)\n" "${repodir}" "${installdir}"
 printf "4 Do nothing\n"
 printf "1-4: "
 while true; do
     read -r r
     if [ "${r}" = "1" ]; then
-        erase "${gitdir}"
+        erase "${repodir}"
     elif [ "${r}" = "2" ]; then
         erase "${installdir}"
     elif [ "${r}" = "3" ]; then
-        erase "${gitdir}"
+        erase "${repodir}"
         erase "${installdir}"
     elif [ "${r}" = "4" ]; then
         break

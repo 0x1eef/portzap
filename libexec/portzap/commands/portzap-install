@@ -7,7 +7,7 @@ localbase=${LOCALBASE:-$(realpath "$(dirname "$0")"/../../..)}
 libexec="${localbase}"/libexec/portzap
 git="${libexec}"/utils/git/run
 mask=$("${libexec}"/utils/get-umask)
-gitdir=$1
+repodir=$1
 installdir=$2
 revfile=$3
 
@@ -23,14 +23,14 @@ if [ "$(id -u)" != "0" ]; then
     exit 1
 fi
 
-cd "${gitdir}"
+cd "${repodir}"
 if [ -e "${revfile}" ]; then
     ##
     # install update
     rev=$(cat "${revfile}")
     "${libexec}"/utils/install/run -d "${installdir}"
-    "${libexec}"/utils/install/update-deleted-files "${gitdir}" "${installdir}" "${rev}"
-    "${libexec}"/utils/install/update-changed-files "${gitdir}" "${installdir}" "${rev}"
+    "${libexec}"/utils/install/update-deleted-files "${repodir}" "${installdir}" "${rev}"
+    "${libexec}"/utils/install/update-changed-files "${repodir}" "${installdir}" "${rev}"
 else
     ##
     # install from scratch

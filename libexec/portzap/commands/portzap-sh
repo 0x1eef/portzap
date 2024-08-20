@@ -6,7 +6,7 @@ set -e
 localbase=${LOCALBASE:-$(realpath "$(dirname "$0")"/../../..)}
 libexec="${localbase}"/libexec/portzap
 user=_portzap
-gitdir="${1}"
+repodir="${1}"
 
 ##
 # functions
@@ -25,12 +25,12 @@ if ! "${libexec}"/utils/isportzap-member; then
    exit 1
 fi
 
-if [ ! -e "${gitdir}" ]; then
+if [ ! -e "${repodir}" ]; then
     printerr "try 'portzap clone' instead"
     exit 1
 fi
 
-cd "${gitdir}"
+cd "${repodir}"
 doas -n \
      -u "${user}" \
      /bin/sh
