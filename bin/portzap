@@ -18,6 +18,7 @@ revfile="${installdir}"/.portzap
 
 require_dependency()
 {
+    # shellcheck disable=SC3043
     local dep
     for i in $(seq 1 ${#}); do
         eval "dep=\$${i}"
