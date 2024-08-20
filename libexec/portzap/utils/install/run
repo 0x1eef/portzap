@@ -3,12 +3,14 @@ set -e
 
 ##
 # variables
-mode=u=rwX,g=rX,o=
+localbase=${LOCALBASE:-$(realpath "$(dirname "$0")"/../../../..)}
+libexec="${localbase}"/libexec/portzap
+mask=$("${libexec}"/utils/get-umask)
 
 ##
 # main
 install -o root \
         -g _portzap \
-        -m "${mode}" \
+        -m "${mask}" \
         -v \
         "${@}"

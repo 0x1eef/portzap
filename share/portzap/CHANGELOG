@@ -1,5 +1,9 @@
 * vNEXT
 
+** Add 'libexec/portzap/utils/get-umask'
+Add a single source of truth for the mask given to umask
+by git and portzap-install
+
 ** Break up 'portzap-install' into multiple files
 'libexec/portzap/utils/install/' contains files that cover both
 a fresh install and applying an update

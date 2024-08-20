@@ -6,6 +6,7 @@ set -e
 localbase=${LOCALBASE:-$(realpath "$(dirname "$0")"/../../..)}
 libexec="${localbase}"/libexec/portzap
 git="${libexec}"/utils/git/run
+mask=$("${libexec}"/utils/get-umask)
 gitdir=$1
 installdir=$2
 revfile=$3
@@ -33,7 +34,7 @@ if [ -e "${revfile}" ]; then
 else
     ##
     # install from scratch
-    umask u=rwX,g=rX,o=
+    umask "${mask}"
     "${libexec}"/utils/install/run -d "${installdir}"
     find -s . \
          -maxdepth 1 \
