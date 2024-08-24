@@ -1,38 +1,40 @@
-* vNEXT
+# -*- mode: org -*-
 
-** Add 'libexec/portzap/utils/get-umask'
+* v1.1.0
+
+**** Add ~libexec/portzap/utils/get-umask~
 Add a single source of truth for the mask given to umask
 by git and portzap-install
 
-** Break up 'portzap-install' into multiple files
-'libexec/portzap/utils/install/' contains files that cover both
+**** Break up ~portzap-install~ into multiple files
+~libexec/portzap/utils/install/~ contains files that cover both
 a fresh install and applying an update
 
-** Add 'setup/setup-doas' improvements
+**** Add ~setup/setup-doas~ improvements
 More likely to do what's expected, but blind spots still exist
 
-** Add 'portzap setup', 'portzap teardown'
+**** Add ~portzap setup~, ~portzap teardown~
 Replaces and enhances 'setup-portzap'
 
-** Add libexec/portzap/commands/portzap-sh
-Runs /bin/sh within /home/_portzap/ports as the '_portzap' user
+**** Add ~libexec/portzap/commands/portzap-sh~
+Runs ~/bin/sh~ within ~/home/_portzap/ports~ as the ~_portzap~ user
 
 * v1.0.0
 
-** Add libexec/portzap/setup/setup-user
-setup-user sets up the '_portzap' user and environment
+**** Add ~libexec/portzap/setup/setup-user~
+~setup-user~ sets up the ~portzap~ user and environment
 
-** Remove git-diff limit
+**** Remove git-diff limit
 Remove file rename limit from git-diff
 
-** Replace utils/gitexec with utils/git/run
-Communicate with git via utils/git/run
+**** Replace ~utils/gitexec~ with ~utils/git/run~
+Communicate with git via ~utils/git/run~
 
-** Add utils/git
+**** Add ~utils/git~
 A dedicated directory for git-related scripts
 
-** Remove "set -x"
+**** Remove ~set -x~
 Emit less output
 
-** Remove scripts
-Remove utils/printok, utils/printerr, utils/git-rev
+**** Remove scripts
+Remove ~utils/printok~, ~utils/printerr~, ~utils/git-rev~
