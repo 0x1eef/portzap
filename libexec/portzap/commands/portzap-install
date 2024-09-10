@@ -29,8 +29,8 @@ if [ -e "${commitfile}" ]; then
     # install update
     commit=$(cat "${commitfile}")
     "${libexec}"/scripts/install -d "${installdir}"
-    "${libexec}"/scripts/install/update-deleted-files "${repodir}" "${installdir}" "${commit}"
-    "${libexec}"/scripts/install/update-changed-files "${repodir}" "${installdir}" "${commit}"
+    "${libexec}"/scripts/update-deleted-files "${repodir}" "${installdir}" "${commit}"
+    "${libexec}"/scripts/update-changed-files "${repodir}" "${installdir}" "${commit}"
 else
     ##
     # install from scratch
