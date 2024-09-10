@@ -1,5 +1,21 @@
 # -*- mode: org -*-
 
+* vNEXT
+
+**** Address ~libexec/portzap/scripts/setup-doas~ bug
+This change addresses a bug in ~setup-doas~ that could hang
+the ~portzap setup~ command
+
+**** Collapse ~libexec/portzap/scripts~
+This change does not try to organize script directories that
+go beyond ~libexec/portzap/scripts~
+
+**** Add ~libexec/portzap/scripts/setup~
+This new directory replaces what was formerly known as ~libexec/portzap/setup~
+
+**** Add ~libexec/portzap/scripts~
+This new directory replaces what was formerly known as ~libexec/portzap/utils~
+
 * v1.1.0
 
 **** Add ~libexec/portzap/utils/get-umask~

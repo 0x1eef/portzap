@@ -3,9 +3,9 @@ set -e
 
 ##
 # variables
-localbase=${LOCALBASE:-$(realpath "$(dirname "$0")"/../../../..)}
+localbase=${LOCALBASE:-$(realpath "$(dirname "$0")"/../../..)}
 libexec="${localbase}"/libexec/portzap
-git="${libexec}"/utils/git/run
+git="${libexec}"/scripts/git
 repodir=$1
 commit=$2
 

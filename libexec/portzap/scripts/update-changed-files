@@ -3,7 +3,7 @@ set -e
 
 ##
 # variables
-localbase=${LOCALBASE:-$(realpath "$(dirname "$0")"/../../../..)}
+localbase=${LOCALBASE:-$(realpath "$(dirname "$0")"/../../..)}
 libexec="${localbase}"/libexec/portzap
 repodir=$1
 installdir=$2
@@ -12,7 +12,7 @@ commit=$3
 ##
 # main
 cd "${repodir}"
-files=$("${libexec}"/utils/git/get-changed-files "${repodir}" "${commit}")
+files=$("${libexec}"/scripts/git-get-changed-files "${repodir}" "${commit}")
 for file in ${files}; do
     target="${installdir}/${file}"
     parent=$(dirname "${target}")
@@ -22,7 +22,7 @@ for file in ${files}; do
         parent=$(dirname "${parent}")
     done
     for dir in ${parents}; do
-        "${libexec}"/utils/install/run -d "${dir}"
+        "${libexec}"/scripts/install -d "${dir}"
     done
-    "${libexec}"/utils/install/run "${file}" "${target}"
+    "${libexec}"/scripts/install "${file}" "${target}"
 done

@@ -3,7 +3,7 @@ set -e
 
 ##
 # variables
-localbase=${LOCALBASE:-$(realpath "$(dirname "$0")"/../../../..)}
+localbase=${LOCALBASE:-$(realpath "$(dirname "$0")"/../../..)}
 libexec="${localbase}"/libexec/portzap
 repodir=$1
 installdir=$2
@@ -12,7 +12,7 @@ commit=$3
 ##
 # main
 cd "${repodir}"
-files=$("${libexec}"/utils/git/get-removed-files "${repodir}" "${commit}")
+files=$("${libexec}"/scripts/git-get-removed-files "${repodir}" "${commit}")
 for file in ${files}; do
     target="${installdir}"/"${file}"
     parent=$(dirname "${target}")

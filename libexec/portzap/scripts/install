@@ -3,9 +3,9 @@ set -e
 
 ##
 # variables
-localbase=${LOCALBASE:-$(realpath "$(dirname "$0")"/../../../..)}
+localbase=${LOCALBASE:-$(realpath "$(dirname "$0")"/../../..)}
 libexec="${localbase}"/libexec/portzap
-mask=$("${libexec}"/utils/get-umask)
+mask=$("${libexec}"/scripts/get-default-umask)
 
 ##
 # main

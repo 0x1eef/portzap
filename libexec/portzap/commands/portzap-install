@@ -5,8 +5,8 @@ set -e
 # variables
 localbase=${LOCALBASE:-$(realpath "$(dirname "$0")"/../../..)}
 libexec="${localbase}"/libexec/portzap
-git="${libexec}"/utils/git/run
-mask=$("${libexec}"/utils/get-umask)
+git="${libexec}"/scripts/git
+mask=$("${libexec}"/scripts/get-default-umask)
 repodir=$1
 installdir=$2
 commitfile=$3
@@ -28,14 +28,14 @@ if [ -e "${commitfile}" ]; then
     ##
     # install update
     commit=$(cat "${commitfile}")
-    "${libexec}"/utils/install/run -d "${installdir}"
-    "${libexec}"/utils/install/update-deleted-files "${repodir}" "${installdir}" "${commit}"
-    "${libexec}"/utils/install/update-changed-files "${repodir}" "${installdir}" "${commit}"
+    "${libexec}"/scripts/install -d "${installdir}"
+    "${libexec}"/scripts/install/update-deleted-files "${repodir}" "${installdir}" "${commit}"
+    "${libexec}"/scripts/install/update-changed-files "${repodir}" "${installdir}" "${commit}"
 else
     ##
     # install from scratch
     umask "${mask}"
-    "${libexec}"/utils/install/run -d "${installdir}"
+    "${libexec}"/scripts/install -d "${installdir}"
     find -s . \
          -maxdepth 1 \
          ! -name "." \
