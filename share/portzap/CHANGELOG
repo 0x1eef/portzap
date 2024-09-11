@@ -2,6 +2,18 @@
 
 * vNEXT
 
+**** Change default clone url
+After this change, the default clone URL points at
+the GitHub mirror: https://github.com/hardenedbsd/ports
+
+This change was made because clone and pull operations
+from ~git.hardenedbsd.org~ are not always stable, especially
+with big repositories like the ports collection
+
+The default can be changed through the environment variable
+~$PORTZAP_CLONEURL~, or by modifying the ~origin~ remote
+after a successful clone
+
 **** Fix ~libexec/portzap/scripts/setup-doas~ bug
 This change fixes a bug in ~setup-doas~ that could hang
 the ~portzap setup~ command

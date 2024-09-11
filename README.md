@@ -56,7 +56,7 @@ Install `/home/_portzap/ports/` into `/usr/ports/` <br>
 
 * __$PORTZAP\_CLONEURL__ <br>
   The URL of a git repository <br>
-  Default: https://git.HardenedBSD.org/HardenedBSD/ports.git
+  Default: https://github.com/HardenedBSD/ports
 
 * __$PORTZAP\_INSTALLDIR__ <br>
   The directory where the ports collection will be installed <br>
