@@ -1,5 +1,12 @@
 # -*- mode: org -*-
 
+* vNEXT
+
+**** Replace chmod with -M switch
+This change replaces chmod with the -M switch. The -M switch
+is given to the ~pw useradd~ command in the ~setup-user~
+script
+
 * v1.2.0
 
 **** Change default clone url

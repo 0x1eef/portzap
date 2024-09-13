@@ -21,7 +21,7 @@ else
        -n "${user}" \
        -c "portzap user" \
        -m \
+       -M $("${libexec}"/scripts/get-default-umask) \
        -s /sbin/nologin
-    chmod u=rwX,g=rX,o= /home/"${user}"/
     printok "${user} user created"
 fi
