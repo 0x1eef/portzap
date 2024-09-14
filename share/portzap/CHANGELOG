@@ -7,7 +7,7 @@ Similar to other commands, log when the ~portzap rm~ command
 completes successfully
 
 **** Format log messages with program name
-Formats log messages written to standard output
+Format log messages written to standard output
 and standard error with the pattern ~portzap: <message>~
 
 **** Fix typo in ~commands/portzap-setup~
