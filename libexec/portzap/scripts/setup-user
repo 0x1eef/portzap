@@ -21,7 +21,7 @@ else
        -n "${user}" \
        -c "portzap user" \
        -m \
-       -M $("${libexec}"/scripts/get-default-umask) \
+       -M "$("${libexec}"/scripts/get-default-umask)" \
        -s /sbin/nologin
     printok "${user} user created"
 fi
