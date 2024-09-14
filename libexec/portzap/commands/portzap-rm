@@ -42,21 +42,21 @@ printf "1-4: "
 while true; do
     read -r r
     if [ "${r}" = "1" ]; then
-	erase "${repodir}"
-	printok "remove complete"
+        erase "${repodir}"
+        printok "remove complete"
     elif [ "${r}" = "2" ]; then
-	erase "${installdir}"
-	printok "remove complete"
+        erase "${installdir}"
+        printok "remove complete"
     elif [ "${r}" = "3" ]; then
-	erase "${repodir}"
-	erase "${installdir}"
-	printok "remove complete"
+        erase "${repodir}"
+        erase "${installdir}"
+        printok "remove complete"
     elif [ "${r}" = "4" ]; then
-	break
+        break
     else
-	printf "%s is not a valid option\n" "${r}"
-	printf "1-4: "
-	continue
+        printf "%s is not a valid option\n" "${r}"
+        printf "1-4: "
+        continue
     fi
     exit
 done
