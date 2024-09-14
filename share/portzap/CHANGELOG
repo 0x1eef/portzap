@@ -18,14 +18,6 @@ Fix a typo that would throw an error when running the
 Replace chmod with the -M switch. The -M switch is given to
 the ~pw useradd~ command in the ~setup-user~ script
 
-**** Format log messages with program name
-Format log messages written to standard output and standard error
-with the pattern ~portzap: <message>~
-
-**** Replace chmod with -M switch
-Replace chmod with the -M switch. The -M switch is given to the
-~pw useradd~ command in the ~setup-user~ script
-
 ** v1.2.0
 
 **** Fix ~libexec/portzap/scripts/setup-doas~ bug
