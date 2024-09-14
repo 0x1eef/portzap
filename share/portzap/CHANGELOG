@@ -2,6 +2,10 @@
 
 * vNEXT
 
+**** Format log messages with program name
+This change formats log messages written to standard output
+and standard error with the pattern ~portzap: <message>~
+
 **** Fix typo in ~commands/portzap-setup~
 This change fixes a typo that would throw an error when
 running the ~portzap setup~ command
