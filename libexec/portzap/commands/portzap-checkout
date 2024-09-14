@@ -26,7 +26,7 @@ if ! "${libexec}"/scripts/is-portzap-member; then
     exit 1
 fi
 
-if [ ! -e "${repodir}/.git" ]; then
+if [ ! -e "${repodir}"/.git ]; then
     printerr "try 'portzap clone' instead"
     exit 1
 fi
