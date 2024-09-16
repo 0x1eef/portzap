@@ -2,6 +2,11 @@
 
 ** vNEXT
 
+**** Try to install  ~doas.conf~ when it does not exist
+When ~${PREFIX}/etc/doas.conf~ does not exist the ~setup-doas~
+script will try to install ~/usr/local/etc/doas.conf~ with
+~root:wheel~ as the owner, and with ~u=rw,go=~ as the filemode
+
 **** Log when ~portzap rm~ completes successfully
 Similar to other commands, log when the ~portzap rm~ command
 completes successfully
