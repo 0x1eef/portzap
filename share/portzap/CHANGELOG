@@ -2,7 +2,7 @@
 
 ** vNEXT
 
-**** Try to install  ~doas.conf~ when it does not exist
+**** Create ~doas.conf~ if neccessary
 When ~${PREFIX}/etc/doas.conf~ does not exist the ~setup-doas~
 script will try to install ~/usr/local/etc/doas.conf~ with
 ~root:wheel~ as the owner, and with ~u=rw,go=~ as the filemode
