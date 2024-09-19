@@ -1,6 +1,6 @@
 # -*- mode: org -*-
 
-** vNEXT
+** v1.2.1
 
 **** Create ~doas.conf~ if neccessary
 When ~${PREFIX}/etc/doas.conf~ does not exist the ~setup-doas~
