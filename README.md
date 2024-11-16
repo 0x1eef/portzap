@@ -8,23 +8,12 @@ can be installed into `/usr/ports/` by root.
 
 ## CLI
 
-### CLI: setup
+### Commands
 
-`portzap setup` should be run after installing portzap for
-the first time:
+#### Group
 
-    # Add the '_portzap' user, group and home directory
-    # This command requires root privileges
-    root@localhost# portzap setup
-
-    # Reverse the changes made by 'portzap setup'
-    # This command requires root privileges
-    root@localhost# portzap teardown
-
-### CLI: group
-
-The following commands are delegated to the `_portzap` user and
-restricted to members of the `_portzap` group:
+The following commands are restricted to members of the `_portzap` group,
+and delegated to the `_portzap` user via doas(1):
 
 * **portzap clone** <br>
 Clone the HardenedBSD ports tree into `/home/_portzap/ports/` <br>
@@ -38,7 +27,7 @@ Checkout a branch other than the default: `hardenedbsd/main` <br>
 * **portzap sh** <br>
 Run `/bin/sh` within `/home/_portzap/ports/` <br>
 
-### CLI: superuser
+#### Root
 
 The following commands are restricted to root:
 
