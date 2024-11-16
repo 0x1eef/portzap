@@ -11,8 +11,7 @@ can be installed into `/usr/ports/` by root.
 ### CLI: setup
 
 `portzap setup` should be run after installing portzap for
-the first time. <br> There is no harm in running `portzap setup`
-multiple times:
+the first time:
 
     # Add the '_portzap' user, group and home directory
     # This command requires root privileges
@@ -25,9 +24,7 @@ multiple times:
 ### CLI: group
 
 The following commands are delegated to the `_portzap` user and
-restricted to members of the `_portzap` group. The restrictions
-are enforced by portzap and to a lesser extent by 
-[doas(1)](https://man.openbsd.org/doas):
+restricted to members of the `_portzap` group:
 
 * **portzap clone** <br>
 Clone the HardenedBSD ports tree into `/home/_portzap/ports/` <br>
@@ -43,8 +40,7 @@ Run `/bin/sh` within `/home/_portzap/ports/` <br>
 
 ### CLI: superuser
 
-The following commands are restricted to root. <br>
-The restrictions are enforced by portzap:
+The following commands are restricted to root:
 
 * **portzap rm** <br>
 Remove the contents of `/usr/ports/` and `/home/_portzap/ports/` <br>
@@ -64,22 +60,14 @@ Install `/home/_portzap/ports/` into `/usr/ports/` <br>
 
 ## Install
 
-
 portzap is available
-[from the HardenedBSD ports tree](https://git.HardenedBSD.org/HardenedBSD/ports/-/tree/HardenedBSD/main/hardenedbsd/portzap). 
-`pkg install portzap` should work too but expect slower updates. The most 
-recent version of portzap can be installed via git:
+[from the HardenedBSD ports tree](https://git.HardenedBSD.org/HardenedBSD/ports/-/tree/HardenedBSD/main/hardenedbsd/portzap).
+`pkg install portzap` should work too but expect slower updates. After installation
+of portzap, `portzap setup` should be run as root and one or more users should
+be added to the `_portzap` group:
 
-    # Clone
-    user@localhost$ git clone https://git.hardenedbsd.org/0x1eef/portzap.git
-    user@localhost$ cd portzap
-
-    # Install
-    root@localhost# make install
     root@localhost# portzap setup
-
-    # Add user to '_portzap' group
-    root@localhost# pw groupmod -n _portzap -m <user>
+    root@localhost# pw groupmod -n _portzap -m myuser
 
 ## Requirements
 
