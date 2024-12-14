@@ -5,7 +5,7 @@ set -e
 # variables
 localbase=${LOCALBASE:-$(realpath "$(dirname "$0")"/..)}
 libexec="${localbase}"/libexec/portzap
-gitdir="/home/_portzap/ports"
+repodir="/home/_portzap/ports"
 giturl="${PORTZAP_CLONEURL:-https://github.com/hardenedbsd/ports}"
 installdir="${PORTZAP_INSTALLDIR:-/usr/ports}"
 defaultbranch="hardenedbsd/main"
@@ -52,22 +52,22 @@ case $1 in
         ;;
     "clone")
         require_dependency git doas
-        "${libexec}"/commands/portzap-clone "${giturl}" "${gitdir}" "${defaultbranch}"
+        "${libexec}"/commands/portzap-clone "${giturl}" "${repodir}" "${defaultbranch}"
         ;;
     "pull")
         require_dependency git doas
-        "${libexec}"/commands/portzap-pull "${gitdir}"
+        "${libexec}"/commands/portzap-pull "${repodir}"
         ;;
     "sh")
         require_dependency doas
-        "${libexec}"/commands/portzap-sh "${gitdir}"
+        "${libexec}"/commands/portzap-sh "${repodir}"
         ;;
     "rm")
-        "${libexec}"/commands/portzap-rm "${gitdir}" "${installdir}"
+        "${libexec}"/commands/portzap-rm "${repodir}" "${installdir}"
         ;;
     "install")
         require_dependency git doas
-        "${libexec}"/commands/portzap-install "${gitdir}" "${installdir}" "${commitfile}"
+        "${libexec}"/commands/portzap-install "${repodir}" "${installdir}" "${commitfile}"
         ;;
     *)
         printf "Usage: portzap COMMAND [OPTIONS]\n"
