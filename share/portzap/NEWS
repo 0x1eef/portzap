@@ -1,100 +1,100 @@
 # -*- mode: org -*-
 
-** vNEXT
+* vNEXT
 
-**** Remove ~portzap checkout~
+** Remove ~portzap checkout~
 Remove the ~portzap checkout~ command. It has been replaced
 by using ~portzap sh~ alongside ~git checkout <branch>~
 
-** v1.2.1
+* v1.2.1
 
-**** Create ~doas.conf~ if neccessary
+** Create ~doas.conf~ if neccessary
 When ~${PREFIX}/etc/doas.conf~ does not exist the ~setup-doas~
 script will try to install ~/usr/local/etc/doas.conf~ with
 ~root:wheel~ as the owner, and with ~u=rw,go=~ as the filemode
 
-**** Log when ~portzap rm~ completes successfully
+* Log when ~portzap rm~ completes successfully
 Similar to other commands, log when the ~portzap rm~ command
 completes successfully
 
-**** Format log messages with program name
+** Format log messages with program name
 Format log messages written to standard output
 and standard error with the pattern ~portzap: <message>~
 
-**** Fix typo in ~commands/portzap-setup~
+** Fix typo in ~commands/portzap-setup~
 Fix a typo that would throw an error when running the
 ~portzap setup~ command
 
-**** Replace chmod with -M switch
+** Replace chmod with -M switch
 Replace chmod with the -M switch. The -M switch is given to
 the ~pw useradd~ command in the ~setup-user~ script
 
-** v1.2.0
+* v1.2.0
 
-**** Fix ~libexec/portzap/scripts/setup-doas~ bug
+** Fix ~libexec/portzap/scripts/setup-doas~ bug
 Fix a bug in ~setup-doas~ that could hang the ~portzap setup~
 command
 
-**** Collapse ~libexec/portzap/scripts~
+** Collapse ~libexec/portzap/scripts~
 Stop trying to organize script directories that go beyond
 ~libexec/portzap/scripts~
 
-**** Add ~libexec/portzap/scripts/setup~
+** Add ~libexec/portzap/scripts/setup~
 This new directory replaces what was formerly known
 as ~libexec/portzap/setup~
 
-**** Add ~libexec/portzap/scripts~
+** Add ~libexec/portzap/scripts~
 This new directory replaces what was formerly known
 as ~libexec/portzap/utils~
 
-** v1.1.0
+* v1.1.0
 
-**** Add 'libexec/portzap/utils/get-umask'
+** Add 'libexec/portzap/utils/get-umask'
 Add a single source of truth for the mask given to umask
 by git and portzap-install
 
-**** Break up ~portzap-install~ into multiple files
+** Break up ~portzap-install~ into multiple files
 A new directory (~libexec/portzap/utils/install/~) contains
 files that cover both a fresh install and applying an update
 
-**** Add ~setup/setup-doas~ improvements
+** Add ~setup/setup-doas~ improvements
 More likely to do what's expected, but blind spots still exist
 
-**** Add ~portzap setup~, ~portzap teardown~
+** Add ~portzap setup~, ~portzap teardown~
 Replace and enhance ~setup-portzap~
 
-**** Add ~libexec/portzap/commands/portzap-sh~
+** Add ~libexec/portzap/commands/portzap-sh~
 A new command that can run ~/bin/sh~ within ~/home/_portzap/src/~
 as the ~_portzap~ user
 
-** v1.0.0
+* v1.0.0
 
-**** Add libexec/portzap/setup/setup-user
+** Add libexec/portzap/setup/setup-user
 ~setup-user~ sets up the portzap user environment
 
-**** Recover from ~git checkout~ failure
+** Recover from ~git checkout~ failure
 Recover gracefully from failure in portzap-clone
 
-** v0.2.1
+* v0.2.1
 
-**** Fix Makefile
+** Fix Makefile
 The mandoc directory wasn't created properly. It only
 became obvious when building the port into a temporary
 staging directory
 
-** v0.2.0
+* v0.2.0
 
-**** Remove git-diff limit
+** Remove git-diff limit
 Remove file rename limit from git-diff
 
-**** Replace utils/gitexec with utils/git/run
+** Replace utils/gitexec with utils/git/run
 Communicate with git via utils/git/run
 
-**** Add utils/git
+** Add utils/git
 A dedicated directory for git-related scripts
 
-**** Remove "set -x"
+** Remove "set -x"
 Emit less output
 
-**** Remove scripts
+** Remove scripts
 Remove utils/printok, utils/printerr, utils/git-rev
