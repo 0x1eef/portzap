@@ -21,9 +21,6 @@ Clone the HardenedBSD ports tree into `/home/_portzap/ports/` <br>
 * **portzap pull** <br>
 Pull updates into `/home/_portzap/ports/` <br>
 
-* **portzap checkout** <br>
-Checkout a branch other than the default: `hardenedbsd/main` <br>
-
 * **portzap sh** <br>
 Run `/bin/sh` within `/home/_portzap/ports/` <br>
 

@@ -1,5 +1,11 @@
 # -*- mode: org -*-
 
+** vNEXT
+
+**** Remove ~portzap checkout~
+Remove the ~portzap checkout~ command. It has been replaced
+by using ~portzap sh~ alongside ~git checkout <branch>~
+
 ** v1.2.1
 
 **** Create ~doas.conf~ if neccessary
