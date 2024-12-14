@@ -8,7 +8,7 @@ by using ~portzap sh~ alongside ~git checkout <branch>~
 
 * v1.2.1
 
-** Create ~doas.conf~ if neccessary
+** Install ~doas.conf~
 When ~${PREFIX}/etc/doas.conf~ does not exist the ~setup-doas~
 script will try to install ~/usr/local/etc/doas.conf~ with
 ~root:wheel~ as the owner, and with ~u=rw,go=~ as the filemode
