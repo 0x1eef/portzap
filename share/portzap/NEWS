@@ -2,6 +2,9 @@
 
 * vNEXT
 
+** Add ~portzap sh~ to man page
+The ~portzap sh~ command was missing from the SYNOPIS section
+
 ** Remove ~portzap checkout~
 Remove the ~portzap checkout~ command. It has been replaced
 by using ~portzap sh~ alongside ~git checkout <branch>~
