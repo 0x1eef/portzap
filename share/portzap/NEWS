@@ -2,9 +2,11 @@
 
 * vNEXT
 
-** Add simplification of logging in setup-{doas,user}
+** Revisit log messages
 More consistent with other log messages.
-See ~fgrep -rn printok libexec/ bin/~
+See
+*** ~fgrep -rn printok libexec/ bin/~
+*** ~fgrep -rn printerr libexec/ bin/~
 
 ** Add ~portzap sh~ to man page
 The ~portzap sh~ command was missing from the SYNOPIS section

@@ -27,8 +27,8 @@ if ! "${libexec}"/scripts/is-portzap-member; then
     exit 1
 fi
 
-if [ -e "${repodir}/.git" ]; then
-    printerr "try 'portzap pull' instead"
+if [ -e "${repodir}"/.git ]; then
+    printerr "repository has already been cloned"
     exit 1
 fi
 
