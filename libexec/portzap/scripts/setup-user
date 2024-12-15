@@ -14,14 +14,12 @@ user="_portzap"
 
 ##
 # main
-if id -u "${user}" > /dev/null 2>&1; then
-   printok "${user} user exists"
-else
+if ! id -u "${user}" > /dev/null 2>&1; then
     pw useradd \
        -n "${user}" \
        -c "portzap user" \
        -m \
        -M "$("${libexec}"/scripts/get-default-umask)" \
        -s /sbin/nologin
-    printok "${user} user created"
 fi
+printok "user setup complete"
