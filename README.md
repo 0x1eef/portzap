@@ -12,8 +12,9 @@ can be installed into `/usr/ports/` by root.
 
 #### Group
 
-The following commands are restricted to members of the `_portzap` group,
-and delegated to the `_portzap` user via doas(1):
+The following commands are restricted to members
+of the `_portzap` group, and delegated to the
+`_portzap` user via [doas(1)](https://man.openbsd.org/doas):
 
 * **portzap clone** <br>
 Clone the HardenedBSD ports tree into `/home/_portzap/ports/` <br>
@@ -62,10 +63,10 @@ be added to the `_portzap` group:
 
 ## Sources
 
-* [GitHub](https://github.com/0x1eef/portzap)
-* [GitLab](https://gitlab.com/0x1eef/portzap)
-* [git.HardenedBSD.org/@0x1eef](https://git.HardenedBSD.org/0x1eef/portzap)
-* [brew.bsd.cafe/@0x1eef](https://brew.bsd.cafe/0x1eef/portzap)
+* [github.com/@0x1eef](https://github.com/0x1eef/portzap)
+* [gitlab.com/@0x1eef](https://gitlab.com/0x1eef/portzap)
+* [hardenedbsd.org/@0x1eef](https://git.HardenedBSD.org/0x1eef/portzap)
+* [bsd.cafe/@0x1eef](https://brew.bsd.cafe/0x1eef/portzap)
 
 ## License
 
