@@ -2,6 +2,12 @@
 
 * vNEXT
 
+**** Replace ${LOCALBASE} with relative paths
+This change replaces the use of ${LOCALBASE} with paths that
+are relative to ~$(dirname "${0}")/..~ instead. In the process
+two variables (~${localbase}, ${libexec}~) have became one
+variable (~${libexec}~)
+
 **** Revisit log messages
 More consistent with other log messages.
 See
