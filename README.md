@@ -1,48 +1,56 @@
 ## About
 
 portzap is a utility that manages a local copy of the
-[HardenedBSD ports tree](https://git.HardenedBSD.org/HardenedBSD/ports).
-The copy of the ports tree is maintained by members of
-the `_portzap` group, and the copy of the ports tree
+[HardenedBSD source tree](https://git.HardenedBSD.org/HardenedBSD/HardenedBSD).
+The copy of the source tree is maintained by members of
+the `_portzap` group, and the copy of the source tree
 can be installed into `/usr/ports/` by root.
 
-## CLI
+portzap separates commands according to the role of a user. Certain
+commands can only be run by members of the `_portzap` group, and
+certain commands can only be run by a superuser (eg root). Group commands
+are delegated to the `_portzap` user rather than being run as the
+user invoking a given command.
 
-### Commands
+## CLI
 
 #### Group
 
 The following commands are restricted to members
 of the `_portzap` group, and delegated to the
-`_portzap` user via [doas(1)](https://man.openbsd.org/doas):
+`_portzap` user via [doas(1)](https://man.openbsd.org/doas).
+The configuration and initial setup of [doas(1)](https://man.openbsd.org/doas)
+and `/home/_portzap` is automated via the `portzap setup`
+command. See the [Install](#install) section for more details:
 
-* **portzap clone** <br>
-Clone the HardenedBSD ports tree into `/home/_portzap/ports/` <br>
+* portzap clone <br>
+Clone the HardenedBSD source tree into `/home/_portzap/ports/` <br>
 
-* **portzap pull** <br>
+* portzap pull <br>
 Pull updates into `/home/_portzap/ports/` <br>
 
-* **portzap sh** <br>
+* portzap sh <br>
 Run `/bin/sh` within `/home/_portzap/ports/` <br>
 
-#### Root
+#### Superuser
 
-The following commands are restricted to root:
+The following commands are restricted to root, or user id 0. <br>
+Permission to run the following commands is denied for any other user:
 
-* **portzap rm** <br>
+* portzap rm <br>
 Remove the contents of `/usr/ports/` and `/home/_portzap/ports/` <br>
 
-* **portzap install** <br>
+* portzap install <br>
 Install `/home/_portzap/ports/` into `/usr/ports/` <br>
 
 ## Environment
 
 * __$PORTZAP\_CLONEURL__ <br>
-  The URL of a git repository <br>
-  Default: https://github.com/HardenedBSD/ports
+  The URL of a git repository  <br>
+  Default: https://github.com/HardenedBSD/HardenedBSD.git
 
 * __$PORTZAP\_INSTALLDIR__ <br>
-  The directory where the ports collection will be installed <br>
+  The directory where the source tree will be installed <br>
   Default: /usr/ports/
 
 ## Install
