@@ -2,7 +2,7 @@
 set -e
 
 ##
-# variables
+# vars
 localbase=$(realpath "$(dirname "$0")"/../../..)
 libexec="${localbase}"/libexec/portzap
 sharedir="${localbase}"/share/portzap

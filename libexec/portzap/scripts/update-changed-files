@@ -2,7 +2,7 @@
 set -e
 
 ##
-# variables
+# vars
 libexec="$(dirname "${0}")"/..
 repodir=$1
 installdir=$2

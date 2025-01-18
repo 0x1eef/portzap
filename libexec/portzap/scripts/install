@@ -2,7 +2,7 @@
 set -e
 
 ##
-# variables
+# vars
 libexec="$(dirname "${0}")"/..
 mask=$("${libexec}"/scripts/get-default-umask)
 
