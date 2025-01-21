@@ -15,7 +15,7 @@ sharedir="${localbase}"/share/portzap
 ##
 # main
 src="${sharedir}"/doas.conf
-dest="${localbase}"/etc/doas.conf
+dest="${LOCALBASE:-/usr/local}"/etc/doas.conf
 # shellcheck disable=SC2002
 if [ -e "${dest}" ]; then
     cat "${src}" |
@@ -33,4 +33,4 @@ else
             "${src}" \
             "${localbase}"/etc
 fi
-printok "doas setup complete (see ${dest})"
+printok "add ${dest} (double check it!)"

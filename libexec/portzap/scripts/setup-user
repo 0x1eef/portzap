@@ -21,4 +21,4 @@ if ! id -u "${user}" > /dev/null 2>&1; then
        -M "$("${libexec}"/scripts/get-default-umask)" \
        -s /sbin/nologin
 fi
-printok "user setup complete"
+printok "add user"
