@@ -9,8 +9,8 @@ can be installed into `/usr/ports/` by root.
 Commands in portzap are categorized by user roles. Certain commands
 are restricted to members of the `_portzap` group, while others require
 superuser privileges (eg: root). Group commands are executed by the
-`_portzap` user via [doas(1)](https://man.openbsd.org/doas) instead of
-the user invoking a command.
+`_portzap` user via the [doas(1)](https://man.openbsd.org/doas) utility
+instead of the user invoking a given command.
 
 ## CLI
 
