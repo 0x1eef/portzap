@@ -1,13 +1,13 @@
 ## About
 
-portzap is a utility that manages a local copy of the
+The portzap utility manages a local copy of the
 [HardenedBSD source tree](https://git.HardenedBSD.org/HardenedBSD/HardenedBSD).
 The copy of the source tree is maintained by members of
 the `_portzap` group, and the copy of the source tree
 can be installed into `/usr/ports/` by root.
 
-portzap separates commands according to the role of a user. Certain
-commands can only be run by members of the `_portzap` group, and
+The portzap utility separates commands according to the role of a user.
+Certain commands can only be run by members of the `_portzap` group, and
 certain commands can only be run by a superuser (eg root). Group commands
 are delegated to the `_portzap` user rather than being run as the
 user invoking a given command.
@@ -55,14 +55,33 @@ Install `/home/_portzap/ports/` into `/usr/ports/` <br>
 
 ## Install
 
+#### Package
+
 portzap is available
 [from the HardenedBSD ports tree](https://git.HardenedBSD.org/HardenedBSD/ports/-/tree/HardenedBSD/main/hardenedbsd/portzap).
-`pkg install portzap` should work too but expect slower updates. After installation
-of portzap, `portzap setup` should be run as root and one or more users should
-be added to the `_portzap` group:
+<br>
+`pkg install portzap` should work too but expect slower updates.
+
+#### Source
+
+The first step is to clone the repository. <br>
+Afterwards portzap can be installed (and deinstalled) through `make`:
+
+    user@localhost$ git clone https://github.com/0x1eef/portzap
+    user@localhost$ cd portzap
+    root@localhost# make install
+    root@localhost# make deinstall
+
+#### Configuration
+
+After installation is complete the portzap environment should be setup.
+That involves the creation of the `_portzap` user and group, as well as
+the creation of `/home/_portzap`. A user should also be added to the
+`_portzap` group. The process is mostly automated:
 
     root@localhost# portzap setup
-    root@localhost# pw groupmod -n _portzap -m myuser
+    root@localhost# pw usermod <user> -g _portzap # Add group member
+    root@localhost# portzap teardown              # Optional - reverse 'portzap setup'
 
 ## Requirements
 
