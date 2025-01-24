@@ -6,11 +6,11 @@ The copy of the source tree is maintained by members of
 the `_portzap` group, and the copy of the source tree
 can be installed into `/usr/ports/` by root.
 
-Commands in portzap are categorized by user roles. Certain commands
-are restricted to members of the `_portzap` group, while others require
-superuser privileges (eg: root). Group commands are executed by the
-`_portzap` user via the [doas(1)](https://man.openbsd.org/doas) utility
-instead of the user invoking a given command.
+Certain portzap commands are restricted to members of the
+`_portzap` group, while others require superuser privileges.
+Group commands are delegated to the `_portzap` user via the
+[doas(1)](https://man.openbsd.org/doas) utility instead of
+being run by the user running a given command.
 
 ## CLI
 
