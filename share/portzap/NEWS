@@ -2,6 +2,10 @@
 
 * vNEXT
 
+**** Improve portzap.8
+Mention and provide an example of how to add a user to
+the ~_portzap~ group with ~pw groupmod~
+
 **** Replace ${LOCALBASE} with relative paths
 This change replaces the use of ${LOCALBASE} with paths that
 are relative to ~$(dirname "${0}")/..~ instead. In the process
