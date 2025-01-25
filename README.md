@@ -1,9 +1,9 @@
 ## About
 
 The portzap utility manages a local copy of the
-[HardenedBSD source tree](https://git.HardenedBSD.org/HardenedBSD/HardenedBSD).
-The copy of the source tree is maintained by members of
-the _portzap group, and the copy of the source tree
+[HardenedBSD ports tree](https://git.HardenedBSD.org/HardenedBSD/ports).
+The copy of the ports tree is maintained by members of
+the _portzap group, and the copy of the ports tree
 can be installed into /usr/ports/ by root.
 
 Certain portzap commands are restricted to members of the
@@ -84,7 +84,7 @@ doas -u root -- portzap teardown               # Optional - reverse 'portzap set
   Default: https://github.com/HardenedBSD/HardenedBSD.git
 
 * __$PORTZAP\_INSTALLDIR__ <br>
-  The directory where the source tree will be installed <br>
+  The directory where the ports tree will be installed <br>
   Default: /usr/ports/
 
 ## Requirements
