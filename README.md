@@ -80,8 +80,8 @@ the creation of `/home/_portzap`. A user should also be added to the
 `_portzap` group. The process is mostly automated:
 
     root@localhost# portzap setup
-    root@localhost# pw usermod <user> -g _portzap # Add group member
-    root@localhost# portzap teardown              # Optional - reverse 'portzap setup'
+    root@localhost# pw groupmod _portzap -g <user> # Add group member
+    root@localhost# portzap teardown               # Optional - reverse 'portzap setup'
 
 ## Requirements
 
