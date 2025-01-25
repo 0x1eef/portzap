@@ -57,10 +57,12 @@ portzap is available
 The first step is to clone the repository. <br>
 Afterwards portzap can be installed (and deinstalled) through `make`:
 
-    user@localhost$ git clone https://github.com/0x1eef/portzap
-    user@localhost$ cd portzap
-    root@localhost# make install
-    root@localhost# make deinstall
+```sh
+git clone https://github.com/0x1eef/portzap
+cd portzap
+doas -u root -- make install
+doas -u root -- make deinstall
+```
 
 #### Configuration
 
@@ -69,9 +71,11 @@ That involves the creation of the `_portzap` user and group, as well as
 the creation of `/home/_portzap`. A user should also be added to the
 `_portzap` group. The process is mostly automated:
 
-    root@localhost# portzap setup
-    root@localhost# pw groupmod _portzap -m <user> # Add group member
-    root@localhost# portzap teardown               # Optional - reverse 'portzap setup'
+```sh
+doas -u root -- portzap setup
+doas -u root -- pw groupmod _portzap -m <user> # Add group member
+doas -u root -- portzap teardown               # Optional - reverse 'portzap setup'
+```
 
 ## Environment
 
