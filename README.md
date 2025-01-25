@@ -43,16 +43,6 @@ Remove the contents of `/usr/ports/` and `/home/_portzap/ports/` <br>
 * portzap install <br>
 Install `/home/_portzap/ports/` into `/usr/ports/` <br>
 
-## Environment
-
-* __$PORTZAP\_CLONEURL__ <br>
-  The URL of a git repository  <br>
-  Default: https://github.com/HardenedBSD/HardenedBSD.git
-
-* __$PORTZAP\_INSTALLDIR__ <br>
-  The directory where the source tree will be installed <br>
-  Default: /usr/ports/
-
 ## Install
 
 #### Package
@@ -82,6 +72,16 @@ the creation of `/home/_portzap`. A user should also be added to the
     root@localhost# portzap setup
     root@localhost# pw groupmod _portzap -m <user> # Add group member
     root@localhost# portzap teardown               # Optional - reverse 'portzap setup'
+
+## Environment
+
+* __$PORTZAP\_CLONEURL__ <br>
+  The URL of a git repository  <br>
+  Default: https://github.com/HardenedBSD/HardenedBSD.git
+
+* __$PORTZAP\_INSTALLDIR__ <br>
+  The directory where the source tree will be installed <br>
+  Default: /usr/ports/
 
 ## Requirements
 
