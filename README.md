@@ -3,12 +3,12 @@
 The portzap utility manages a local copy of the
 [HardenedBSD ports tree](https://git.HardenedBSD.org/HardenedBSD/ports).
 The copy of the ports tree is maintained by members of
-the _portzap group, and the copy of the ports tree
-can be installed into /usr/ports/ by root.
+the '\_portzap' group, and the copy of the ports tree
+can be installed into /usr/ports by root.
 
 Certain portzap commands are restricted to members of the
-_portzap group, while others require superuser privileges.
-Group commands are delegated to the _portzap user via the
+'\_portzap' group, while others require superuser privileges.
+Group commands are delegated to the '\_portzap' user via the
 [doas(1)](https://man.openbsd.org/doas) utility instead of
 being run by the user running a given command.
 
@@ -17,20 +17,20 @@ being run by the user running a given command.
 #### Group
 
 The following commands are restricted to members
-of the _portzap group, and delegated to the
-_portzap user via [doas(1)](https://man.openbsd.org/doas).
+of the '\_portzap' group, and delegated to the
+'\_portzap' user via [doas(1)](https://man.openbsd.org/doas).
 The configuration and initial setup of [doas(1)](https://man.openbsd.org/doas)
 and /home/_portzap is automated via the `portzap setup`
 command. See the [Install](#install) section for more details:
 
 * portzap clone <br>
-Clone the HardenedBSD ports tree into /home/_portzap/ports/ <br>
+Clone the HardenedBSD ports tree into /home/_portzap/ports <br>
 
 * portzap pull <br>
-Pull updates into /home/_portzap/ports/ <br>
+Pull updates into /home/_portzap/ports <br>
 
 * portzap sh <br>
-Run /bin/sh within /home/_portzap/ports/ <br>
+Run /bin/sh within /home/_portzap/ports <br>
 
 #### Superuser
 
@@ -38,10 +38,10 @@ The following commands are restricted to root, or user id 0. <br>
 Permission to run the following commands is denied for any other user:
 
 * portzap rm <br>
-Remove the contents of /usr/ports/ and /home/_portzap/ports/ <br>
+Remove the contents of /usr/ports and /home/_portzap/ports <br>
 
 * portzap install <br>
-Install /home/_portzap/ports/ into /usr/ports/ <br>
+Install /home/_portzap/ports into /usr/ports <br>
 
 ## Install
 
@@ -50,7 +50,7 @@ Install /home/_portzap/ports/ into /usr/ports/ <br>
 portzap is available
 [from the HardenedBSD ports tree](https://git.HardenedBSD.org/HardenedBSD/ports/-/tree/HardenedBSD/main/hardenedbsd/portzap).
 <br>
-pkg install portzap should work too but expect slower updates.
+"pkg install portzap" should work too but expect slower updates.
 
 #### Source
 
@@ -67,9 +67,9 @@ doas -u root -- make deinstall
 #### Configuration
 
 After installation is complete the portzap environment should be setup.
-That involves the creation of the _portzap user and group, as well as
+That involves the creation of the '\_portzap' user and group, as well as
 the creation of /home/_portzap. A user should also be added to the
-_portzap group. The process is mostly automated:
+'\_portzap' group. The process is mostly automated:
 
 ```sh
 doas -u root -- portzap setup
