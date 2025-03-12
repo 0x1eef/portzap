@@ -3,22 +3,22 @@
 The portzap utility manages a local copy of the
 [HardenedBSD ports tree](https://git.HardenedBSD.org/HardenedBSD/ports).
 The copy of the ports tree is maintained by members of
-the '\_portzap' group, and the copy of the ports tree
+the `_portzap` group, and the copy of the ports tree
 can be installed into /usr/ports by root.
 
 Certain portzap commands are restricted to members of the
-'\_portzap' group, while others require superuser privileges.
-Group commands are delegated to the '\_portzap' user via the
+`_portzap` group, while others require superuser privileges.
+Group commands are delegated to the `_portzap` user via the
 [doas(1)](https://man.openbsd.org/doas) utility instead of
 being run by the user running a given command.
 
-## CLI
+## Commands
 
 #### Group
 
 The following commands are restricted to members
-of the '\_portzap' group, and delegated to the
-'\_portzap' user via [doas(1)](https://man.openbsd.org/doas).
+of the `_portzap` group, and delegated to the
+`_portzap` user via [doas(1)](https://man.openbsd.org/doas).
 The configuration and initial setup of [doas(1)](https://man.openbsd.org/doas)
 and /home/_portzap is automated via the `portzap setup`
 command. See the [Install](#install) section for more details:
@@ -67,9 +67,9 @@ doas -u root -- make deinstall
 #### Configuration
 
 After installation is complete the portzap environment should be setup.
-That involves the creation of the '\_portzap' user and group, as well as
+That involves the creation of the `_portzap` user and group, as well as
 the creation of /home/_portzap. A user should also be added to the
-'\_portzap' group. The process is mostly automated:
+`_portzap` group. The process is mostly automated:
 
 ```sh
 doas -u root -- portzap setup
