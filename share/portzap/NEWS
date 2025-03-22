@@ -1,5 +1,15 @@
 # -*- mode: org -*-
 
+* vNEXT
+
+**** Remove ~$LOCALBASE~ reference from ~bin/portzap~
+The ~$LOCALBASE~ reference in ~bin/portzap~ has been
+replaced with a relative path (similar to earlier changes)
+
+**** Reimplement option parser with getopts
+This change reimplements the option parser with getopts.
+The previous implementation was complex and custom
+
 * v1.3.0
 
 **** Improve portzap.8

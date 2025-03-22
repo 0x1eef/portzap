@@ -14,23 +14,23 @@ sharedir="${localbase}"/share/portzap
 
 ##
 # main
-src="${sharedir}"/doas.conf
-dest="${LOCALBASE:-/usr/local}"/etc/doas.conf
+source="${sharedir}"/doas.conf
+destination="${LOCALBASE:-/usr/local}"/etc/doas.conf
 # shellcheck disable=SC2002
-if [ -e "${dest}" ]; then
-    cat "${src}" |
+if [ -e "${destination}" ]; then
+    cat "${source}" |
     while read -r line; do
-        if grep -q "${line}" "${dest}"; then
+        if grep -q "${line}" "${destination}"; then
             continue
         fi
-        cat "${src}" >> "${dest}"
+        cat "${source}" >> "${destination}"
         break
     done
 else
     install -m "u=rw,go=" \
             -o root \
             -g wheel \
-            "${src}" \
+            "${source}" \
             "${localbase}"/etc
 fi
-printok "add ${dest} (double check it!)"
+printok "add ${destination}"
