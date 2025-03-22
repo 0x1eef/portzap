@@ -1,6 +1,6 @@
 # -*- mode: org -*-
 
-* vNEXT
+* v1.3.1
 
 **** Remove ~$LOCALBASE~ reference from ~bin/portzap~
 The ~$LOCALBASE~ reference in ~bin/portzap~ has been
