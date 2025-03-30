@@ -1,5 +1,11 @@
 # -*- mode: org -*-
 
+* v1.3.4
+
+**** Grant group members write access to the ports tree
+Grant members of the ~_portzap~ group write access to
+both ~/usr/ports~, and ~/home/_portzap/ports~. This will
+allow unprivileged users to build ports from source
 
 * v1.3.3
 
