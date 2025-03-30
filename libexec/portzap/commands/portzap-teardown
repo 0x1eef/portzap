@@ -2,7 +2,7 @@
 set -e
 
 ##
-# vars
+# globals
 libexec="$(dirname "${0}")"/..
 user=_portzap
 

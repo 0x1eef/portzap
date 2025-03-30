@@ -2,7 +2,7 @@
 set -e
 
 ##
-# vars
+# globals
 libexec="$(dirname "${0}")"/..
 git="${libexec}"/scripts/git
 repodir=$1
