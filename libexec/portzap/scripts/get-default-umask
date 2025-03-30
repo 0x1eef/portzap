@@ -3,4 +3,4 @@ set -e
 
 ##
 # main
-echo "u=rwX,g=rX,o="
+echo "ug=rwX,o="
