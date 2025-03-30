@@ -1,5 +1,10 @@
 # -*- mode: org -*-
 
+* v1.3.2
+
+**** Update source code documentation
+Update source code documentation / comments
+
 * v1.3.1
 
 **** Remove ~$LOCALBASE~ reference from ~bin/portzap~
