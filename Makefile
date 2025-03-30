@@ -5,9 +5,9 @@ LIBEXECDIR = $(PREFIX)/libexec/portzap
 SHAREDIR = $(PREFIX)/share/portzap
 
 install:
-	@find bin/ libexec/ share/ man/ -type d -exec install -v -d $(PREFIX)/"{}" \;
-	@find bin/ libexec/ -type f -exec install -v -m 0755 "{}" $(PREFIX)/"{}" \;
-	@find share/ man/ -type f -exec install -v -m 0644 "{}" $(PREFIX)/"{}" \;
+	@find bin/ libexec/ share/ man/ -type d -exec install -d $(PREFIX)/"{}" \;
+	@find bin/ libexec/ -type f -exec install -m 0755 "{}" $(PREFIX)/"{}" \;
+	@find share/ man/ -type f -exec install -m 0644 "{}" $(PREFIX)/"{}" \;
 
 deinstall:
 	rm -rf $(BINDIR)/portzap
