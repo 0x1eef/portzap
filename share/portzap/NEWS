@@ -1,5 +1,12 @@
 # -*- mode: org -*-
 
+
+* v1.3.3
+
+**** Remove verbose output from Makefile's install target
+Remove verbose output from the Makefile's install target
+by dropping the ~-v~ flag from the ~install~ command
+
 * v1.3.2
 
 **** Update source code documentation
