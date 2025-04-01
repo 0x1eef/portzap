@@ -9,7 +9,6 @@ libexec="$(dirname "${0}")"/..
 #
 # functions
 #
-# shellcheck source=/dev/null
 . "${libexec}"/functions/print.sh
 
 #
