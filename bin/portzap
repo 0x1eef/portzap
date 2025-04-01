@@ -15,7 +15,6 @@ commitfile="${installdir}"/.portzap
 #
 # functions
 #
-# shellcheck source=/dev/null
 . "${libexec}"/functions/print.sh
 
 require_dependency()
