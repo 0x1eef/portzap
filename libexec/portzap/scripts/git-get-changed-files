@@ -1,15 +1,17 @@
 #!/bin/sh
 set -e
 
-##
+#
 # globals
+#
 libexec="$(dirname "${0}")"/..
 git="${libexec}"/scripts/git
 repodir=$1
 commit=$2
 
-##
+#
 # main
+#
 cd "${repodir}"
 "${git}" diff -l0 --name-only --diff-filter=A "${commit}" "HEAD"
 "${git}" diff -l0 --name-only --diff-filter=M "${commit}" "HEAD"

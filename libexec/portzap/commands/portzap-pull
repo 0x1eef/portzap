@@ -1,19 +1,22 @@
 #!/bin/sh
 set -e
 
-##
+#
 # globals
+#
 libexec="$(dirname "${0}")"/..
 git="${libexec}"/scripts/git
 repodir=$1
 
-##
+#
 # functions
+#
 # shellcheck source=/dev/null
 . "${libexec}"/functions/print.sh
 
-##
+#
 # main
+#
 if [ "$(id -u)" = "0" ]; then
     printerr "you must be a user other than root"
     exit 1

@@ -1,19 +1,22 @@
 #!/bin/sh
 set -e
 
-##
+#
 # globals
+#
 localbase=$(realpath "$(dirname "$0")"/../../..)
 libexec="${localbase}"/libexec/portzap
 sharedir="${localbase}"/share/portzap
 
-##
+#
 # functions
+#
 # shellcheck source=/dev/null
 . "${libexec}"/functions/print.sh
 
-##
+#
 # main
+#
 source="${sharedir}"/doas.conf
 destination="${LOCALBASE:-/usr/local}"/etc/doas.conf
 # shellcheck disable=SC2002

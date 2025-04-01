@@ -1,14 +1,16 @@
 #!/bin/sh
 set -e
 
-##
+#
 # globals
+#
 libexec="$(dirname "${0}")"/..
 git=$(which git)
 mask=$("${libexec}"/scripts/get-default-umask)
 
-##
+#
 # main
+#
 doas -n \
      -u _portzap \
      /bin/sh -c "umask ${mask}; ${git} ${*}"

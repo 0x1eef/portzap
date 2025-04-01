@@ -1,18 +1,21 @@
 #!/bin/sh
 set -e
 
-##
+#
 # globals
+#
 libexec="$(dirname "${0}")"/..
 user=_portzap
 
-##
+#
 # functions
+#
 # shellcheck source=/dev/null
 . "${libexec}"/functions/print.sh
 
-##
+#
 # main
+#
 if [ "$(id -u)" = "0" ]; then
     pw userdel  -n "${user}"  > /dev/null 2>&1 || true
     pw groupdel -n "${user}"  > /dev/null 2>&1 || true

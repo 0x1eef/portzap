@@ -1,6 +1,7 @@
 #!/bin/sh
 set -e
 
-##
+#
 # main
+#
 echo "ug=rwX,o="

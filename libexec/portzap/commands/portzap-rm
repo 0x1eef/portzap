@@ -1,14 +1,16 @@
 #!/bin/sh
 set -e
 
-##
+#
 # globals
+#
 libexec="$(dirname "${0}")"/..
 repodir=$1
 installdir=$2
 
-##
+#
 # functions
+#
 # shellcheck source=/dev/null
 . "${libexec}"/functions/print.sh
 
@@ -28,8 +30,9 @@ erase()
     echo
 }
 
-##
+#
 # main
+#
 if [ "$(id -u)" != "0" ]; then
     printerr "you must be root"
     exit 1

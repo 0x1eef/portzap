@@ -1,8 +1,9 @@
 #!/bin/sh
 set -e
 
-##
+#
 # globals
+#
 localbase=$(realpath "$(dirname "$0")"/..)
 libexec="${localbase}"/libexec/portzap
 repodir="/home/_portzap/ports"
@@ -11,8 +12,9 @@ installdir="${PORTZAP_INSTALLDIR:-/usr/ports}"
 defaultbranch="hardenedbsd/main"
 commitfile="${installdir}"/.portzap
 
-##
+#
 # functions
+#
 # shellcheck source=/dev/null
 . "${libexec}"/functions/print.sh
 
@@ -46,8 +48,9 @@ print_usage()
     printf "\n"
 }
 
-##
+#
 # main
+#
 while getopts "v" opt; do
     case "${opt}" in
         "v")

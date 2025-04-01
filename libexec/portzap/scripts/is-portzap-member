@@ -1,8 +1,9 @@
 #!/bin/sh
 set -e
 
-##
+#
 # main
+#
 group="_portzap"
 mygroups=$(id -Gn | tr ' ' '\n')
 echo "${mygroups}" | grep -qe "^${group}$"

@@ -1,8 +1,9 @@
 #!/bin/sh
 set -e
 
-##
+#
 # globals
+#
 libexec="$(dirname "${0}")"/..
 git="${libexec}"/scripts/git
 mask=$("${libexec}"/scripts/get-default-umask)
@@ -10,13 +11,15 @@ repodir=$1
 installdir=$2
 commitfile=$3
 
-##
+#
 # functions
+#
 # shellcheck source=/dev/null
 . "${libexec}"/functions/print.sh
 
-##
+#
 # main
+#
 if [ "$(id -u)" != "0" ]; then
     printerr "you must be root"
     exit 1
@@ -24,15 +27,13 @@ fi
 
 cd "${repodir}"
 if [ -e "${commitfile}" ]; then
-    ##
     # install update
     commit=$(cat "${commitfile}")
     "${libexec}"/scripts/install -d "${installdir}"
     "${libexec}"/scripts/update-deleted-files "${repodir}" "${installdir}" "${commit}"
     "${libexec}"/scripts/update-changed-files "${repodir}" "${installdir}" "${commit}"
 else
-    ##
-    # install from scratch
+    # fresh install
     umask "${mask}"
     "${libexec}"/scripts/install -d "${installdir}"
     find -s . \
