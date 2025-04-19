@@ -46,10 +46,10 @@ the creation of `/home/_portzap`. A user should also be added to the
 commands should be run as a superuser:
 
 * portzap setup <br>
-Creates the `_portzap` user and group, and the `/home/_portzap` directory <br>
+Creates the `_portzap` user and group <br>
 
 * portzap teardown <br>
-Tears down the `_portzap` user and group, and removes the `/home/_portzap` directory <br>
+Tears down the `_portzap` user and group <br>
 
 * pw groupmod _portzap -m `<user>` <br>
 Add a user to the `_portzap` group. <br>
