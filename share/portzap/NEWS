@@ -1,5 +1,11 @@
 # -*- mode: org -*-
 
+* vNEXT
+
+**** Create a merge commit on each pull
+When pulling from the upstream repository, create a merge
+commit and disable rebase
+
 * v1.3.4
 
 **** Grant group members write access to the ports tree

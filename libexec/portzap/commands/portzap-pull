@@ -31,5 +31,5 @@ if [ ! -e "${repodir}"/.git ]; then
 fi
 
 cd "${repodir}"
-"${git}"  pull --rebase origin "${branch}"
+"${git}"  pull --no-ff --no-rebase origin "${branch}"
 printok "pull complete"
