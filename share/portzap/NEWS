@@ -1,6 +1,6 @@
 # News
 
-## vNEXT
+## v1.4.0
 
 - Create a merge commit on each pull: when pulling from the upstream
   repository, create a merge commit and disable rebase.
