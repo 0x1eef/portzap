@@ -13,4 +13,7 @@ commit=$2
 # main
 #
 cd "${repodir}"
-"${git}" diff -l0 --name-only --diff-filter=D "${commit}" "HEAD"
+"${git}" diff -l0 --name-status -M \
+    --diff-filter=DR \
+    "${commit}" "HEAD" \
+    | awk '{ print $2 }'

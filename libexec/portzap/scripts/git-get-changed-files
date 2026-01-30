@@ -13,5 +13,7 @@ commit=$2
 # main
 #
 cd "${repodir}"
-"${git}" diff -l0 --name-only --diff-filter=A "${commit}" "HEAD"
-"${git}" diff -l0 --name-only --diff-filter=M "${commit}" "HEAD"
+"${git}" diff -l0 --name-status -M -C \
+    --diff-filter=AMCRTU \
+    "${commit}" "HEAD" \
+    | awk '{ if ($1 ~ /^R|C/) { print $3 } else { print $2 } }'
