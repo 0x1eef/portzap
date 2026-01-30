@@ -25,5 +25,11 @@ for file in ${files}; do
     for dir in ${parents}; do
         "${libexec}"/scripts/install -d "${dir}"
     done
-    "${libexec}"/scripts/install "${file}" "${target}"
+    if [ -L "${file}" ]; then
+        cp -Ppv "${file}" "${target}"
+        chown -h root:_portzap "${target}"
+    else
+        cp -pv "${file}" "${target}"
+        chown root:_portzap "${target}"
+    fi
 done
