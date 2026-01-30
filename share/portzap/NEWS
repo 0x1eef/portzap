@@ -1,153 +1,108 @@
-# -*- mode: org -*-
+# News
 
-* vNEXT
+## vNEXT
 
-**** Create a merge commit on each pull
-When pulling from the upstream repository, create a merge
-commit and disable rebase
+- Create a merge commit on each pull: when pulling from the upstream
+  repository, create a merge commit and disable rebase.
+- Handle renames/copies in update file lists: include rename/copy detection
+  when computing changed/removed paths during in-place updates.
+- Preserve perms/symlinks on update installs: copy updated files with
+  permissions and symlink metadata preserved during in-place updates.
 
-* v1.3.4
+## v1.3.4
 
-**** Grant group members write access to the ports tree
-Grant members of the ~_portzap~ group write access to
-both ~/usr/ports~, and ~/home/_portzap/ports~. This will
-allow unprivileged users to build ports from source
+- Grant group members write access to the ports tree: grant members of the
+  `_portzap` group write access to both `/usr/ports` and `/home/_portzap/ports`.
+  This allows unprivileged users to build ports from source.
 
-* v1.3.3
+## v1.3.3
 
-**** Remove verbose output from Makefile's install target
-Remove verbose output from the Makefile's install target
-by dropping the ~-v~ flag from the ~install~ command
+- Remove verbose output from Makefile's install target: drop the `-v` flag from
+  the `install` command.
 
-* v1.3.2
+## v1.3.2
 
-**** Update source code documentation
-Update source code documentation / comments
+- Update source code documentation: update source code documentation and
+  comments.
 
-* v1.3.1
+## v1.3.1
 
-**** Remove ~$LOCALBASE~ reference from ~bin/portzap~
-The ~$LOCALBASE~ reference in ~bin/portzap~ has been
-replaced with a relative path (similar to earlier changes)
+- Remove `$LOCALBASE` reference from `bin/portzap`: the `$LOCALBASE` reference
+  in `bin/portzap` has been replaced with a relative path (similar to earlier
+  changes).
+- Reimplement option parser with getopts: reimplement the option parser with
+  getopts. The previous implementation was complex and custom.
 
-**** Reimplement option parser with getopts
-This change reimplements the option parser with getopts.
-The previous implementation was complex and custom
+## v1.3.0
 
-* v1.3.0
+- Improve `portzap.8`: mention and provide an example of how to add a user to
+  the `_portzap` group with `pw groupmod`.
+- Replace `${LOCALBASE}` with relative paths: replace `${LOCALBASE}` with paths
+  that are relative to `$(dirname "${0}")/..` instead. In the process two
+  variables (`${localbase}`, `${libexec}`) have become one variable
+  (`${libexec}`).
+- Revisit log messages: more consistent with other log messages.
+  See `fgrep -rn printok libexec/ bin/` and `fgrep -rn printerr libexec/ bin/`.
+- Add `portzap sh` to man page: the `portzap sh` command was missing from the
+  SYNOPSIS section.
+- Remove `portzap checkout`: remove the `portzap checkout` command. It has been
+  replaced by using `portzap sh` alongside `git checkout <branch>`.
 
-**** Improve portzap.8
-Mention and provide an example of how to add a user to
-the ~_portzap~ group with ~pw groupmod~
+## v1.2.1
 
-**** Replace ${LOCALBASE} with relative paths
-This change replaces the use of ${LOCALBASE} with paths that
-are relative to ~$(dirname "${0}")/..~ instead. In the process
-two variables (~${localbase}, ${libexec}~) have became one
-variable (~${libexec}~)
+- Install `doas.conf`: when `${PREFIX}/etc/doas.conf` does not exist the
+  `setup-doas` script will try to install `/usr/local/etc/doas.conf` with
+  `root:wheel` as the owner, and with `u=rw,go=` as the file mode.
+- Log when `portzap rm` completes successfully: similar to other commands, log
+  when the `portzap rm` command completes successfully.
+- Format log messages with program name: format log messages written to standard
+  output and standard error with the pattern `portzap: <message>`.
+- Fix typo in `commands/portzap-setup`: fix a typo that would throw an error when
+  running the `portzap setup` command.
+- Replace chmod with -M switch: replace chmod with the `-M` switch. The `-M`
+  switch is given to the `pw useradd` command in the `setup-user` script.
 
-**** Revisit log messages
-More consistent with other log messages.
-See
-***** ~fgrep -rn printok libexec/ bin/~
-***** ~fgrep -rn printerr libexec/ bin/~
+## v1.2.0
 
-**** Add ~portzap sh~ to man page
-The ~portzap sh~ command was missing from the SYNOPIS section
+- Fix `libexec/portzap/scripts/setup-doas` bug: fix a bug in `setup-doas` that
+  could hang the `portzap setup` command.
+- Collapse `libexec/portzap/scripts`: stop trying to organize script directories
+  that go beyond `libexec/portzap/scripts`.
+- Add `libexec/portzap/scripts/setup`: this new directory replaces what was
+  formerly known as `libexec/portzap/setup`.
+- Add `libexec/portzap/scripts`: this new directory replaces what was formerly
+  known as `libexec/portzap/utils`.
 
-**** Remove ~portzap checkout~
-Remove the ~portzap checkout~ command. It has been replaced
-by using ~portzap sh~ alongside ~git checkout <branch>~
+## v1.1.0
 
-* v1.2.1
+- Add `libexec/portzap/utils/get-umask`: add a single source of truth for the
+  mask given to umask by git and `portzap-install`.
+- Break up `portzap-install` into multiple files: a new directory
+  (`libexec/portzap/utils/install/`) contains files that cover both a fresh
+  install and applying an update.
+- Add `setup/setup-doas` improvements: more likely to do what's expected, but
+  blind spots still exist.
+- Add `portzap setup`, `portzap teardown`: replace and enhance `setup-portzap`.
+- Add `libexec/portzap/commands/portzap-sh`: a new command that can run `/bin/sh`
+  within `/home/_portzap/src/` as the `_portzap` user.
 
-**** Install ~doas.conf~
-When ~${PREFIX}/etc/doas.conf~ does not exist the ~setup-doas~
-script will try to install ~/usr/local/etc/doas.conf~ with
-~root:wheel~ as the owner, and with ~u=rw,go=~ as the filemode
+## v1.0.0
 
-**** Log when ~portzap rm~ completes successfully
-Similar to other commands, log when the ~portzap rm~ command
-completes successfully
+- Add `libexec/portzap/setup/setup-user`: `setup-user` sets up the portzap user
+  environment.
+- Recover from `git checkout` failure: recover gracefully from failure in
+  portzap-clone.
 
-**** Format log messages with program name
-Format log messages written to standard output
-and standard error with the pattern ~portzap: <message>~
+## v0.2.1
 
-**** Fix typo in ~commands/portzap-setup~
-Fix a typo that would throw an error when running the
-~portzap setup~ command
+- Fix Makefile: the mandoc directory wasn't created properly. It only became
+  obvious when building the port into a temporary staging directory.
 
-**** Replace chmod with -M switch
-Replace chmod with the -M switch. The -M switch is given to
-the ~pw useradd~ command in the ~setup-user~ script
+## v0.2.0
 
-* v1.2.0
-
-**** Fix ~libexec/portzap/scripts/setup-doas~ bug
-Fix a bug in ~setup-doas~ that could hang the ~portzap setup~
-command
-
-**** Collapse ~libexec/portzap/scripts~
-Stop trying to organize script directories that go beyond
-~libexec/portzap/scripts~
-
-**** Add ~libexec/portzap/scripts/setup~
-This new directory replaces what was formerly known
-as ~libexec/portzap/setup~
-
-**** Add ~libexec/portzap/scripts~
-This new directory replaces what was formerly known
-as ~libexec/portzap/utils~
-
-* v1.1.0
-
-**** Add 'libexec/portzap/utils/get-umask'
-Add a single source of truth for the mask given to umask
-by git and portzap-install
-
-**** Break up ~portzap-install~ into multiple files
-A new directory (~libexec/portzap/utils/install/~) contains
-files that cover both a fresh install and applying an update
-
-**** Add ~setup/setup-doas~ improvements
-More likely to do what's expected, but blind spots still exist
-
-**** Add ~portzap setup~, ~portzap teardown~
-Replace and enhance ~setup-portzap~
-
-**** Add ~libexec/portzap/commands/portzap-sh~
-A new command that can run ~/bin/sh~ within ~/home/_portzap/src/~
-as the ~_portzap~ user
-
-* v1.0.0
-
-**** Add libexec/portzap/setup/setup-user
-~setup-user~ sets up the portzap user environment
-
-**** Recover from ~git checkout~ failure
-Recover gracefully from failure in portzap-clone
-
-* v0.2.1
-
-**** Fix Makefile
-The mandoc directory wasn't created properly. It only
-became obvious when building the port into a temporary
-staging directory
-
-* v0.2.0
-
-**** Remove git-diff limit
-Remove file rename limit from git-diff
-
-**** Replace utils/gitexec with utils/git/run
-Communicate with git via utils/git/run
-
-**** Add utils/git
-A dedicated directory for git-related scripts
-
-**** Remove "set -x"
-Emit less output
-
-**** Remove scripts
-Remove utils/printok, utils/printerr, utils/git-rev
+- Remove git-diff limit: remove file rename limit from git-diff.
+- Replace utils/gitexec with utils/git/run: communicate with git via
+  utils/git/run.
+- Add utils/git: a dedicated directory for git-related scripts.
+- Remove "set -x": emit less output.
+- Remove scripts: remove utils/printok, utils/printerr, utils/git-rev.
