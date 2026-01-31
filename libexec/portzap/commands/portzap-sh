@@ -5,7 +5,6 @@ set -e
 # globals
 #
 libexec="$(dirname "${0}")"/..
-user=_portzap
 repodir="${1}"
 
 #
