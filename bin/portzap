@@ -43,6 +43,7 @@ print_usage()
     printf "  sh          Run /bin/sh within /home/_portzap/ports/\n"
     printf "  rm          Remove /usr/ports/ and /home/_portzap/ports/\n"
     printf "  install     Install the ports tree into /usr/ports/\n"
+    printf "  apply       Apply security.mac.do.rules for portzap\n"
     printf "\n"
 }
 
@@ -70,23 +71,26 @@ case $1 in
         "${libexec}"/commands/portzap-teardown
         ;;
     "clone")
-        require_dependency git doas
+        require_dependency git mdo
         "${libexec}"/commands/portzap-clone "${giturl}" "${repodir}" "${defaultbranch}"
         ;;
     "pull")
-        require_dependency git doas
+        require_dependency git mdo
         "${libexec}"/commands/portzap-pull "${repodir}"
         ;;
     "sh")
-        require_dependency doas
+        require_dependency mdo
         "${libexec}"/commands/portzap-sh "${repodir}"
         ;;
     "rm")
         "${libexec}"/commands/portzap-rm "${repodir}" "${installdir}"
         ;;
     "install")
-        require_dependency git doas
+        require_dependency git mdo
         "${libexec}"/commands/portzap-install "${repodir}" "${installdir}" "${commitfile}"
+        ;;
+    "apply")
+        "${libexec}"/commands/portzap-apply
         ;;
     *)
         print_usage

@@ -1,5 +1,11 @@
 # News
 
+## vNEXT
+
+- Replace doas with mdo/mac_do: use `mdo` and `mac_do` for delegating
+  unprivileged commands to the `_portzap` user.
+- Add `portzap apply`: apply security.mac.do.rules for portzap.
+
 ## v1.4.0
 
 - Create a merge commit on each pull: when pulling from the upstream

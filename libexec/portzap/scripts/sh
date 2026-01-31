@@ -1,0 +1,20 @@
+#!/bin/sh
+set -e
+
+#
+# globals
+#
+user="_portzap"
+home="/home/${user}"
+shell="/bin/sh"
+
+#
+# main
+#
+mdo -u "${user}" -G "${user}" -- /usr/bin/env -i \
+    HOME="${home}" \
+    USER="${user}" \
+    LOGNAME="${user}" \
+    SHELL="${shell}" \
+    PATH="/bin:/usr/bin:/sbin:/usr/sbin:/usr/local/bin" \
+    "${shell}" "${@}"

@@ -11,6 +11,4 @@ mask=$("${libexec}"/scripts/get-default-umask)
 #
 # main
 #
-doas -n \
-     -u _portzap \
-     /bin/sh -c "umask ${mask}; ${git} ${*}"
+"${libexec}"/scripts/sh -c "umask ${mask}; ${git} -c core.editor=true ${*}"
