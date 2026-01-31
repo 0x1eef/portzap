@@ -25,7 +25,7 @@ fi
 
 cd "${repodir}"
 mkdir -p "${installdir}"
-rsync -a \
+rsync -av \
       --chown=root:_portzap \
       --delete \
       --delete-excluded \
