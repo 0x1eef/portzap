@@ -30,6 +30,4 @@ if [ ! -e "${repodir}" ]; then
 fi
 
 cd "${repodir}"
-doas -n \
-     -u "${user}" \
-     /bin/sh
+"${libexec}"/scripts/sh

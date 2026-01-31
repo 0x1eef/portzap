@@ -6,7 +6,6 @@ set -e
 #
 libexec="$(dirname "${0}")"/..
 git="${libexec}"/scripts/git
-branch=$("${git}" branch --show-current)
 repodir=$1
 
 #
@@ -31,5 +30,6 @@ if [ ! -e "${repodir}"/.git ]; then
 fi
 
 cd "${repodir}"
+branch=$("${git}" branch --show-current)
 "${git}"  pull --no-ff --no-rebase origin "${branch}"
 printok "pull complete"
