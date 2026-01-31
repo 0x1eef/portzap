@@ -104,6 +104,7 @@ make deinstall
 * [mdo](https://man.freebsd.org/cgi/man.cgi?query=mdo&sektion=1)
 * [mac_do](https://man.freebsd.org/cgi/man.cgi?query=mac_do&sektion=4)
 * [git](https://www.man7.org/linux/man-pages/man1/git.1.html)
+* [rsync](https://www.man7.org/linux/man-pages/man1/rsync.1.html)
 
 ## Sources
 

@@ -86,7 +86,7 @@ case $1 in
         "${libexec}"/commands/portzap-rm "${repodir}" "${installdir}"
         ;;
     "install")
-        require_dependency git mdo
+        require_dependency git mdo rsync
         "${libexec}"/commands/portzap-install "${repodir}" "${installdir}" "${commitfile}"
         ;;
     "apply")

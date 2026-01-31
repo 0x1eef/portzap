@@ -5,6 +5,7 @@
 - Replace doas with mdo/mac_do: use `mdo` and `mac_do` for delegating
   unprivileged commands to the `_portzap` user.
 - Add `portzap apply`: apply security.mac.do.rules for portzap.
+- Use rsync for installs: simplify updates and improve reliability.
 
 ## v1.4.0
 

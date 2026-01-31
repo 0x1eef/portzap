@@ -6,7 +6,6 @@ set -e
 #
 libexec="$(dirname "${0}")"/..
 git="${libexec}"/scripts/git
-mask=$("${libexec}"/scripts/get-default-umask)
 repodir=$1
 installdir=$2
 commitfile=$3
@@ -25,31 +24,22 @@ if [ "$(id -u)" != "0" ]; then
 fi
 
 cd "${repodir}"
-if [ -e "${commitfile}" ]; then
-    # install update
-    commit=$(cat "${commitfile}")
-    "${libexec}"/scripts/install -d "${installdir}"
-    "${libexec}"/scripts/update-deleted-files "${repodir}" "${installdir}" "${commit}"
-    "${libexec}"/scripts/update-changed-files "${repodir}" "${installdir}" "${commit}"
-else
-    # fresh install
-    umask "${mask}"
-    "${libexec}"/scripts/install -d "${installdir}"
-    find -s . \
-         -maxdepth 1 \
-         ! -name "." \
-         ! -name ".git" \
-         ! -name ".github" \
-         ! -name ".gitignore" \
-         ! -name ".gitattributes" \
-         ! -name ".git-blame-ignore-revs" \
-         ! -name ".cirrus-ci" \
-         ! -name ".cirrus.yml" \
-         ! -name ".gitignore" \
-         ! -name ".arclint" \
-         ! -name ".arcconfig" \
-         -exec cp -Rpv {} "${installdir}" \;
-    chown -Rv root "${installdir}"
-fi
+mkdir -p "${installdir}"
+rsync -a \
+      --chown=root:_portzap \
+      --delete \
+      --delete-excluded \
+      --exclude=".git" \
+      --exclude=".github" \
+      --exclude=".gitignore" \
+      --exclude=".gitattributes" \
+      --exclude=".git-blame-ignore-revs" \
+      --exclude=".cirrus-ci" \
+      --exclude=".cirrus.yml" \
+      --exclude=".arclint" \
+      --exclude=".arcconfig" \
+      --exclude=".portzap" \
+      "${repodir}/" \
+      "${installdir}/"
 "${git}" rev-parse HEAD > "${commitfile}"
 printok "install complete"
