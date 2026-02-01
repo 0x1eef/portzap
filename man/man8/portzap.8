@@ -3,7 +3,7 @@
 .Os
 .Sh NAME
 .Nm portzap
-.Nd manages a copy of the HardenedBSD ports tree
+.Nd manages a copy of the hardenedBSD ports tree
 .Sh SYNOPSIS
 .Nm portzap setup
 .Nm portzap teardown
@@ -16,7 +16,7 @@
 .Nm portzap unapply
 .Sh DESCRIPTION
 .Nm portzap
-manages a local copy of the HardenedBSD ports tree with consistent ownership,
+manages a local copy of the hardenedBSD ports tree with consistent ownership,
 a clean separation between delegated and root-only operations, and a simple
 update/install workflow.
 .Sh DEPENDENCIES
@@ -57,7 +57,7 @@ This command requires root privileges
 .sp
 .Nm portzap clone
 .br
-Clone the HardenedBSD ports tree into /home/_portzap/ports/
+Clone the hardenedBSD ports tree into /home/_portzap/ports/
 .br
 This command is delegated to the '_portzap' user and access is controlled
 by mac_do(4) rules installed by
@@ -111,7 +111,7 @@ This command requires root privileges
 .br
 The URL of a git repository
 .br
-Default: https://github.com/HardenedBSD/ports
+Default: https://github.com/hardenedBSD/ports
 .sp
 .Nm PORTZAP_INSTALLDIR
 .br

@@ -7,7 +7,7 @@ set -e
 localbase=$(realpath "$(dirname "$0")"/..)
 libexec="${localbase}"/libexec/portzap
 repodir="/home/_portzap/ports"
-giturl="${PORTZAP_CLONEURL:-https://github.com/hardenedbsd/ports}"
+giturl="${PORTZAP_CLONEURL:-https://github.com/hardenedBSD/ports}"
 installdir="${PORTZAP_INSTALLDIR:-/usr/ports}"
 defaultbranch="hardenedbsd/main"
 commitfile="${installdir}"/.portzap
@@ -37,7 +37,7 @@ print_usage()
     printf "  teardown    Reverse the changes made by 'portzap setup'\n"
     printf "\n"
     printf "General\n"
-    printf "  clone       Clone the HardenedBSD ports tree\n"
+    printf "  clone       Clone the hardenedBSD ports tree\n"
     printf "  pull        Pull ports tree updates\n"
     printf "  sh          Run /bin/sh within /home/_portzap/ports/\n"
     printf "  rm          Remove /usr/ports/ and /home/_portzap/ports/\n"

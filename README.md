@@ -1,7 +1,7 @@
 ## About
 
 The portzap utility manages a local copy of the
-[hardenedBSD ports tree](https://git.HardenedBSD.org/HardenedBSD/ports)
+[hardenedBSD ports tree](https://git.hardenedBSD.org/hardenedBSD/ports)
 in a way that is efficient, scalable, and secure. The
 utility provides consistent ownership and permissions
 for the ports tree, maintains a clean separation between
@@ -13,7 +13,8 @@ the ports tree.
 
 * A simple workflow: clone, pull, then install.
 * One dedicated account (`_portzap`) for managing the ports tree.
-* Clear permissions: mac_do(4) rules decide who can act as `_portzap`.
+* Delegation: [mdo(1)](https://man.freebsd.org/cgi/man.cgi?query=mdo&sektion=1) runs commands as `_portzap`.
+* Clear permissions: [mac_do(4)](https://man.freebsd.org/cgi/man.cgi?query=mac_do&sektion=4) rules decide who can act as `_portzap`.
 * Separates unprivileged operations from root-only operations.
 * Keeps ownership and permissions consistent in `/home/_portzap/ports/` and `/usr/ports/`.
 * Uses `rsync` and `git` for fast, efficient updates.
@@ -23,11 +24,11 @@ the ports tree.
 #### User
 
 The following commands are delegated to the `_portzap` user and
-authorized by mac_do(4) rules. By default you must be root or a
+authorized by [mac_do(4)](https://man.freebsd.org/cgi/man.cgi?query=mac_do&sektion=4) rules. By default you must be root or a
 member of the `_portzap` group to run the following commands:
 
 * portzap clone <br>
-Clone the HardenedBSD ports tree into `/home/_portzap/ports/` <br>
+Clone the hardenedBSD ports tree into `/home/_portzap/ports/` <br>
 
 * portzap pull <br>
 Pull updates into `/home/_portzap/ports/` <br>
@@ -96,7 +97,7 @@ with the following command and without a reboot:
 #### Package
 
 portzap is available
-[from the HardenedBSD src tree](https://git.HardenedBSD.org/HardenedBSD/ports/-/tree/HardenedBSD/main/hardenedbsd/portzap).
+[from the hardenedBSD src tree](https://git.hardenedBSD.org/hardenedBSD/ports/-/tree/hardenedBSD/main/hardenedBSD/portzap).
 <br>
 "pkg install portzap" should work too but expect slower updates.
 
@@ -124,7 +125,7 @@ make deinstall
 
 * [github.com/@0x1eef](https://github.com/0x1eef/portzap)
 * [gitlab.com/@0x1eef](https://gitlab.com/0x1eef/portzap)
-* [hardenedbsd.org/@0x1eef](https://git.HardenedBSD.org/0x1eef/portzap)
+* [hardenedBSD.org/@0x1eef](https://git.hardenedBSD.org/0x1eef/portzap)
 * [bsd.cafe/@0x1eef](https://brew.bsd.cafe/0x1eef/portzap)
 
 ## License
