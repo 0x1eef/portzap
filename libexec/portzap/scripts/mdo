@@ -11,10 +11,15 @@ shell="/bin/sh"
 #
 # main
 #
+if [ "${#}" -eq 0 ]; then
+    # Reset "$@" to /bin/sh so env(1) has a command to run.
+    set -- "${shell}"
+fi
+
 mdo -u "${user}" -G "${user}" -- /usr/bin/env -i \
     HOME="${home}" \
     USER="${user}" \
     LOGNAME="${user}" \
     SHELL="${shell}" \
     PATH="/bin:/usr/bin:/sbin:/usr/sbin:/usr/local/bin" \
-    "${shell}" "${@}"
+    "$@"

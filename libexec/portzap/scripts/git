@@ -11,4 +11,5 @@ mask=$("${libexec}"/scripts/get-default-umask)
 #
 # main
 #
-"${libexec}"/scripts/sh -c "umask ${mask}; ${git} -c core.editor=true ${*}"
+umask "${mask}"
+"${libexec}"/scripts/mdo "${git}" -c core.editor=true "$@"

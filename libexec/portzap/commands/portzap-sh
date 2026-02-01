@@ -21,4 +21,4 @@ if [ ! -e "${repodir}" ]; then
 fi
 
 cd "${repodir}"
-"${libexec}"/scripts/sh
+"${libexec}"/scripts/mdo

@@ -3,6 +3,7 @@
 ## vNEXT
 
 - Add `portzap unapply`: clear portzap rules from security.mac.do.rules.
+- Rename `scripts/sh` to `scripts/mdo` and keep it as the shared mdo wrapper.
 
 
 ## v2.0.0

@@ -20,9 +20,8 @@ commitfile="${installdir}"/.portzap
 require_dependency()
 {
     local dep
-    for i in $(seq 1 ${#}); do
-        eval "dep=\$${i}"
-        if ! which -s "$dep"; then
+    for dep in "$@"; do
+        if ! command -v "$dep" > /dev/null 2>&1; then
             printerr "${dep} wasn't found on \$PATH"
             exit 1
         fi
