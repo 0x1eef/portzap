@@ -33,13 +33,19 @@ fi
 #
 # main
 #
-rule=$("${libexec}"/scripts/get-mdo-rule)
+rulez=$("${libexec}"/scripts/get-mdo-rule | tr ';' '\n' | awk 'NF')
 rules=$(sysctl -n security.mac.do.rules)
 if [ -z "${rules}" ]; then
     printok "security.mac.do.rules already empty"
     exit 0
 fi
-filtered=$(printf "%s" "${rules}" | tr ';' '\n' | awk -v rule="${rule}" 'NF && $0 != rule {print}')
+filtered=$(printf "%s" "${rules}" | tr ';' '\n' | awk -v rulez="${rulez}" '
+BEGIN { n = split(rulez, r, "\n") }
+NF {
+    for (i = 1; i <= n; i++) if ($0 == r[i]) next
+    print
+}
+')
 merged=$(printf "%s" "${filtered}" | paste -sd ';' -)
 if [ "${merged}" = "${rules}" ]; then
     printok "security.mac.do.rules unchanged"
