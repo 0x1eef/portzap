@@ -11,5 +11,5 @@ gid=$(pw groupshow "${user}" | awk -F: '{print $3}')
 #
 # main
 #
-rule="gid=${gid}>uid=${uid},gid=${gid},+gid=${gid}"
+rule="gid=${gid}>uid=${uid},gid=${gid},+gid=${gid};uid=0>uid=${uid},gid=${gid},+gid=${gid}"
 echo "${rule}"

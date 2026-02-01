@@ -1,20 +1,30 @@
 ## About
 
 The portzap utility manages a local copy of the
-[HardenedBSD ports tree](https://git.HardenedBSD.org/HardenedBSD/ports).
-The copy of the ports tree is maintained by members of
-the `_portzap` group, and the copy of the ports tree
-can be installed into /usr/ports/ by root.
+[hardenedBSD ports tree](https://git.HardenedBSD.org/HardenedBSD/ports)
+in a way that is efficient, scalable, and secure. The
+utility provides consistent ownership and permissions
+for the ports tree, maintains a clean separation between
+root-only operations and unprivileged operations, and
+offers a simple workflow for updating and installing
+the ports tree.
 
-## Roles
+## Features
+
+* A simple workflow: clone, pull, then install.
+* One dedicated account (`_portzap`) for managing the ports tree.
+* Clear permissions: mac_do(4) rules decide who can act as `_portzap`.
+* Separates unprivileged operations from root-only operations.
+* Keeps ownership and permissions consistent in `/home/_portzap/ports/` and `/usr/ports/`.
+* Uses `rsync` and `git` for fast, efficient updates.
+
+## Commands
 
 #### User
 
-The following commands are restricted to members of the `_portzap` group. <br>
-The commands are delegated to the
-`_portzap` user via the [mdo(1)](https://man.freebsd.org/cgi/man.cgi?query=mdo&sektion=1)
-command and the [mac_do(4)](https://man.freebsd.org/cgi/man.cgi?query=mac_do&sektion=4)
-policy:
+The following commands are delegated to the `_portzap` user and
+authorized by mac_do(4) rules. By default you must be root or a
+member of the `_portzap` group to run the following commands:
 
 * portzap clone <br>
 Clone the HardenedBSD ports tree into `/home/_portzap/ports/` <br>
@@ -38,6 +48,7 @@ Install `/home/_portzap/ports/` into `/usr/ports/` <br>
 
 * portzap apply <br>
 Apply security.mac.do.rules for portzap <br>
+Allows root and members of the `_portzap` group to act as the `_portzap` user <br>
 
 * portzap unapply <br>
 Clear portzap rules from security.mac.do.rules <br>
@@ -49,9 +60,10 @@ Clear portzap rules from security.mac.do.rules <br>
 After installation is complete the portzap environment should be setup.
 
 That includes the creation of the `_portzap` user and group, as well as
-the creation of `/home/_portzap`. A user should also be added to the
-`_portzap` group. The process is mostly automated, and the following
-commands should be run as a superuser:
+the creation of `/home/_portzap`. Adding a user to the `_portzap` group is
+recommended when you want to manage the tree as a non-root user (who will
+then be delegated to `_portzap`). The process is mostly automated, and the
+following commands should be run as a superuser:
 
 * portzap setup <br>
 Creates the `_portzap` user and group <br>

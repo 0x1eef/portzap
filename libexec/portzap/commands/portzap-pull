@@ -16,14 +16,6 @@ repodir=$1
 #
 # main
 #
-if [ "$(id -u)" = "0" ]; then
-    printerr "you must be a user other than root"
-    exit 1
-fi
-if ! "${libexec}"/scripts/is-portzap-member; then
-    printerr "$(id -un) is not a member of _portzap"
-    exit 1
-fi
 if [ ! -e "${repodir}"/.git ]; then
     printerr "repository should be cloned first"
     exit 1

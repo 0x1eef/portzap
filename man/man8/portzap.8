@@ -16,10 +16,9 @@
 .Nm portzap unapply
 .Sh DESCRIPTION
 .Nm portzap
-manages a copy of the HardenedBSD ports tree.
-The copy of the ports tree is maintained by members of
-the '_portzap' group, and the copy of the ports tree
-can be installed into /usr/ports/ by root.
+manages a local copy of the HardenedBSD ports tree with consistent ownership,
+a clean separation between delegated and root-only operations, and a simple
+update/install workflow.
 .Sh DEPENDENCIES
 The mac_do(4) policy must be loaded into the kernel before portzap(8)
 can use mdo(1). To load mac_do(4) at boot time, add the following to
@@ -60,23 +59,26 @@ This command requires root privileges
 .br
 Clone the HardenedBSD ports tree into /home/_portzap/ports/
 .br
-This command is delegated to the '_portzap' user and
-limited to members of the '_portzap' group
+This command is delegated to the '_portzap' user and access is controlled
+by mac_do(4) rules installed by
+.Nm portzap apply
 .Pp
 .Nm portzap pull
 .br
 Pull updates into /home/_portzap/ports/
 .br
-This command is delegated to the '_portzap' user and
-limited to members of the '_portzap' group
+This command is delegated to the '_portzap' user and access is controlled
+by mac_do(4) rules installed by
+.Nm portzap apply
 .br
 .Pp
 .Nm portzap sh
 .br
 Run /bin/sh within /home/_portzap/ports/
 .br
-This command is delegated to the '_portzap' user and
-limited to members of the '_portzap' group
+This command is delegated to the '_portzap' user and access is controlled
+by mac_do(4) rules installed by
+.Nm portzap apply
 .Pp
 .Nm portzap rm
 .br
