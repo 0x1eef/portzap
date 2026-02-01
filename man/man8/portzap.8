@@ -13,6 +13,7 @@
 .Nm portzap install
 .Nm portzap rm
 .Nm portzap apply
+.Nm portzap unapply
 .Sh DESCRIPTION
 .Nm portzap
 manages a copy of the HardenedBSD ports tree.
@@ -95,8 +96,12 @@ This command requires root privileges
 Apply security.mac.do.rules for portzap
 .br
 This command requires root privileges
+.Pp
+.Nm portzap unapply
 .br
-Typically called from /etc/rc.local at boot time
+Remove security.mac.do.rules for portzap
+.br
+This command requires root privileges
 .Sh ENVIRONMENT
 .sp
 .sp

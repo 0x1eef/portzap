@@ -1,0 +1,16 @@
+#!/bin/sh
+set -e
+
+#
+# globals
+#
+libexec="$(dirname "${0}")"/..
+user="_portzap"
+uid=$(id -u "${user}")
+gid=$(pw groupshow "${user}" | awk -F: '{print $3}')
+
+#
+# main
+#
+rule="gid=${gid}>uid=${uid},gid=${gid},+gid=${gid}"
+echo "${rule}"

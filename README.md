@@ -38,7 +38,9 @@ Install `/home/_portzap/ports/` into `/usr/ports/` <br>
 
 * portzap apply <br>
 Apply security.mac.do.rules for portzap <br>
-Typically called from `/etc/rc.local` at boot time <br>
+
+* portzap unapply <br>
+Clear portzap rules from security.mac.do.rules <br>
 
 ## Configuration
 

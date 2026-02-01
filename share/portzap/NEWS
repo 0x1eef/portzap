@@ -1,5 +1,10 @@
 # News
 
+## vNEXT
+
+- Add `portzap unapply`: clear portzap rules from security.mac.do.rules.
+
+
 ## v2.0.0
 
 - Replace doas with mdo/mac_do: use `mdo` and `mac_do` for delegating

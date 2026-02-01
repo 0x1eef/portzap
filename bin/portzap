@@ -44,6 +44,7 @@ print_usage()
     printf "  rm          Remove /usr/ports/ and /home/_portzap/ports/\n"
     printf "  install     Install the ports tree into /usr/ports/\n"
     printf "  apply       Apply security.mac.do.rules for portzap\n"
+    printf "  unapply     Remove security.mac.do.rules for portzap\n"
     printf "\n"
 }
 
@@ -91,6 +92,9 @@ case $1 in
         ;;
     "apply")
         "${libexec}"/commands/portzap-apply
+        ;;
+    "unapply")
+        "${libexec}"/commands/portzap-unapply
         ;;
     *)
         print_usage

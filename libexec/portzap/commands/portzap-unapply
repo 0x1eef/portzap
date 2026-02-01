@@ -35,10 +35,15 @@ fi
 #
 rule=$("${libexec}"/scripts/get-mdo-rule)
 rules=$(sysctl -n security.mac.do.rules)
-merged=$(printf "%s\n%s\n" "${rules}" "${rule}" | tr ';' '\n' | awk 'NF' | awk '!seen[$0]++' | paste -sd ';' -)
+if [ -z "${rules}" ]; then
+    printok "security.mac.do.rules already empty"
+    exit 0
+fi
+filtered=$(printf "%s" "${rules}" | tr ';' '\n' | awk -v rule="${rule}" 'NF && $0 != rule {print}')
+merged=$(printf "%s" "${filtered}" | paste -sd ';' -)
 if [ "${merged}" = "${rules}" ]; then
     printok "security.mac.do.rules unchanged"
     exit 0
 fi
 sysctl security.mac.do.rules="${merged}"
-printok "add security.mac.do.rules"
+printok "remove security.mac.do.rules"
