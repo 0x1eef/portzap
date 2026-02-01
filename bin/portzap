@@ -40,10 +40,11 @@ print_usage()
     printf "  clone       Clone the hardenedBSD ports tree\n"
     printf "  pull        Pull ports tree updates\n"
     printf "  sh          Run /bin/sh within /home/_portzap/ports/\n"
+    printf "  status      Show whether mac_do(4) rules are applied\n"
+    printf "  apply       Apply mac_do(4) rules\n"
+    printf "  unapply     Remove mac_do(4) rules\n"
     printf "  rm          Remove /usr/ports/ and /home/_portzap/ports/\n"
     printf "  install     Install the ports tree into /usr/ports/\n"
-    printf "  apply       Apply security.mac.do.rules for portzap\n"
-    printf "  unapply     Remove security.mac.do.rules for portzap\n"
     printf "\n"
 }
 
@@ -82,18 +83,21 @@ case $1 in
         require_dependency mdo
         "${libexec}"/commands/portzap-sh "${repodir}"
         ;;
-    "rm")
-        "${libexec}"/commands/portzap-rm "${repodir}" "${installdir}"
-        ;;
-    "install")
-        require_dependency git mdo rsync
-        "${libexec}"/commands/portzap-install "${repodir}" "${installdir}" "${commitfile}"
+    "status")
+        "${libexec}"/commands/portzap-status
         ;;
     "apply")
         "${libexec}"/commands/portzap-apply
         ;;
     "unapply")
         "${libexec}"/commands/portzap-unapply
+        ;;
+    "rm")
+        "${libexec}"/commands/portzap-rm "${repodir}" "${installdir}"
+        ;;
+    "install")
+        require_dependency git mdo rsync
+        "${libexec}"/commands/portzap-install "${repodir}" "${installdir}" "${commitfile}"
         ;;
     *)
         print_usage

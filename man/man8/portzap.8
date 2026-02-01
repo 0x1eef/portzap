@@ -10,6 +10,7 @@
 .Nm portzap clone
 .Nm portzap pull
 .Nm portzap sh
+.Nm portzap status
 .Nm portzap install
 .Nm portzap rm
 .Nm portzap apply
@@ -80,6 +81,12 @@ This command is delegated to the '_portzap' user and access is controlled
 by mac_do(4) rules installed by
 .Nm portzap apply
 .Pp
+.Nm portzap status
+.br
+Report whether mac_do(4) rules for portzap are applied
+.br
+This command can be run by any user
+.Pp
 .Nm portzap rm
 .br
 Remove the contents of /usr/ports/ and /home/_portzap/ports/
@@ -95,13 +102,13 @@ This command requires root privileges
 .Pp
 .Nm portzap apply
 .br
-Apply security.mac.do.rules for portzap
+Apply mac_do(4) rules
 .br
 This command requires root privileges
 .Pp
 .Nm portzap unapply
 .br
-Remove security.mac.do.rules for portzap
+Remove mac_do(4) rules
 .br
 This command requires root privileges
 .Sh ENVIRONMENT

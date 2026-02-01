@@ -11,13 +11,15 @@ the ports tree.
 
 ## Features
 
+* Easy to use.
 * A simple workflow: clone, pull, then install.
-* One dedicated account (`_portzap`) for managing the ports tree.
+* Uses `rsync` and `git` for fast, efficient updates.
+* Restricts access to root and `_portzap` group members.
+* Separates unprivileged operations from root-only operations.
+* One dedicated user (`_portzap`) for managing the ports tree.
+* Keeps ownership and permissions consistent in `/home/_portzap/ports/` and `/usr/ports/`.
 * Delegation: [mdo(1)](https://man.freebsd.org/cgi/man.cgi?query=mdo&sektion=1) runs commands as `_portzap`.
 * Clear permissions: [mac_do(4)](https://man.freebsd.org/cgi/man.cgi?query=mac_do&sektion=4) rules decide who can act as `_portzap`.
-* Separates unprivileged operations from root-only operations.
-* Keeps ownership and permissions consistent in `/home/_portzap/ports/` and `/usr/ports/`.
-* Uses `rsync` and `git` for fast, efficient updates.
 
 ## Commands
 
@@ -36,6 +38,9 @@ Pull updates into `/home/_portzap/ports/` <br>
 * portzap sh <br>
 Run /bin/sh within `/home/_portzap/ports/` <br>
 
+* portzap status <br>
+Show whether [mac_do(4)](https://man.freebsd.org/cgi/man.cgi?query=mac_do&sektion=4) rules are applied <br>
+
 #### Superuser
 
 The following commands are restricted to root, or user id 0. <br>
@@ -48,11 +53,11 @@ Remove the contents of `/usr/ports/` and `/home/_portzap/ports/` <br>
 Install `/home/_portzap/ports/` into `/usr/ports/` <br>
 
 * portzap apply <br>
-Apply security.mac.do.rules for portzap <br>
+Apply [mac_do(4)](https://man.freebsd.org/cgi/man.cgi?query=mac_do&sektion=4) rules <br>
 Allows root and members of the `_portzap` group to act as the `_portzap` user <br>
 
 * portzap unapply <br>
-Clear portzap rules from security.mac.do.rules <br>
+Remove [mac_do(4)](https://man.freebsd.org/cgi/man.cgi?query=mac_do&sektion=4) rules <br>
 
 ## Configuration
 

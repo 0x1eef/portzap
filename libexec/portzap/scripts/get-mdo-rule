@@ -6,7 +6,7 @@ set -e
 #
 user="_portzap"
 uid=$(id -u "${user}")
-gid=$(pw groupshow "${user}" | awk -F: '{print $3}')
+gid=$(/usr/sbin/pw groupshow "${user}" | awk -F: '{print $3}')
 
 #
 # main
