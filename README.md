@@ -61,6 +61,23 @@ Remove [mac_do(4)](https://man.freebsd.org/cgi/man.cgi?query=mac_do&sektion=4) r
 
 ## Setup
 
+#### mac_do(4)
+
+The
+[mac_do(4)](https://man.freebsd.org/cgi/man.cgi?query=mac_do&sektion=4)
+policy must be loaded into the kernel before portzap(8)
+can use the
+[mdo(1)](https://man.freebsd.org/cgi/man.cgi?query=mdo&sektion=1)
+utility successfully. This can be done in one of two ways, _the
+recommended way_ is to add the following line to `/boot/loader.conf`:
+
+    mac_do_load="YES"
+
+And then reboot the system. Otherwise, the policy can be loaded manually
+with the following command and without a reboot:
+
+    root@localhost# kldload mac_do
+
 #### Environment
 
 After installation is complete the portzap environment should be setup.
@@ -89,23 +106,6 @@ The rc.d script that manages the [mac_do(4)](https://man.freebsd.org/cgi/man.cgi
 And then the service should be started:
 
     service portzap start
-
-#### mac_do(4)
-
-The
-[mac_do(4)](https://man.freebsd.org/cgi/man.cgi?query=mac_do&sektion=4)
-policy must be loaded into the kernel before portzap(8)
-can use the
-[mdo(1)](https://man.freebsd.org/cgi/man.cgi?query=mdo&sektion=1)
-utility successfully. This can be done in one of two ways, _the
-recommended way_ is to add the following line to `/boot/loader.conf`:
-
-    mac_do_load="YES"
-
-And then reboot the system. Otherwise, the policy can be loaded manually
-with the following command and without a reboot:
-
-    root@localhost# kldload mac_do
 
 ## Install
 
