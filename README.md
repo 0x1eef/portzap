@@ -59,9 +59,9 @@ Allows root and members of the `_portzap` group to act as the `_portzap` user <b
 * portzap unapply <br>
 Remove [mac_do(4)](https://man.freebsd.org/cgi/man.cgi?query=mac_do&sektion=4) rules <br>
 
-## Configuration
+## Setup
 
-#### Superuser
+#### Environment
 
 After installation is complete the portzap environment should be setup.
 
@@ -79,6 +79,16 @@ Tears down the `_portzap` user and group <br>
 
 * pw groupmod _portzap -m `<user>` <br>
 Add a user to the `_portzap` group. <br>
+
+#### rc.d
+
+The rc.d script that manages the [mac_do(4)](https://man.freebsd.org/cgi/man.cgi?query=mac_do&sektion=4) rules should also be enabled:
+
+    sysrc portzap_enable="YES"
+
+And then the service should be started:
+
+    service portzap start
 
 #### mac_do(4)
 
