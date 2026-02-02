@@ -15,27 +15,6 @@ gid=$(pw groupshow "${user}" | awk -F: '{print $3}')
 . "${libexec}"/functions/print.sh
 . "${libexec}"/functions/mdo.sh
 
-filter_rules()
-{
-    local system_rules portzap_rules
-    system_rules=$1
-    portzap_rules=$2
-    printf "%s" "${system_rules}" | tr ';' '\n' | awk -v rulez="${portzap_rules}" '
-BEGIN { n = split(rulez, r, "\n") }
-NF {
-    for (i = 1; i <= n; i++) if ($0 == r[i]) next
-    print
-}
-'
-}
-
-join_rules()
-{
-    local rule_list
-    rule_list=$1
-    printf "%s" "${rule_list}" | paste -sd ';' -
-}
-
 #
 # guards
 #
