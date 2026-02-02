@@ -48,8 +48,8 @@ filter_rules()
     system_rules=$1
     portzap_rules=$2
     rules_joined=$(printf "%s" "${portzap_rules}" | tr '\n' '\034' | sed 's/\034$//')
-    printf "%s" "${system_rules}" | tr ';' '\n' | awk -v rulez="${rules_joined}" '
-BEGIN { n = split(rulez, r, "\034") }
+    printf "%s" "${system_rules}" | tr ';' '\n' | awk -v rules="${rules_joined}" '
+BEGIN { n = split(rules, r, "\034") }
 NF {
     for (i = 1; i <= n; i++) if ($0 == r[i]) next
     print
