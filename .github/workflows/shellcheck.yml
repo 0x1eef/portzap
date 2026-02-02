@@ -7,7 +7,8 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
-      - uses: ludeeus/action-shellcheck@master
+      - run: sudo apt-get update
+      - run: sudo apt-get install -y shellcheck
       - run: make shellcheck
 on:
   push:
