@@ -1,0 +1,37 @@
+#!/bin/sh
+#
+#
+
+# PROVIDE: portzap
+# REQUIRE: FILESYSTEMS mountcritlocal sysctl
+# KEYWORD: shutdown
+
+. /etc/rc.subr
+
+name="portzap"
+desc="portzap mac_do(4) manager"
+rcvar="portzap_enable"
+command="/usr/local/bin/portzap"
+required_files="${command}"
+stop_cmd="portzap_stop"
+start_cmd="portzap_start"
+status_cmd="portzap_status"
+
+portzap_start()
+{
+    "${command}" apply
+}
+
+portzap_stop()
+{
+    "${command}" unapply
+}
+
+portzap_status()
+{
+    "${command}" status
+}
+
+load_rc_config $name
+
+run_rc_command "$1"

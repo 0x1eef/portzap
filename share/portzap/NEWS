@@ -5,6 +5,7 @@
 - Add `portzap unapply`: clear portzap rules from security.mac.do.rules.
 - Rename `scripts/sh` to `scripts/mdo` and keep it as the shared mdo wrapper.
 - Add `portzap status`: report whether portzap mac_do(4) rules are applied.
+- Add rc.d service: install `etc/rc.d/portzap` to manage mac_do(4) rules.
 
 
 ## v2.0.0
