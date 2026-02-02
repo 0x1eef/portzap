@@ -13,6 +13,7 @@ gid=$(pw groupshow "${user}" | awk -F: '{print $3}')
 # functions
 #
 . "${libexec}"/functions/print.sh
+. "${libexec}"/functions/mdo.sh
 
 #
 # guards
@@ -33,13 +34,13 @@ fi
 #
 # main
 #
-rulez=$("${libexec}"/scripts/get-mdo-rule | tr ';' '\n' | awk 'NF')
-rules=$(sysctl -n security.mac.do.rules)
-if [ -z "${rules}" ]; then
+portzap_rules=$(get_portzap_rules "${libexec}")
+system_rules=$(get_system_rules)
+if [ -z "${system_rules}" ]; then
     printok "security.mac.do.rules already empty"
     exit 0
 fi
-filtered=$(printf "%s" "${rules}" | tr ';' '\n' | awk -v rulez="${rulez}" '
+filtered=$(printf "%s" "${system_rules}" | tr ';' '\n' | awk -v rulez="${portzap_rules}" '
 BEGIN { n = split(rulez, r, "\n") }
 NF {
     for (i = 1; i <= n; i++) if ($0 == r[i]) next
@@ -47,7 +48,7 @@ NF {
 }
 ')
 merged=$(printf "%s" "${filtered}" | paste -sd ';' -)
-if [ "${merged}" = "${rules}" ]; then
+if [ "${merged}" = "${system_rules}" ]; then
     printok "security.mac.do.rules unchanged"
     exit 0
 fi
