@@ -11,32 +11,43 @@ libexec="$(dirname "$0")"/..
 #
 . "${libexec}"/functions/print.sh
 
+get_portzap_rules()
+{
+    "${libexec}"/scripts/get-mdo-rule | tr ';' '\n' | sed '/^$/d'
+}
+
+get_system_rules()
+{
+    sysctl -n security.mac.do.rules 2> /dev/null || true
+}
+
+is_rule_enabled()
+{
+    local syslist
+    local entry
+    syslist=$(printf "%s" "${1}" | tr ';' '\n')
+    while IFS= read -r entry; do
+        [ -z "${entry}" ] && continue
+        printf "%s\n" "${syslist}" | grep -Fxq -- "${entry}" || return 1
+    done <<EOFRULES
+${2}
+EOFRULES
+    return 0
+}
+
 #
 # main
 #
-rule=$("${libexec}"/scripts/get-mdo-rule | tr ';' '\n' | sed '/^$/d')
-rules=$(sysctl -n security.mac.do.rules 2> /dev/null || true)
-if [ -z "${rules}" ]; then
+portzap_rules=$(get_portzap_rules)
+system_rules=$(get_system_rules)
+if [ -z "${system_rules}" ]; then
     printok "disabled"
     exit 1
 fi
-syslist=$(printf "%s" "${rules}" | tr ';' '\n')
-enabled=1
-while IFS= read -r entry; do
-    if [ -z "${entry}" ]; then
-        continue
-    fi
-    if ! printf "%s\n" "${syslist}" | grep -Fxq -- "${entry}"; then
-        enabled=0
-        break
-    fi
-done <<EOFRULES
-${rule}
-EOFRULES
-
-if [ "${enabled}" -ne 1 ]; then
-    printok "disabled"
-    exit 1
+if is_rule_enabled "${system_rules}" "${portzap_rules}"; then
+    printok "enabled"
+    exit 0
 fi
 
-printok "enabled"
+printok "disabled"
+exit 1
