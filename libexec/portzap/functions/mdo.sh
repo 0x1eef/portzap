@@ -44,11 +44,12 @@ merge_rules()
 
 filter_rules()
 {
-    local system_rules portzap_rules
+    local system_rules portzap_rules rules_joined
     system_rules=$1
     portzap_rules=$2
-    printf "%s" "${system_rules}" | tr ';' '\n' | awk -v rulez="${portzap_rules}" '
-BEGIN { n = split(rulez, r, "\n") }
+    rules_joined=$(printf "%s" "${portzap_rules}" | tr '\n' '\034' | sed 's/\034$//')
+    printf "%s" "${system_rules}" | tr ';' '\n' | awk -v rulez="${rules_joined}" '
+BEGIN { n = split(rulez, r, "\034") }
 NF {
     for (i = 1; i <= n; i++) if ($0 == r[i]) next
     print
