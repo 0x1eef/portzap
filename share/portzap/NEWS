@@ -1,5 +1,9 @@
 # News
 
+## vNEXT
+
+- Fix rule filtering in `portzap unapply` when multiple rules are present.
+
 ## v2.1.0
 
 - Add `portzap unapply`: clear portzap rules from security.mac.do.rules.
