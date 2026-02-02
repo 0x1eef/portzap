@@ -48,6 +48,5 @@ if is_rule_enabled "${system_rules}" "${portzap_rules}"; then
     printok "enabled"
     exit 0
 fi
-
 printok "disabled"
 exit 1
