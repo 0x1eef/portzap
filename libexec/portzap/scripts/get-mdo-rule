@@ -5,8 +5,8 @@ set -e
 # globals
 #
 user="_portzap"
-uid=$(id -u "${user}")
-gid=$(/usr/sbin/pw groupshow "${user}" | awk -F: '{print $3}')
+uid=$(id -u "${user}" 2> /dev/null || true)
+gid=$(/usr/sbin/pw groupshow "${user}" 2> /dev/null | awk -F: '{print $3}')
 
 #
 # main

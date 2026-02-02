@@ -3,6 +3,7 @@
 ## vNEXT
 
 - Fix rule filtering in `portzap unapply` when multiple rules are present.
+- Avoid early exits in mac_do rule helpers when `_portzap` is missing.
 
 ## v2.1.0
 

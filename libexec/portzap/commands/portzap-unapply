@@ -6,8 +6,8 @@ set -e
 #
 libexec="$(dirname "${0}")"/..
 user="_portzap"
-uid=$(id -u "${user}")
-gid=$(pw groupshow "${user}" | awk -F: '{print $3}')
+uid=$(id -u "${user}" 2> /dev/null || true)
+gid=$(pw groupshow "${user}" 2> /dev/null | awk -F: '{print $3}')
 
 #
 # functions
