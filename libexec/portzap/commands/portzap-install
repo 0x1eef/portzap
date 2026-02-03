@@ -25,12 +25,10 @@ fi
 
 cd "${repodir}"
 sha=$("${git}" rev-parse HEAD)
-if [ -f "${commitfile}" ]; then
-    read -r installed < "${commitfile}"
-    if [ "${sha}" = "${installed}" ]; then
-        printok "install up to date"
-        exit 0
-    fi
+
+if "${libexec}"/scripts/install-check "${sha}" "${commitfile}"; then
+    printok "install up to date"
+    exit 0
 fi
 
 mkdir -p "${installdir}"

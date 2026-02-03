@@ -1,0 +1,19 @@
+#!/bin/sh
+set -e
+
+#
+# globals
+#
+sha="${1}"
+commitfile="${2}"
+
+#
+# main
+#
+if [ -f "${commitfile}" ]; then
+    read -r installed < "${commitfile}"
+    if [ "${sha}" = "${installed}" ]; then
+        exit 0
+    fi
+fi
+exit 1
