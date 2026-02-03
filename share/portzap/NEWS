@@ -1,6 +1,6 @@
 # News
 
-## vNEXT
+## v2.2.0
 
 - Skip rsync when the installed commit matches the current ports commit.
 
