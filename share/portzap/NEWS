@@ -1,5 +1,9 @@
 # News
 
+## vNEXT
+
+- Skip rsync when the installed commit matches the current ports commit.
+
 ## v2.1.1
 
 - Fix rule filtering in `portzap unapply` when multiple rules are present.

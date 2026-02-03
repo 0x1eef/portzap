@@ -24,6 +24,15 @@ if [ "$(id -u)" != "0" ]; then
 fi
 
 cd "${repodir}"
+sha=$("${git}" rev-parse HEAD)
+if [ -f "${commitfile}" ]; then
+    read -r installed < "${commitfile}"
+    if [ "${sha}" = "${installed}" ]; then
+        printok "install up to date"
+        exit 0
+    fi
+fi
+
 mkdir -p "${installdir}"
 rsync -av \
       --chown=root:_portzap \
@@ -41,5 +50,6 @@ rsync -av \
       --exclude=".portzap" \
       "${repodir}/" \
       "${installdir}/"
-"${git}" rev-parse HEAD > "${commitfile}"
+
+printf "%s\n" "${sha}" > "${commitfile}"
 printok "install complete"
