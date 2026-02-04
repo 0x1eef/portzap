@@ -2,6 +2,10 @@
 
 ## vNEXT
 
+- Nothing yet
+
+## v2.3.0
+
 - Speedup `portzap pull`: avoid spawning `git stash create`
 - Add -f to force `portzap install` even when up to date.
 
