@@ -66,38 +66,48 @@ done
 
 case $1 in
     "setup")
-        "${libexec}"/commands/portzap-setup
+        shift
+        "${libexec}"/commands/portzap-setup "${@}"
         ;;
     "teardown")
-        "${libexec}"/commands/portzap-teardown
+        shift
+        "${libexec}"/commands/portzap-teardown "${@}"
         ;;
     "clone")
+        shift
         require_dependency git mdo
-        "${libexec}"/commands/portzap-clone "${giturl}" "${repodir}" "${defaultbranch}"
+        "${libexec}"/commands/portzap-clone "${giturl}" "${repodir}" "${defaultbranch}" "${@}"
         ;;
     "pull")
+        shift
         require_dependency git mdo
-        "${libexec}"/commands/portzap-pull "${repodir}"
+        "${libexec}"/commands/portzap-pull "${repodir}" "${@}"
         ;;
     "sh")
+        shift
         require_dependency mdo
-        "${libexec}"/commands/portzap-sh "${repodir}"
+        "${libexec}"/commands/portzap-sh "${repodir}" "${@}"
         ;;
     "status")
-        "${libexec}"/commands/portzap-status
+        shift
+        "${libexec}"/commands/portzap-status "${@}"
         ;;
     "apply")
-        "${libexec}"/commands/portzap-apply
+        shift
+        "${libexec}"/commands/portzap-apply "${@}"
         ;;
     "unapply")
-        "${libexec}"/commands/portzap-unapply
+        shift
+        "${libexec}"/commands/portzap-unapply "${@}"
         ;;
     "rm")
-        "${libexec}"/commands/portzap-rm "${repodir}" "${installdir}"
+        shift
+        "${libexec}"/commands/portzap-rm "${repodir}" "${installdir}" "${@}"
         ;;
     "install")
+        shift
         require_dependency git mdo rsync
-        "${libexec}"/commands/portzap-install "${repodir}" "${installdir}" "${commitfile}"
+        "${libexec}"/commands/portzap-install "${repodir}" "${installdir}" "${commitfile}" "${@}"
         ;;
     *)
         print_usage

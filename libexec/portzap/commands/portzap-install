@@ -9,6 +9,7 @@ git="${libexec}"/scripts/git
 repodir=$1
 installdir=$2
 commitfile=$3
+force=$4
 
 #
 # functions
@@ -26,9 +27,13 @@ fi
 cd "${repodir}"
 sha=$("${git}" rev-parse HEAD)
 
-if "${libexec}"/scripts/install-check "${sha}" "${commitfile}"; then
-    printok "install up to date"
-    exit 0
+if [ "${force}" = "-f" ]; then
+    # do nothing
+else
+    if "${libexec}"/scripts/install-check "${sha}" "${commitfile}"; then
+        printok "install up to date (add -f to force)"
+        exit 0
+    fi
 fi
 
 mkdir -p "${installdir}"
