@@ -23,6 +23,5 @@ fi
 
 cd "${repodir}"
 branch=$("${git}" branch --show-current)
-"${git}" -c rebase.autostash=false \
-    pull --no-ff --no-rebase origin "${branch}"
+"${git}" -c rebase.autostash=false pull --no-ff --no-rebase origin "${branch}"
 printok "pull complete"
