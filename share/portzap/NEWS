@@ -2,7 +2,7 @@
 
 ## vNEXT
 
-- Nothing yet
+- Speedup `portzap pull`: avoid spawning `git stash create`
 
 ## v2.2.0
 
