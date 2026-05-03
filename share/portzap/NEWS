@@ -2,7 +2,8 @@
 
 ## vNEXT
 
-- Nothing yet
+- Switch the default ports clone URL from GitHub to the official hardenedBSD
+  radicle repository.
 
 ## v2.3.0
 

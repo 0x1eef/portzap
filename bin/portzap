@@ -7,7 +7,7 @@ set -e
 localbase=$(realpath "$(dirname "$0")"/..)
 libexec="${localbase}"/libexec/portzap
 repodir="/home/_portzap/ports"
-giturl="${PORTZAP_CLONEURL:-https://github.com/hardenedBSD/ports}"
+giturl="${PORTZAP_CLONEURL:-https://rad.hardenedbsd.org/z2XrdvALg77ycnuZRXgScb27yb3wM.git}"
 installdir="${PORTZAP_INSTALLDIR:-/usr/ports}"
 defaultbranch="hardenedbsd/main"
 commitfile="${installdir}"/.portzap
