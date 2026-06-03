@@ -2,6 +2,13 @@
 
 ## Unreleased
 
+## v2.4.0
+
+Changes since `v2.3.0`.
+
+This release switches the default ports clone URL from GitHub to the official
+hardenedBSD Radicle repository.
+
 ### Change
 
 * **Switch default ports clone URL to hardenedBSD Radicle** <br>
