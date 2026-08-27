@@ -12,7 +12,7 @@
 
 > [4.4BSD](https://4.4bsd.dev) project.
 
-portzap manages a local copy of a BSD ports tree in a way that is
+portzap manages a local copy of the BSD ports tree in a way that is
 efficient, scalable, and secure. It provides consistent ownership and
 permissions for the ports tree, keeps a clean separation between
 root-only operations and unprivileged operations, and offers a simple
