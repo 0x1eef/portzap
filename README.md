@@ -20,12 +20,10 @@ clone, pull, and install workflow.
 
 Every `portzap` command can be run as root. For the commands that
 touch the git ports tree, portzap drops privileges to the dedicated
-`_portzap` user, so git never runs with elevated privileges.
-
-The default ports tree is HardenedBSD, but portzap works with any
-git URL. The same workflow can manage the
-[FreeBSD ports tree](https://git.FreeBSD.org/ports.git) by setting
-`PORTZAP_CLONEURL`.
+`_portzap` user, so git never runs with elevated privileges. The default 
+ports tree is HardenedBSD, but portzap works with any git URL. The same 
+workflow can manage the [FreeBSD ports tree](https://git.FreeBSD.org/ports.git) 
+by setting `PORTZAP_CLONEURL`.
 
 ## Install
 
@@ -57,7 +55,7 @@ make deinstall
 <br>
 
 The mac_do(4) policy must be loaded before portzap can use
-mdo(1). Add it to `/boot/loader.conf` and reboot, or load it
+mdo(1). <br> Add it to `/boot/loader.conf` and reboot, or load it
 manually without a reboot:
 
 ```sh
