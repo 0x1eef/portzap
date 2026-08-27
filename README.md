@@ -1,147 +1,322 @@
-## About
+<p align="center">
+  <a href="https://4.4bsd.dev">
+    <img
+      src="44bsd.svg"
+      width="400"
+      height="200"
+      border="0"
+      alt="a 4.4bsd.dev project"
+     >
+  </a>
+</p>
 
-The portzap utility manages a local copy of the
-[hardenedBSD ports tree](https://git.hardenedBSD.org/hardenedBSD/ports)
-in a way that is efficient, scalable, and secure. The
-utility provides consistent ownership and permissions
-for the ports tree, maintains a clean separation between
-root-only operations and unprivileged operations, and
-offers a simple workflow for updating and installing
-the ports tree.
+> [4.4BSD](https://4.4bsd.dev) project.
 
-## Features
+portzap manages a local copy of a BSD ports tree in a way that is
+efficient, scalable, and secure. It provides consistent ownership and
+permissions for the ports tree, keeps a clean separation between
+root-only operations and unprivileged operations, and offers a simple
+clone, pull, and install workflow.
 
-* Easy to use.
-* A simple workflow: clone, pull, then install.
-* Uses `rsync` and `git` for fast, efficient updates.
-* Restricts access to root and `_portzap` group members.
-* Separates unprivileged operations from root-only operations.
-* One dedicated user (`_portzap`) for managing the ports tree.
-* Keeps ownership and permissions consistent in `/home/_portzap/ports/` and `/usr/ports/`.
-* Delegation: [mdo(1)](https://man.freebsd.org/cgi/man.cgi?query=mdo&sektion=1) runs commands as `_portzap`.
-* Clear permissions: [mac_do(4)](https://man.freebsd.org/cgi/man.cgi?query=mac_do&sektion=4) rules decide who can act as `_portzap`.
+Every `portzap` command can be run as root. For the commands that
+touch the git ports tree, portzap drops privileges to the dedicated
+`_portzap` user, so git never runs with elevated privileges.
 
-## Commands
-
-#### User
-
-The following commands are delegated to the `_portzap` user and
-authorized by [mac_do(4)](https://man.freebsd.org/cgi/man.cgi?query=mac_do&sektion=4) rules. By default you must be root or a
-member of the `_portzap` group to run the following commands:
-
-* portzap clone <br>
-Clone the hardenedBSD ports tree into `/home/_portzap/ports/` <br>
-
-* portzap pull <br>
-Pull updates into `/home/_portzap/ports/` <br>
-
-* portzap sh <br>
-Run /bin/sh within `/home/_portzap/ports/` <br>
-
-* portzap status <br>
-Show whether [mac_do(4)](https://man.freebsd.org/cgi/man.cgi?query=mac_do&sektion=4) rules are applied <br>
-
-#### Superuser
-
-The following commands are restricted to root, or user id 0. <br>
-Permission to run the following commands is denied for any other user:
-
-* portzap rm <br>
-Remove the contents of `/usr/ports/` and `/home/_portzap/ports/` <br>
-
-* portzap install <br>
-Install `/home/_portzap/ports/` into `/usr/ports/` <br>
-
-* portzap apply <br>
-Apply [mac_do(4)](https://man.freebsd.org/cgi/man.cgi?query=mac_do&sektion=4) rules <br>
-Allows root and members of the `_portzap` group to act as the `_portzap` user <br>
-
-* portzap unapply <br>
-Remove [mac_do(4)](https://man.freebsd.org/cgi/man.cgi?query=mac_do&sektion=4) rules <br>
-
-## Setup
-
-#### mac_do(4)
-
-The
-[mac_do(4)](https://man.freebsd.org/cgi/man.cgi?query=mac_do&sektion=4)
-policy must be loaded into the kernel before portzap(8)
-can use the
-[mdo(1)](https://man.freebsd.org/cgi/man.cgi?query=mdo&sektion=1)
-utility successfully. This can be done in one of two ways, _the
-recommended way_ is to add the following line to `/boot/loader.conf`:
-
-    mac_do_load="YES"
-
-And then reboot the system. Otherwise, the policy can be loaded manually
-with the following command and without a reboot:
-
-    root@localhost# kldload mac_do
-
-#### Environment
-
-After installation is complete the portzap environment should be setup.
-
-That includes the creation of the `_portzap` user and group, as well as
-the creation of `/home/_portzap`. Adding a user to the `_portzap` group is
-recommended when you want to manage the tree as a non-root user (who will
-then be delegated to `_portzap`). The process is mostly automated, and the
-following commands should be run as a superuser:
-
-* portzap setup <br>
-Creates the `_portzap` user and group <br>
-
-* portzap teardown <br>
-Tears down the `_portzap` user and group <br>
-
-* pw groupmod _portzap -m `<user>` <br>
-Add a user to the `_portzap` group. <br>
-
-#### rc.d
-
-The rc.d script that manages the [mac_do(4)](https://man.freebsd.org/cgi/man.cgi?query=mac_do&sektion=4) rules should also be enabled:
-
-    sysrc portzap_enable="YES"
-
-And then the service should be started:
-
-    service portzap start
+The default ports tree is HardenedBSD, but portzap works with any
+git URL. The same workflow can manage the
+[FreeBSD ports tree](https://git.FreeBSD.org/ports.git) by setting
+`PORTZAP_CLONEURL`.
 
 ## Install
 
-#### Package
+#### pkg(8)
 
-portzap is available
-[from the hardenedBSD src tree](https://git.hardenedBSD.org/hardenedBSD/ports/-/tree/hardenedBSD/main/hardenedBSD/portzap).
+`pkg install portzap` works on HardenedBSD.
 <br>
-"pkg install portzap" should work too but expect slower updates.
+portzap is also available from
+[the HardenedBSD ports tree](https://git.hardenedBSD.org/hardenedBSD/ports/-/tree/hardenedBSD/main/hardenedBSD/portzap).
 
-#### Source
+#### git(1)
 
 The first step is to clone the repository. <br>
-Afterwards portzap can be installed (and deinstalled) through make.
-Run the following as root (or with equivalent privileges):
+Afterwards portzap can be installed (and deinstalled) through make:
 
 ```sh
-git clone https://github.com/0x1eef/portzap
+git clone https://github.com/4-4BSD/portzap
 cd portzap
 make install
 make deinstall
 ```
 
+## Quick start
+
+### Setup
+
+<details>
+<summary>First-time setup</summary>
+<br>
+
+The mac_do(4) policy must be loaded before portzap can use
+mdo(1). Add it to `/boot/loader.conf` and reboot, or load it
+manually without a reboot:
+
+```sh
+##
+# Permanent
+sysrc -f /boot/loader.conf mac_do_load="YES"
+
+##
+# Temporary (no reboot)
+kldload mac_do
+```
+
+Then create the `_portzap` user and group:
+
+```sh
+portzap setup
+```
+
+Run `portzap teardown` later to reverse this step. Both commands
+require root.
+
+Add yourself to the `_portzap` group only if you want to run
+`clone`, `pull`, or `sh` without root. When those commands are run
+as root, portzap drops privileges to `_portzap` automatically:
+
+```sh
+pw groupmod _portzap -m <user>
+```
+
+Enable and start the rc.d service that applies the mac_do(4) rules:
+
+```sh
+sysrc portzap_enable="YES"
+service portzap start
+```
+
+</details>
+
+### Commands
+
+All `portzap` commands can be run as root. The commands that touch
+the git ports tree (`clone`, `pull`, and `sh`) are delegated to the
+`_portzap` user through
+[mdo(1)](https://man.freebsd.org/cgi/man.cgi?query=mdo&sektion=1), so
+root drops privileges before running anything inside
+`/home/_portzap/ports/`. Members of the `_portzap` group can run
+the same delegated commands without root. Everything else is root-only,
+except `status`, which any user can run.
+
+#### Delegated
+
+<details>
+<summary>clone</summary>
+<br>
+
+Clone the ports tree into `/home/_portzap/ports/` as the `_portzap`
+user. The repository URL comes from `PORTZAP_CLONEURL`, which
+defaults to the official HardenedBSD radicle repository.
+
+```sh
+portzap clone
+```
+
+</details>
+
+<details>
+<summary>pull</summary>
+<br>
+
+Pull updates into `/home/_portzap/ports/` as the `_portzap` user.
+The current branch is pulled from its upstream remote without
+rebasing.
+
+```sh
+portzap pull
+```
+
+</details>
+
+<details>
+<summary>sh</summary>
+<br>
+
+Run `/bin/sh` inside `/home/_portzap/ports/` as the `_portzap` user.
+Use this instead of editing or running git commands in the ports tree
+as root.
+
+```sh
+portzap sh
+```
+
+</details>
+
+#### Root-only
+
+<details>
+<summary>install</summary>
+<br>
+
+Install `/home/_portzap/ports/` into `/usr/ports/` with rsync. The
+install is skipped when `/usr/ports/` already matches the current
+ports commit; pass `-f` to force it.
+
+```sh
+portzap install
+portzap install -f
+```
+
+</details>
+
+<details>
+<summary>rm</summary>
+<br>
+
+Interactively remove the contents of `/usr/ports/` and/or
+`/home/_portzap/ports/`. This command requires root.
+
+```sh
+portzap rm
+```
+
+</details>
+
+<details>
+<summary>apply / unapply</summary>
+<br>
+
+Apply or remove the portzap
+[mac_do(4)](https://man.freebsd.org/cgi/man.cgi?query=mac_do&sektion=4)
+rules. Both commands require root.
+
+```sh
+portzap apply
+portzap unapply
+```
+
+</details>
+
+#### Anyone
+
+<details>
+<summary>status</summary>
+<br>
+
+Show whether the portzap
+[mac_do(4)](https://man.freebsd.org/cgi/man.cgi?query=mac_do&sektion=4)
+rules are applied. This command can be run by any user.
+
+```sh
+portzap status
+```
+
+</details>
+
+#### FreeBSD
+
+<details>
+<summary>Managing a different ports tree</summary>
+<br>
+
+portzap is not limited to HardenedBSD. Set `PORTZAP_CLONEURL` to
+any git repository before running `portzap clone`, and the same
+clone, pull, and install workflow applies. Run the commands as root:
+`clone` and `pull` drop privileges to `_portzap`, while `install`
+stays root-only. For example, to manage the FreeBSD ports tree:
+
+```sh
+export PORTZAP_CLONEURL=https://git.FreeBSD.org/ports.git
+portzap clone
+portzap pull
+portzap install
+```
+
+The GitHub mirror works too:
+
+```sh
+export PORTZAP_CLONEURL=https://github.com/freebsd/freebsd-ports.git
+portzap clone
+```
+
+When the HardenedBSD-specific branch is not present in the configured
+repository, portzap falls back to the repository's default branch.
+
+</details>
+
+## Configuration
+
+<details>
+<summary>PORTZAP_CLONEURL</summary>
+<br>
+
+The git repository URL cloned by `portzap clone`.
+
+Default:
+
+```
+https://rad.hardenedbsd.org/z2XrdvALg77ycnuZRXgScb27yb3wM.git
+```
+
+</details>
+
+<details>
+<summary>PORTZAP_INSTALLDIR</summary>
+<br>
+
+The directory where the ports tree is installed by
+`portzap install`.
+
+Default:
+
+```
+/usr/ports
+```
+
+</details>
+
+<details>
+<summary>mac_do(4)</summary>
+<br>
+
+The
+[mac_do(4)](https://man.freebsd.org/cgi/man.cgi?query=mac_do&sektion=4)
+policy must be loaded into the kernel before portzap can use
+[mdo(1)](https://man.freebsd.org/cgi/man.cgi?query=mdo&sektion=1).
+Add it to `/boot/loader.conf` and reboot:
+
+```
+mac_do_load="YES"
+```
+
+Or load it manually without a reboot:
+
+```
+kldload mac_do
+```
+
+</details>
+
+<details>
+<summary>rc.d</summary>
+<br>
+
+The rc.d script manages the portzap
+[mac_do(4)](https://man.freebsd.org/cgi/man.cgi?query=mac_do&sektion=4)
+rules:
+
+```sh
+sysrc portzap_enable="YES"
+service portzap start
+```
+
+</details>
+
 ## Requirements
 
 * [mdo](https://man.freebsd.org/cgi/man.cgi?query=mdo&sektion=1)
 * [mac_do](https://man.freebsd.org/cgi/man.cgi?query=mac_do&sektion=4)
-* [git](https://www.man7.org/linux/man-pages/man1/git.1.html)
-* [rsync](https://www.man7.org/linux/man-pages/man1/rsync.1.html)
-
-## Sources
-
-* [github.com/@0x1eef](https://github.com/0x1eef/portzap)
-* [gitlab.com/@0x1eef](https://gitlab.com/0x1eef/portzap)
-* [hardenedBSD.org/@0x1eef](https://git.hardenedBSD.org/0x1eef/portzap)
-* [bsd.cafe/@0x1eef](https://brew.bsd.cafe/0x1eef/portzap)
+* [git](https://git-scm.com/)
+* [rsync](https://rsync.samba.org/)
 
 ## License
 

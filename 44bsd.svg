@@ -1,0 +1,209 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 560 220" role="img" aria-labelledby="title desc">
+  <title id="title">4.4bsd.dev</title>
+  <desc id="desc">A wide 4.4bsd.dev wordmark with an OpenBSD pufferfish, a FreeBSD orb, and a HardenedBSD orb floating around the text.</desc>
+  <defs>
+    <linearGradient id="body" x1="45" y1="35" x2="211" y2="224" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#e0796f"/>
+      <stop offset="0.42" stop-color="#a7312b"/>
+      <stop offset="1" stop-color="#5b090d"/>
+    </linearGradient>
+    <linearGradient id="table" x1="75" y1="31" x2="166" y2="104" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#fff3ec"/>
+      <stop offset="0.26" stop-color="#d9867d"/>
+      <stop offset="1" stop-color="#a32d2a"/>
+    </linearGradient>
+    <linearGradient id="right" x1="150" y1="59" x2="219" y2="195" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#911b20"/>
+      <stop offset="1" stop-color="#3c0407"/>
+    </linearGradient>
+    <linearGradient id="center" x1="99" y1="104" x2="146" y2="226" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#c8554f"/>
+      <stop offset="0.48" stop-color="#992522"/>
+      <stop offset="1" stop-color="#6d1315"/>
+    </linearGradient>
+    <radialGradient id="glow" cx="38%" cy="22%" r="66%">
+      <stop offset="0" stop-color="#fff8ed" stop-opacity="0.68"/>
+      <stop offset="0.42" stop-color="#d89a92" stop-opacity="0.18"/>
+      <stop offset="1" stop-color="#d89a92" stop-opacity="0"/>
+    </radialGradient>
+    <radialGradient id="orb" cx="35%" cy="30%" r="70%">
+      <stop offset="0" stop-color="#e0796f"/>
+      <stop offset="0.45" stop-color="#a7312b"/>
+      <stop offset="1" stop-color="#5b090d"/>
+    </radialGradient>
+    <radialGradient id="orb-blue" cx="35%" cy="30%" r="70%">
+      <stop offset="0" stop-color="#7aa5d9"/>
+      <stop offset="0.45" stop-color="#35669e"/>
+      <stop offset="1" stop-color="#162f4a"/>
+    </radialGradient>
+    <radialGradient id="fish" cx="35%" cy="30%" r="70%">
+      <stop offset="0" stop-color="#6fc1d8"/>
+      <stop offset="0.45" stop-color="#2b7e9e"/>
+      <stop offset="1" stop-color="#0d3a4a"/>
+    </radialGradient>
+    <linearGradient id="wordmark" x1="0" y1="76" x2="0" y2="138" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#ffffff"/>
+      <stop offset="0.48" stop-color="#e1e4e8"/>
+      <stop offset="1" stop-color="#aeb8c2"/>
+    </linearGradient>
+    <linearGradient id="accentLine" x1="90" y1="0" x2="470" y2="0" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#30363d"/>
+      <stop offset="0.5" stop-color="#a7312b"/>
+      <stop offset="1" stop-color="#30363d"/>
+    </linearGradient>
+    <filter id="shadow" x="-18%" y="-18%" width="136%" height="146%">
+      <feDropShadow dx="0" dy="10" stdDeviation="9" flood-color="#000" flood-opacity="0.34"/>
+    </filter>
+    <filter id="textShadow" x="-20%" y="-45%" width="140%" height="190%">
+      <feDropShadow dx="0" dy="7" stdDeviation="6" flood-color="#000" flood-opacity="0.55"/>
+    </filter>
+    <symbol id="freebsd-orb" viewBox="0 0 256 256">
+      <!-- horns -->
+      <path d="M88 72 C82 60 72 50 58 46 C62 54 64 62 70 78 Z" fill="url(#orb)" stroke="#250507" stroke-width="6" stroke-linejoin="round"/>
+      <path d="M168 72 C174 60 184 50 198 46 C194 54 192 62 186 78 Z" fill="url(#orb)" stroke="#250507" stroke-width="6" stroke-linejoin="round"/>
+      <!-- sphere -->
+      <circle cx="128" cy="140" r="82" fill="url(#orb)" stroke="#250507" stroke-width="7"/>
+      <!-- glow highlight -->
+      <ellipse cx="96" cy="94" rx="34" ry="24" fill="url(#glow)" transform="rotate(-24 96 94)"/>
+      <!-- specular sparkle -->
+      <path d="M104 84 L112 68 L118 84 L134 90 L118 96 L112 112 L106 96 L90 90 Z" fill="#ffffff" opacity="0.35"/>
+    </symbol>
+
+    <symbol id="hardenedbsd-orb" viewBox="0 0 256 256">
+      <!-- horns -->
+      <path d="M88 72 C82 60 72 50 58 46 C62 54 64 62 70 78 Z" fill="url(#orb-blue)" stroke="#250507" stroke-width="6" stroke-linejoin="round"/>
+      <path d="M168 72 C174 60 184 50 198 46 C194 54 192 62 186 78 Z" fill="url(#orb-blue)" stroke="#250507" stroke-width="6" stroke-linejoin="round"/>
+      <!-- sphere -->
+      <circle cx="128" cy="140" r="82" fill="url(#orb-blue)" stroke="#250507" stroke-width="7"/>
+      <!-- glow highlight -->
+      <ellipse cx="96" cy="94" rx="34" ry="24" fill="url(#glow)" transform="rotate(-24 96 94)"/>
+      <!-- specular sparkle -->
+      <path d="M104 84 L112 68 L118 84 L134 90 L118 96 L112 112 L106 96 L90 90 Z" fill="#ffffff" opacity="0.35"/>
+    </symbol>
+
+    <symbol id="openbsd-fish" viewBox="0 0 256 256">
+      <!-- spikes and tail -->
+      <path d="M112 92 L128 64 L144 92 Z" fill="url(#fish)" stroke="#250507" stroke-width="6" stroke-linejoin="round"/>
+      <path d="M112 208 L128 236 L144 208 Z" fill="url(#fish)" stroke="#250507" stroke-width="6" stroke-linejoin="round"/>
+      <path d="M192 136 L220 150 L192 164 Z" fill="url(#fish)" stroke="#250507" stroke-width="6" stroke-linejoin="round"/>
+      <path d="M64 150 L20 120 L28 150 L20 180 Z" fill="url(#fish)" stroke="#250507" stroke-width="6" stroke-linejoin="round"/>
+      <!-- body -->
+      <circle cx="128" cy="150" r="72" fill="url(#fish)" stroke="#250507" stroke-width="7"/>
+      <!-- eye -->
+      <circle cx="158" cy="128" r="16" fill="#ffffff" stroke="#250507" stroke-width="5"/>
+      <circle cx="162" cy="132" r="7" fill="#250507"/>
+      <!-- mouth -->
+      <path d="M176 158 Q190 170 202 152" fill="none" stroke="#250507" stroke-width="5" stroke-linecap="round"/>
+      <!-- pectoral fin -->
+      <path d="M148 204 Q168 220 184 206 Q168 196 148 204 Z" fill="url(#fish)" stroke="#250507" stroke-width="5" stroke-linejoin="round"/>
+      <!-- glow highlight -->
+      <ellipse cx="104" cy="110" rx="22" ry="14" fill="url(#glow)" transform="rotate(-20 104 110)"/>
+    </symbol>
+  </defs>
+  <style>
+    svg {
+      color-scheme: light dark;
+      --wordmark-fill: #24292f;
+      --wordmark-halo: #ffffff;
+      --wordmark-outline: #d0d7de;
+    }
+    .wordmark-halo {
+      fill: none;
+      stroke: var(--wordmark-halo);
+      stroke-width: 16;
+      stroke-linejoin: round;
+      paint-order: stroke;
+    }
+    .wordmark-outline {
+      fill: none;
+      stroke: var(--wordmark-outline);
+      stroke-width: 8;
+      stroke-linejoin: round;
+      paint-order: stroke;
+    }
+    .wordmark-fill {
+      fill: var(--wordmark-fill);
+    }
+    .tagline {
+      fill: var(--wordmark-fill);
+      opacity: 0.78;
+    }
+    .daemon {
+      animation-duration: 6.5s;
+      animation-iteration-count: infinite;
+      animation-timing-function: ease-in-out;
+    }
+    .daemon-a { animation-name: daemon-a; }
+    .daemon-b { animation-name: daemon-b; animation-duration: 7.5s; }
+    .daemon-c { animation-name: daemon-c; animation-duration: 8s; }
+    .daemon-front {
+      opacity: 0;
+      animation-duration: 12s;
+      animation-iteration-count: infinite;
+      animation-timing-function: ease-in-out;
+    }
+    .daemon-front-a { animation-name: daemon-front-a; }
+    .daemon-front-b { animation-name: daemon-front-b; animation-delay: -4s; }
+    .daemon-front-c { animation-name: daemon-front-c; animation-delay: -8s; }
+    @keyframes daemon-a {
+      0%, 100% { transform: translate(42px, 82px) rotate(-10deg); }
+      35% { transform: translate(66px, 45px) rotate(5deg); }
+      70% { transform: translate(84px, 118px) rotate(-18deg); }
+    }
+    @keyframes daemon-b {
+      0%, 100% { transform: translate(236px, 13px) rotate(3deg); }
+      33% { transform: translate(192px, 28px) rotate(-9deg); }
+      66% { transform: translate(292px, 24px) rotate(12deg); }
+    }
+    @keyframes daemon-c {
+      0%, 100% { transform: translate(430px, 78px) rotate(8deg); }
+      38% { transform: translate(397px, 45px) rotate(-4deg); }
+      72% { transform: translate(446px, 117px) rotate(16deg); }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      .daemon { animation: none; }
+      .daemon-front { animation: none; opacity: 0; }
+      .daemon-a { transform: translate(42px, 82px) rotate(-10deg); }
+      .daemon-b { transform: translate(236px, 13px) rotate(3deg); }
+      .daemon-c { transform: translate(430px, 78px) rotate(8deg); }
+    }
+    @keyframes daemon-front-a {
+      0%, 42%, 51%, 100% { opacity: 0; }
+      45%, 48% { opacity: 0.9; }
+    }
+    @keyframes daemon-front-b {
+      0%, 57%, 66%, 100% { opacity: 0; }
+      60%, 63% { opacity: 0.86; }
+    }
+    @keyframes daemon-front-c {
+      0%, 72%, 81%, 100% { opacity: 0; }
+      75%, 78% { opacity: 0.88; }
+    }
+  </style>
+
+  <g opacity="0.92">
+    <g class="daemon daemon-a"><use href="#openbsd-fish" width="78" height="78"/></g>
+    <g class="daemon daemon-b"><use href="#freebsd-orb" width="84" height="84"/></g>
+    <g class="daemon daemon-c"><use href="#hardenedbsd-orb" width="78" height="78"/></g>
+  </g>
+
+  <g font-family="system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif" text-anchor="middle">
+    <text class="wordmark-halo" x="280" y="126" fill="none" stroke="#ffffff"
+          font-size="72" font-weight="800"
+          filter="url(#textShadow)">4.4BSD</text>
+    <text class="wordmark-outline" x="280" y="126" fill="none" stroke="#d0d7de"
+          font-size="72" font-weight="800">4.4BSD</text>
+    <text class="wordmark-fill" x="280" y="126" fill="#24292f"
+          font-size="72" font-weight="800">4.4BSD</text>
+  </g>
+
+  <g>
+    <g class="daemon daemon-a"><use class="daemon-front daemon-front-a" href="#openbsd-fish" width="78" height="78"/></g>
+    <g class="daemon daemon-b"><use class="daemon-front daemon-front-b" href="#freebsd-orb" width="84" height="84"/></g>
+    <g class="daemon daemon-c"><use class="daemon-front daemon-front-c" href="#hardenedbsd-orb" width="78" height="78"/></g>
+  </g>
+
+  <text class="tagline" x="280" y="204"
+        font-family="system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif"
+        text-anchor="middle" font-size="18" font-weight="650">Ask questions about FreeBSD</text>
+</svg>
