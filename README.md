@@ -12,11 +12,10 @@
 
 > [4.4BSD](https://4.4bsd.dev) project.
 
-portzap manages a local copy of the BSD ports tree in a way that is
-efficient, scalable, and secure. It provides consistent ownership and
-permissions for the ports tree, keeps a clean separation between
-root-only operations and unprivileged operations, and offers a simple
-clone, pull, and install workflow.
+portzap manages a local copy of the BSD ports tree. It provides
+consistent ownership and permissions for the ports tree, keeps a
+clean separation between root-only operations and unprivileged operations,
+and offers a simple clone, pull, and install workflow.
 
 Every `portzap` command can be run as root. For the commands that
 touch the git ports tree, portzap drops privileges to the dedicated
