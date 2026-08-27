@@ -49,7 +49,7 @@ make deinstall
 
 ## Quick start
 
-Run as root. <br>
+Run as root **or** as a member of the `_portzap` group. <br>
 Delegate to the `_portzap` user.
 
 ```sh
@@ -64,7 +64,7 @@ service portzap start
 
 ##
 # Everyday usage
-# As root
+# As root / member of _portzap group
 # All commands delegated to _portzap user
 portzap clone
 portzap install
@@ -72,7 +72,7 @@ portzap pull
 
 ##
 # Drop into a shell
-# As root
+# As root / member of the _portzap group
 # Run as the _portzap user
 portzap sh
 ```
