@@ -32,7 +32,7 @@ workflow can manage the
 `pkg install portzap` works on HardenedBSD.
 <br>
 portzap is also available from
-[the HardenedBSD ports tree](https://git.hardenedBSD.org/hardenedBSD/ports/-/tree/hardenedBSD/main/hardenedBSD/portzap).
+[the HardenedBSD ports tree](https://radicle.network/nodes/rad.hardenedbsd.org/ports/).
 
 #### git(1)
 
